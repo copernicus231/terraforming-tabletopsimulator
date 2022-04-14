@@ -1,0 +1,99 @@
+#include ../CORE/Board
+#include ../CORE/SmallestMatrix
+loadingGame = true
+
+venusTileButton={button = {
+click_function = 'venusTilePlace', function_owner = self, label = "",
+    position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
+},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+
+venusZone={matrix=matrixMap,parent=self,zoneTag=nil}
+
+
+function venusTilePlace(obj,player_clicker_color,alt_click)
+    venusTileButton:doClick(obj,player_clicker_color,alt_click,placeVenusTile)
+end
+
+function initMap()
+    for i = 1,37 do
+        matrixMap[i].snap = i
+    end
+
+end
+
+function onLoad(save_state)
+    TileButton:new(venusTileButton)
+    initMap()
+    TileBoard:new(venusZone)
+    initZone()
+    loadingGame = false
+end
+
+function initZone()
+    local objs = getObjectsWithAllTags({"VenusTile"})
+    for i,a in ipairs(objs) do
+        if a.getLock() then
+            local pos = venusZone:getZonePosition(a)
+            if pos != 0 then
+                venusZone:placeTile(a,pos)
+            end
+        end
+    end
+end
+function extraBonus(obj)
+    return {}
+end
+function placeTile(obj,color)
+    local position = venusZone:getZonePosition(obj)
+    if position > 0 then
+        obj.memo=color
+        venusZone:placeTile(obj,position)
+        if color != "Grey" then
+            local bonus = venusZone:getPlacementBonusColor(position)
+            for i,a in pairs(extraBonus(obj)) do
+                bonus[color][i] = (bonus[color][i] or 0) + a
+            end
+            applyBonusC(bonus)
+            --applyBonus(bonus,color)
+        end
+        return true
+    end
+    return false
+end
+
+function placeVenusTile(obj,color)
+    if placeTile(obj,color) then
+        if color != "Grey" then
+            --tracks.tr:moveTrack(color,1)
+            broadcastToAll("<VENUS>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
+        end
+    end
+end
+
+function onCollisionExit(collision_info)
+    if loadingGame then
+        return
+    end
+    local obj = collision_info.collision_object
+    --WORK AROUND WITH LOCK OBJECTS TRIGGER AN onCollisionExit
+    if obj.getLock() then
+        return
+    end
+    if obj.hasTag("VenusTile") then
+        venusTileButton:remove(obj)
+    end
+end
+
+function onCollisionEnter(collision_info)
+        if loadingGame then
+            return
+        end
+        local obj = collision_info.collision_object
+        --WORK AROUND WITH LOCK OBJECTS TRIGGER AN onCollisionExit
+        if obj.getLock() then
+            return
+        end
+        if obj.hasTag("VenusTile") then
+            venusTileButton:add(obj)
+        end
+end

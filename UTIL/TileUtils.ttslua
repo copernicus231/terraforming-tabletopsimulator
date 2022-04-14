@@ -1,0 +1,8 @@
+function getMetaBonus(tile)
+    local d = tile.getDescription()
+    local json = JSON.decode(d)
+    if json != nil then
+        return json
+    end
+    return {}
+end

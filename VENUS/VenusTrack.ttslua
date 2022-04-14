@@ -1,0 +1,13 @@
+tracks={
+venusScale={marker={Grey=getTrackMarker("VenusLevel")},snapMap=venusScaleSnapMap,level={Grey=0},parent=self,bonusMap=venusScaleBonusMap}
+}
+venusScaleSnapMap={}
+venusScaleBonusMap={}
+function initVenusScale()
+    for i = 1,15 do
+        venusScaleSnapMap[i] = i
+        venusScaleBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
+    end
+    venusScaleBonusMap[5]={PLAYER={TERRAFORM=1,Card=1},EVERYONE={}}
+    venusScaleBonusMap[9]={PLAYER={TERRAFORM=2},EVERYONE={}}
+end
