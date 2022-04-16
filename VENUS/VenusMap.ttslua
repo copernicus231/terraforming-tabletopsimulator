@@ -3,26 +3,72 @@
 loadingGame = true
 
 venusTileButton={button = {
-click_function = 'venusTilePlace', function_owner = self, label = "",
+click_function = 'venusTileClick', function_owner = self, label = "",
+    position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
+},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+
+cityTileButton={button = {
+click_function = 'cityTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
 },getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
 
 venusZone={matrix=matrixMap,parent=self,zoneTag=nil}
 
 
-function venusTilePlace(obj,player_clicker_color,alt_click)
+function venusTileClick(obj,player_clicker_color,alt_click)
     venusTileButton:doClick(obj,player_clicker_color,alt_click,placeVenusTile)
 end
 
+function cityTileClick(obj,player_clicker_color,alt_click)
+    cityTileButton:doClick(obj,player_clicker_color,alt_click,placeCityTile)
+end
+
+
 function initMap()
-    for i = 1,37 do
+    for i = 1,16 do
         matrixMap[i].snap = i
     end
+    matrixMap[17].snap = 37
+    for i=17,34 do
+      matrixMap[i+1].snap = i
+    end
+    matrixMap[1].bonus = {He=2}
+    matrixMap[3].bonus = {En=1}
+    matrixMap[6].bonus = {En=1}
+    matrixMap[7].bonus = {He=1}
+    matrixMap[8].bonus = {He=3}
+    matrixMap[9].bonus = {En=1}
 
+    matrixMap[10].bonus = {Card=2}
+    matrixMap[11].bonus = {He=2}
+    matrixMap[13].bonus = {En=1}
+    matrixMap[14].bonus = {He=1}
+    matrixMap[15].bonus = {MC=5}
+
+    matrixMap[16].bonus = {He=1}
+    matrixMap[17].bonus = {MC=1}
+    matrixMap[18].bonus = {MC=2}
+    matrixMap[19].bonus = {En=1}
+
+    matrixMap[21].bonus = {En=2}
+    matrixMap[22].bonus = {En=1}
+    matrixMap[23].bonus = {He=2}
+    matrixMap[24].bonus = {En=1}
+    matrixMap[26].bonus = {He=2}
+
+    matrixMap[28].bonus = {He=1}
+    matrixMap[29].bonus = {He=1}
+    matrixMap[30].bonus = {En=1}
+    matrixMap[31].bonus = {He=2}
+
+    matrixMap[32].bonus = {En=1,Card=1}
+    matrixMap[33].bonus = {He=1}
+    matrixMap[35].bonus = {Card=2}
 end
 
 function onLoad(save_state)
     TileButton:new(venusTileButton)
+    TileButton:new(cityTileButton)
     initMap()
     TileBoard:new(venusZone)
     initZone()
@@ -60,11 +106,18 @@ function placeTile(obj,color)
     end
     return false
 end
-
+function placeCityTile(obj,color)
+  if placeTile(obj,color) then
+      if color != "Grey" then
+          broadcastToAll("<VENUS>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
+      end
+  end
+end
 function placeVenusTile(obj,color)
     if placeTile(obj,color) then
         if color != "Grey" then
             --tracks.tr:moveTrack(color,1)
+            getBoard("VenusNext").call("moveTrack",{step=1,color=color,name="venusScale"})
             broadcastToAll("<VENUS>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
         end
     end
@@ -81,6 +134,8 @@ function onCollisionExit(collision_info)
     end
     if obj.hasTag("VenusTile") then
         venusTileButton:remove(obj)
+    elseif obj.hasTag("City") then
+        cityTileButton:remove(obj)
     end
 end
 
@@ -95,5 +150,7 @@ function onCollisionEnter(collision_info)
         end
         if obj.hasTag("VenusTile") then
             venusTileButton:add(obj)
+        elseif obj.hasTag("City") then
+            cityTileButton:add(obj)
         end
 end

@@ -13,6 +13,7 @@ function getObject(map,key,tags)
         local obj = getSingleObject(tags)
         if obj != nil then
             map[key] = obj
+            print(obj.getGUID())
         else
             log("ERROR GET OBJECT: "..key)
             return Global

@@ -1,0 +1,245 @@
+#include ../CORE/Board
+#include ../CORE/SmallestMatrix
+
+habitatTileButton={button = {
+click_function = 'habitatTileClick', function_owner = self, label = "",
+    position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
+},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+
+mineTileButton={button = {
+click_function = 'mineTileClick', function_owner = self, label = "",
+    position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
+},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+
+roadTileButton={button = {
+click_function = 'roadTileClick', function_owner = self, label = "",
+    position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
+},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+
+cityTileButton={button = {
+click_function = 'cityTileClick', function_owner = self, label = "",
+    position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
+},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+
+
+lunaZone={matrix=matrixMap,parent=self,zoneTag=nil}
+
+colonizationRateSnapMap={}
+miningRateSnapMap={}
+logisticRateSnapMap={}
+colonizationRateBonusMap={}
+miningRateBonusMap={}
+logisticRateBonusMap={}
+tracks={
+colonizationRate={marker={Grey=getTrackMarker("ColonizationRate")},snapMap=colonizationRateSnapMap,level={Grey=0},parent=self,bonusMap=colonizationRateBonusMap},
+miningRate={marker={Grey=getTrackMarker("MiningRate")},snapMap=miningRateSnapMap,level={Grey=0},parent=self,bonusMap=miningRateBonusMap},
+logisticRate={marker={Grey=getTrackMarker("LogisticRate")},snapMap=logisticRateSnapMap,level={Grey=0},parent=self,bonusMap=logisticRateBonusMap},
+
+}
+--function payTrackBonus()
+--end
+colonizationRateTrackButton={button ={ index = 0,
+    click_function = 'colonizationRateClick',
+     function_owner = self,
+     label = "",
+     position = {0,1.2,0},
+     rotation={0,0,0},
+     width = 300,
+     height = 300,
+     font_size = 100,
+     font_color={0,0,0,0},
+     color=Color.fromString("Red"),
+     hover_color={0,0,0,0},
+     tooltip="colonizationRate"
+ },colorText="Red",track=tracks.colonizationRate}
+
+miningRateTrackButton={button ={ index = 0,
+     click_function = 'miningRateClick',
+      function_owner = self,
+      label = "",
+      position = {0,1.2,0},
+      rotation={0,0,0},
+      width = 300,
+      height = 300,
+      font_size = 100,
+      font_color={0,0,0,0},
+      color=Color.fromString("Red"),
+      hover_color={0,0,0,0},
+      tooltip="miningRate"
+  },colorText="Red",track=tracks.miningRate}
+
+logisticRateTrackButton={button ={ index = 0,
+      click_function = 'logisticRateClick',
+       function_owner = self,
+       label = "",
+       position = {0,1.2,0},
+       rotation={0,0,0},
+       width = 300,
+       height = 300,
+       font_size = 100,
+       font_color={0,0,0,0},
+       color=Color.fromString("Red"),
+       hover_color={0,0,0,0},
+       tooltip="logisticRate"
+   },colorText="Red",track=tracks.logisticRate}
+
+
+function colonizationRateClick(obj,player_clicker_color,alt_click)
+   colonizationRateTrackButton:doClick(obj,player_clicker_color,alt_click,function(color,step) if color != "Grey" then log("colonizationRate:"..color.."/"..step); tracks.colonizationRate:updateLevel("Grey"); payTrackBonus({name="colonizationRate",color=color,step=step}) end end)
+end
+function miningRateClick(obj,player_clicker_color,alt_click)
+   miningRateTrackButton:doClick(obj,player_clicker_color,alt_click,function(color,step) if color != "Grey" then log("miningRate:"..color.."/"..step); tracks.miningRate:updateLevel("Grey"); payTrackBonus({name="miningRate",color=color,step=step}) end end)
+end
+function logisticRateClick(obj,player_clicker_color,alt_click)
+   logisticRateTrackButton:doClick(obj,player_clicker_color,alt_click,function(color,step) if color != "Grey" then log("logisticRate:"..color.."/"..step); tracks.logisticRate:updateLevel("Grey"); payTrackBonus({name="logisticRate",color=color,step=step}) end end)
+end
+
+function extraBonus(obj)
+    return {}
+end
+function placeTile(obj,color,zone)
+    local position = zone:getZonePosition(obj)
+    if position > 0 then
+        obj.memo=color
+        zone:placeTile(obj,position)
+        if color != "Grey" then
+            local bonus = zone:getPlacementBonusColor(position)
+            for i,a in pairs(extraBonus(obj)) do
+                bonus[color][i] = (bonus[color][i] or 0) + a
+            end
+            applyBonusC(bonus)
+        end
+        return true
+    end
+    return false
+end
+
+function habitatTileClick(obj,player_clicker_color,alt_click)
+    venusTileButton:doClick(obj,player_clicker_color,alt_click,function()
+      if placeTile(obj,color,lunaZone) then
+          if color != "Grey" then
+              getBoard("Luna").call("moveTrack",{step=1,color=color,name="colonizationRate"})
+              broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
+          end
+      end
+    end)
+end
+
+function mineTileClick(obj,player_clicker_color,alt_click)
+    venusTileButton:doClick(obj,player_clicker_color,alt_click,function()
+      if placeTile(obj,color,lunaZone) then
+          if color != "Grey" then
+              getBoard("Luna").call("moveTrack",{step=1,color=color,name="miningRate"})
+              broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
+          end
+      end
+    end)
+end
+
+function roadTileClick(obj,player_clicker_color,alt_click)
+    venusTileButton:doClick(obj,player_clicker_color,alt_click,function()
+      if placeTile(obj,color,lunaZone) then
+          if color != "Grey" then
+              getBoard("Luna").call("moveTrack",{step=1,color=color,name="logisticRate"})
+              broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
+          end
+      end
+    end)
+end
+
+function cityTileClick(obj,player_clicker_color,alt_click)
+    cityTileButton:doClick(obj,player_clicker_color,alt_click,function()
+      if placeTile(obj,color,lunaZone) then
+          if color != "Grey" then
+              broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
+          end
+      end
+    end)
+end
+
+
+function initZone()
+    local objs = getObjectsWithAllTags({"LunaTile"})
+    for i,a in ipairs(objs) do
+        if a.getLock() then
+            local pos = lunaZone:getZonePosition(a)
+            if pos != 0 then
+                lunaZone:placeTile(a,pos)
+            end
+        end
+    end
+end
+
+function initMap()
+    for i = 1,35 do
+        matrixMap[i].snap = i
+    end
+    matrixMap[2].bonus = {Ti=1,Card=1}
+    matrixMap[4].bonus = {St=1}
+    matrixMap[5].bonus = {St=2}
+    matrixMap[7].bonus = {Ti=1}
+    matrixMap[11].bonus = {Ti=1}
+    matrixMap[12].bonus = {MC=5}
+
+    matrixMap[14].bonus = {St=1}
+    matrixMap[15].bonus = {Ti=2}
+    matrixMap[16].bonus = {Ti=1}
+    matrixMap[19].bonus = {St=1}
+    matrixMap[20].bonus = {St=1}
+
+    matrixMap[16].bonus = {He=1}
+    matrixMap[17].bonus = {MC=1}
+    matrixMap[18].bonus = {MC=2}
+    matrixMap[19].bonus = {En=1}
+
+    matrixMap[22].bonus = {St=1}
+    matrixMap[24].bonus = {Card=2}
+    matrixMap[26].bonus = {Ti=1}
+    matrixMap[28].bonus = {Ti=1}
+    matrixMap[29].bonus = {Ti=1}
+    matrixMap[31].bonus = {Ti=1}
+
+
+    matrixMap[32].bonus = {Card=2}
+    matrixMap[33].bonus = {St=1}
+    matrixMap[34].bonus = {St=2}
+
+end
+function initLunaTracks()
+  for i = 1,10 do
+      colonizationRateSnapMap[i] = i
+      colonizationRateBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
+      miningRateSnapMap[i] = i
+      miningRateBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
+      logisticRateSnapMap[i] = i
+      logisticRateBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
+  end
+end
+function setup()
+    tracks.colonizationRate:setTrackPosition("Grey",1)
+    tracks.miningRate:setTrackPosition("Grey",1)
+    tracks.logisticRate:setTrackPosition("Grey",1)
+end
+function onLoad(save_state)
+    initLunaTracks()
+    Track:new(tracks.colonizationRate)
+    tracks.colonizationRate:updateLevel("Grey")
+    TrackMarkerButton:new(colonizationRateTrackButton)
+
+    Track:new(tracks.miningRate)
+    tracks.miningRate:updateLevel("Grey")
+    TrackMarkerButton:new(miningRateTrackButton)
+
+    Track:new(tracks.logisticRate)
+    tracks.logisticRate:updateLevel("Grey")
+    TrackMarkerButton:new(logisticRateTrackButton)
+
+    TileButton:new(habitatTileButton)
+    TileButton:new(mineTileButton)
+    TileButton:new(roadTileButton)
+    TileButton:new(cityTileButton)
+    initMap()
+    TileBoard:new(lunaZone)
+    initZone()
+    loadingGame = false
+end

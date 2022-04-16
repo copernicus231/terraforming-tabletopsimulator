@@ -35,7 +35,7 @@ function TrackMarkerButton:add(obj)
     self.button.press_color = self.button.color
     obj.createButton(self.button)
 end
-function TrackMarkerButton:doClick(obj,player_clicker_color,alt_click)
+function TrackMarkerButton:doClick(obj,player_clicker_color,alt_click,onUpdateTrack)
     if alt_click then
         local newColor = self.getNextColor(self.colorText)
         self.colorText = newColor
@@ -47,7 +47,7 @@ function TrackMarkerButton:doClick(obj,player_clicker_color,alt_click)
         obj.createButton(self.button)
         return
     end
-    self.onUpdateTrack(self.colorText,self.track:getTrackPosition("Grey") - self.track:getLevel("Grey"))
+    onUpdateTrack(self.colorText,self.track:getTrackPosition("Grey") - self.track:getLevel("Grey"))
     self.track:updateLevel("Grey")
     obj.removeButton(0)
 end
