@@ -105,40 +105,6 @@ function logisticRateClick(obj,player_clicker_color,alt_click)
    logisticRateTrackButton:doClick(obj,player_clicker_color,alt_click,function(color,step) if color != "Grey" then log("logisticRate:"..color.."/"..step); tracks.logisticRate:updateLevel("Grey"); payTrackBonus({name="logisticRate",color=color,step=step}) end end)
 end
 
-function extraBonus(obj)
-    return {}
-end
-function placeTile(obj,color,zone)
-    local position = zone:getZonePosition(obj)
-    if position > 0 then
-        obj.memo=color
-        zone:placeTile(obj,position)
-        if color != "Grey" then
-            local bonus = zone:getPlacementBonusColor(position)
-            for i,a in pairs(extraBonus(obj)) do
-                bonus[color][i] = (bonus[color][i] or 0) + a
-            end
-            applyBonusC(bonus)
-        end
-        return true
-    end
-    return false
-end
-
-function placeReplaceTile(obj,color,zone)
-    local position = zone:getZonePosition(obj)
-    if position > 0 then
-        obj.memo=color
-        zone:placeTile(obj,position)
-        if color != "Grey" then
-            local bonus = zone:getAdjacencyBonusColor(position,color)
-            applyBonusC(bonus)
-        end
-        return true
-    end
-    return false
-end
-
 function habitatTileClick(obj,player_clicker_color,alt_click)
     habitatTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeTile(obj,color,lunaZone) then

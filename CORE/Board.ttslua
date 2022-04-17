@@ -135,6 +135,41 @@ function applyBonus(bonus,color)
     end
 end
 
+function placeTile(obj,color,zone)
+    local position = zone:getZonePosition(obj)
+    if position > 0 then
+        obj.memo=color
+        zone:placeTile(obj,position)
+        if color != "Grey" then
+            local bonus = zone:getPlacementBonusColor(position)
+            for i,a in pairs(extraBonus(obj)) do
+                bonus[color][i] = (bonus[color][i] or 0) + a
+            end
+            applyBonusC(bonus)
+        end
+        return true
+    end
+    return false
+end
+
+function placeReplaceTile(obj,color,zone)
+    local position = zone:getZonePosition(obj)
+    if position > 0 then
+        obj.memo=color
+        zone:placeTile(obj,position)
+        if color != "Grey" then
+            local bonus = zone:getAdjacencyBonusColor(position,color)
+            applyBonusC(bonus)
+        end
+        return true
+    end
+    return false
+end
+
+function extraBonus(obj)
+    return {}
+end
+
 function moveTrack(params)
     local step = params.step
     local color = params.color
