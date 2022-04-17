@@ -16,6 +16,17 @@ click_function = 'roadTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
 },getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
 
+specialTileButton={button = {
+click_function = 'specialTileClick', function_owner = self, label = "",
+    position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
+},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+
+replaceTileButton={button = {
+click_function = 'replaceTileClick', function_owner = self, label = "",
+    position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
+},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+
+
 cityTileButton={button = {
 click_function = 'cityTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
@@ -114,8 +125,22 @@ function placeTile(obj,color,zone)
     return false
 end
 
+function placeReplaceTile(obj,color,zone)
+    local position = zone:getZonePosition(obj)
+    if position > 0 then
+        obj.memo=color
+        zone:placeTile(obj,position)
+        if color != "Grey" then
+            local bonus = zone:getAdjacencyBonusColor(position,color)
+            applyBonusC(bonus)
+        end
+        return true
+    end
+    return false
+end
+
 function habitatTileClick(obj,player_clicker_color,alt_click)
-    venusTileButton:doClick(obj,player_clicker_color,alt_click,function()
+    habitatTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeTile(obj,color,lunaZone) then
           if color != "Grey" then
               getBoard("Luna").call("moveTrack",{step=1,color=color,name="colonizationRate"})
@@ -126,21 +151,41 @@ function habitatTileClick(obj,player_clicker_color,alt_click)
 end
 
 function mineTileClick(obj,player_clicker_color,alt_click)
-    venusTileButton:doClick(obj,player_clicker_color,alt_click,function()
+    mineTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
+        if placeTile(obj,color,lunaZone) then
+            if color != "Grey" then
+                getBoard("Luna").call("moveTrack",{step=1,color=color,name="miningRate"})
+                broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
+            end
+        end
+     end)
+end
+
+function roadTileClick(obj,player_clicker_color,alt_click)
+    roadTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeTile(obj,color,lunaZone) then
           if color != "Grey" then
-              getBoard("Luna").call("moveTrack",{step=1,color=color,name="miningRate"})
+              getBoard("Luna").call("moveTrack",{step=1,color=color,name="logisticRate"})
               broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
       end
     end)
 end
 
-function roadTileClick(obj,player_clicker_color,alt_click)
-    venusTileButton:doClick(obj,player_clicker_color,alt_click,function()
+function specialTileClick(obj,player_clicker_color,alt_click)
+    specialTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeTile(obj,color,lunaZone) then
           if color != "Grey" then
-              getBoard("Luna").call("moveTrack",{step=1,color=color,name="logisticRate"})
+              broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
+          end
+      end
+    end)
+end
+
+function replaceTileClick(obj,player_clicker_color,alt_click)
+    specialTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
+      if placeReplaceTile(obj,color,lunaZone) then
+          if color != "Grey" then
               broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
       end
@@ -207,13 +252,18 @@ function initMap()
 end
 function initLunaTracks()
   for i = 1,10 do
-      colonizationRateSnapMap[i] = i
+      colonizationRateSnapMap[i] = i + 35
       colonizationRateBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
-      miningRateSnapMap[i] = i
+      miningRateSnapMap[i] = i + 55
       miningRateBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
-      logisticRateSnapMap[i] = i
+      logisticRateSnapMap[i] = i + 45
       logisticRateBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
   end
+  colonizationRateBonusMap[4]={PLAYER={TERRAFORM=1,Card=1},EVERYONE={}}
+  logisticRateBonusMap[4]={PLAYER={TERRAFORM=1,Card=1},EVERYONE={}}
+  logisticRateBonusMap[8]={PLAYER={TERRAFORM=1,ProdTi=1},EVERYONE={}}
+  miningRateBonusMap[4]={PLAYER={TERRAFORM=1,Card=1},EVERYONE={}}
+  miningRateBonusMap[8]={PLAYER={TERRAFORM=1,ProdSt=1},EVERYONE={}}
 end
 function setup()
     tracks.colonizationRate:setTrackPosition("Grey",1)
@@ -237,9 +287,84 @@ function onLoad(save_state)
     TileButton:new(habitatTileButton)
     TileButton:new(mineTileButton)
     TileButton:new(roadTileButton)
+    TileButton:new(specialTileButton)
+    TileButton:new(replaceTileButton)
     TileButton:new(cityTileButton)
     initMap()
     TileBoard:new(lunaZone)
     initZone()
     loadingGame = false
+end
+
+function onCollisionExit(collision_info)
+    if loadingGame then
+        return
+    end
+    local obj = collision_info.collision_object
+    --WORK AROUND WITH LOCK OBJECTS TRIGGER AN onCollisionExit
+    if obj.getLock() then
+        return
+    end
+    if obj.hasTag("LunaTile") then
+        if obj.hasTag("SpecialTile") then
+            if obj.hasTag("ReplaceTile") then
+                replaceTileButton:remove(obj)
+            else
+                specialTileButton:remove(obj)
+            end
+        elseif obj.hasTag("Habitat") then
+            habitatTileButton:remove(obj)
+        elseif obj.hasTag("LunarMine") then
+            mineTileButton:remove(obj)
+        elseif obj.hasTag("Road") then
+            roadTileButton:remove(obj)
+        end
+    elseif obj.hasTag("TrackMarker") then
+        if obj.hasTag("ColonizationRate") then
+            colonizationRateTrackButton:remove(obj)
+        elseif obj.hasTag("MiningRate") then
+            miningRateTrackButton:remove(obj)
+        elseif obj.hasTag("LogisticRate") then
+            logisticRateTrackButton:remove(obj)
+        end
+    elseif obj.hasTag("City") then
+        cityTileButton:remove(obj)
+    end
+
+end
+
+function onCollisionEnter(collision_info)
+        if loadingGame then
+            return
+        end
+        local obj = collision_info.collision_object
+        --WORK AROUND WITH LOCK OBJECTS TRIGGER AN onCollisionExit
+        if obj.getLock() then
+            return
+        end
+        if obj.hasTag("LunaTile") then
+            if obj.hasTag("SpecialTile") then
+                if obj.hasTag("ReplaceTile") then
+                    replaceTileButton:add(obj)
+                else
+                    specialTileButton:add(obj)
+                end
+            elseif obj.hasTag("Habitat") then
+                habitatTileButton:add(obj)
+            elseif obj.hasTag("LunarMine") then
+                mineTileButton:add(obj)
+            elseif obj.hasTag("Road") then
+                roadTileButton:add(obj)
+            end
+        elseif obj.hasTag("TrackMarker") then
+            if obj.hasTag("ColonizationRate") then
+                colonizationRateTrackButton:add(obj)
+            elseif obj.hasTag("MiningRate") then
+                miningRateTrackButton:add(obj)
+            elseif obj.hasTag("LogisticRate") then
+                logisticRateTrackButton:add(obj)
+            end
+        elseif obj.hasTag("City") then
+            cityTileButton:add(obj)
+        end
 end

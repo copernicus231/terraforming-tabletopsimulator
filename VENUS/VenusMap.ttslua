@@ -46,8 +46,6 @@ function initMap()
     matrixMap[15].bonus = {MC=5}
 
     matrixMap[16].bonus = {He=1}
-    matrixMap[17].bonus = {MC=1}
-    matrixMap[18].bonus = {MC=2}
     matrixMap[19].bonus = {En=1}
 
     matrixMap[21].bonus = {En=2}
