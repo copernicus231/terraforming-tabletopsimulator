@@ -5,12 +5,12 @@ loadingGame = true
 venusTileButton={button = {
 click_function = 'venusTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
-},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+},getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 cityTileButton={button = {
 click_function = 'cityTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
-},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+},getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 venusZone={matrix=matrixMap,parent=self,zoneTag=nil}
 
@@ -19,6 +19,8 @@ function venusTileClick(obj,player_clicker_color,alt_click)
     venusTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeTile(obj,color,venusZone) then
           if color != "Grey" then
+              local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+              Wait.condition(function() cube.lock() end, function() return cube.resting end)
               getBoard("VenusNext").call("moveTrack",{step=1,color=color,name="venusScale"})
               broadcastToAll("<VENUS>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
@@ -30,6 +32,8 @@ function cityTileClick(obj,player_clicker_color,alt_click)
     cityTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeTile(obj,color,venusZone) then
           if color != "Grey" then
+              local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+              Wait.condition(function() cube.lock() end, function() return cube.resting end)
               broadcastToAll("<VENUS>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
       end

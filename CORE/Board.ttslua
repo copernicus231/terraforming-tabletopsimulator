@@ -135,6 +135,11 @@ function applyBonus(bonus,color)
     end
 end
 
+function placeSpaceTile(obj,color)
+    obj.memo=color
+    return obj.hasTag("SpaceTile")
+end
+
 function placeTile(obj,color,zone)
     local position = zone:getZonePosition(obj)
     if position > 0 then

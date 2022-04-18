@@ -4,33 +4,33 @@
 habitatTileButton={button = {
 click_function = 'habitatTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
-},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+},getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 mineTileButton={button = {
 click_function = 'mineTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
-},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+},getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 roadTileButton={button = {
 click_function = 'roadTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
-},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+},getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 specialTileButton={button = {
 click_function = 'specialTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
-},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+},getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 replaceTileButton={button = {
 click_function = 'replaceTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
-},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+},getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 
 cityTileButton={button = {
 click_function = 'cityTileClick', function_owner = self, label = "",
     position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
-},getCurrentColor=function() return "Red" end,getNextColor= function() return "Blue" end}
+},getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 
 lunaZone={matrix=matrixMap,parent=self,zoneTag=nil}
@@ -62,7 +62,7 @@ colonizationRateTrackButton={button ={ index = 0,
      color=Color.fromString("Red"),
      hover_color={0,0,0,0},
      tooltip="colonizationRate"
- },colorText="Red",track=tracks.colonizationRate}
+ },colorText="Red",track=tracks.colonizationRate,getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 miningRateTrackButton={button ={ index = 0,
      click_function = 'miningRateClick',
@@ -77,7 +77,7 @@ miningRateTrackButton={button ={ index = 0,
       color=Color.fromString("Red"),
       hover_color={0,0,0,0},
       tooltip="miningRate"
-  },colorText="Red",track=tracks.miningRate}
+  },colorText="Red",track=tracks.miningRate,getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 logisticRateTrackButton={button ={ index = 0,
       click_function = 'logisticRateClick',
@@ -92,7 +92,7 @@ logisticRateTrackButton={button ={ index = 0,
        color=Color.fromString("Red"),
        hover_color={0,0,0,0},
        tooltip="logisticRate"
-   },colorText="Red",track=tracks.logisticRate}
+   },colorText="Red",track=tracks.logisticRate,getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 
 function colonizationRateClick(obj,player_clicker_color,alt_click)
@@ -109,6 +109,8 @@ function habitatTileClick(obj,player_clicker_color,alt_click)
     habitatTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeTile(obj,color,lunaZone) then
           if color != "Grey" then
+              local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+              Wait.condition(function() cube.lock() end, function() return cube.resting end)
               getBoard("Luna").call("moveTrack",{step=1,color=color,name="colonizationRate"})
               broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
@@ -120,6 +122,8 @@ function mineTileClick(obj,player_clicker_color,alt_click)
     mineTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
         if placeTile(obj,color,lunaZone) then
             if color != "Grey" then
+                local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+                Wait.condition(function() cube.lock() end, function() return cube.resting end)
                 getBoard("Luna").call("moveTrack",{step=1,color=color,name="miningRate"})
                 broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
             end
@@ -131,6 +135,8 @@ function roadTileClick(obj,player_clicker_color,alt_click)
     roadTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeTile(obj,color,lunaZone) then
           if color != "Grey" then
+              local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+              Wait.condition(function() cube.lock() end, function() return cube.resting end)
               getBoard("Luna").call("moveTrack",{step=1,color=color,name="logisticRate"})
               broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
@@ -142,6 +148,8 @@ function specialTileClick(obj,player_clicker_color,alt_click)
     specialTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeTile(obj,color,lunaZone) then
           if color != "Grey" then
+              local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+              Wait.condition(function() cube.lock() end, function() return cube.resting end)
               broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
       end
@@ -152,6 +160,8 @@ function replaceTileClick(obj,player_clicker_color,alt_click)
     specialTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeReplaceTile(obj,color,lunaZone) then
           if color != "Grey" then
+              local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+              Wait.condition(function() cube.lock() end, function() return cube.resting end)
               broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
       end
@@ -162,6 +172,8 @@ function cityTileClick(obj,player_clicker_color,alt_click)
     cityTileButton:doClick(obj,player_clicker_color,alt_click,function()
       if placeTile(obj,color,lunaZone) then
           if color != "Grey" then
+              local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+              Wait.condition(function() cube.lock() end, function() return cube.resting end)
               broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
       end
@@ -197,11 +209,6 @@ function initMap()
     matrixMap[16].bonus = {Ti=1}
     matrixMap[19].bonus = {St=1}
     matrixMap[20].bonus = {St=1}
-
-    matrixMap[16].bonus = {He=1}
-    matrixMap[17].bonus = {MC=1}
-    matrixMap[18].bonus = {MC=2}
-    matrixMap[19].bonus = {En=1}
 
     matrixMap[22].bonus = {St=1}
     matrixMap[24].bonus = {Card=2}

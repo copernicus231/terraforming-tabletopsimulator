@@ -19,7 +19,7 @@ venusScaleTrackButton={button ={ index = 0,
      color=Color.fromString("Red"),
      hover_color={0,0,0,0},
      tooltip="VenusScale"
- },colorText="Red",track=tracks.venusScale}
+ },colorText="Red",track=tracks.venusScale,getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
  function venusScaleClick(obj,player_clicker_color,alt_click)
      venusScaleTrackButton:doClick(obj,player_clicker_color,alt_click,function(color,step) if color != "Grey" then log("venusScale:"..color.."/"..step); tracks.venusScale:updateLevel("Grey"); payTrackBonus({name="venusScale",color=color,step=step}) end end)

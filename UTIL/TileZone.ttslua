@@ -81,6 +81,11 @@ function TileBoard:getTileAdjacencyBonus(tile)
     --end
     --return {}
 end
+
+function TileBoard:getTilePlacementBonus(tile)
+    return getPlacementTileBonus(tile)
+end
+
 function TileBoard:getTileBonus(tile)
     local bonus = {}
     if tile.hasTag("SpecialTile") and tile.hasTag("YellowBorderTile") then
@@ -114,6 +119,9 @@ function TileBoard:getPlacementBonusColor(position)
     local bonus = self:getAdjacencyBonusColor(position,color)
     for y,ab in pairs(self.matrix[position].bonus) do
         bonus[color][y] = (bonus[color][y] or 0) + ab
+    end
+    for x,cd in pairs(self:getTilePlacementBonus(self.matrix[position].tile)) do
+            bonus[color][x] = (bonus[color][x] or 0) + cd
     end
     return bonus
 end
