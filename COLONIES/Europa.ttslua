@@ -1,0 +1,17 @@
+#include BaseColony
+stepBonus = {"MC","MC","En","En","Pl","Pl","Pl"}
+isActiveColony = true
+
+function placementBonus(color)
+    broadcastToAll("<COLONY>[==> "..getPlayerName(color).." get placement bonus 1 Ocean from \""..self.getName().."\" ]",color)
+end
+
+function tradeBonus(color,position)
+    broadcastToAll("<COLONY>[==> "..getPlayerName(color).." get trade bonus 1 ("..stepBonus[position]..") production from \""..self.getName().."\" ]",color)
+    getPlayerBoard(color).call("moveProduction",{resource=stepBonus[position],step=1})
+end
+
+function colonyBonus(color)
+    broadcastToAll("<COLONY>[==> "..getPlayerName(color).." get colony bonus 1 (MC) from \""..self.getName().."\" ]",color)
+    getPlayerBoard(color).call("addResource",{resource="MC",value=1})
+end

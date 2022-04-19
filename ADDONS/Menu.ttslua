@@ -171,7 +171,8 @@ function deploy()
     end
     tags["Moon"] = true
     deployObjectsBag("0d8217",lunaConfig)
-
+    deployObjectsBag("0d8217",earlyBasesConfig)
+    deployObjectsBag("0d8217",industriesConfig)
     local objs = {getObjectFromGUID("8c77fb"),getObjectFromGUID("dada8d"),getObjectFromGUID("c155e6"),getObjectFromGUID("cedf19"),getObjectFromGUID("5a5ff6")}
     local count = 0
     for i,obj in pairs(objs) do
