@@ -1,0 +1,33 @@
+#include ../UTIL/GetComponents
+rsrcTypes = {
+    En = {color = {87/255,35/255,100/255,0.95},font_color={1,1,1,100},label="ϟ",name="En",next="He"},
+    He = {color = {236/255,96/255,51/255,0.95},font_color={1,211/255,0,100},label="⌇⌇⌇",name="He",next="Pl"},
+    Pl = {color = {0,0.8,0,0.95},font_color={1,211/255,0,100},label="P",name="Pl",next="R"},
+    R =  {color = {1,1,1,0.95},font_color={0,0,0,100},label="?",name="?",next="En"}
+}
+
+
+function onLoad(save_state)
+
+    optResourceConf = {
+        index = 0, click_function = 'change', function_owner = self, label ="",
+        position = {0,0.12,0}, width = 700, height = 600, font_size = 250,color={1,1,1,0},scale={x=1, y=1, z=1}
+    }
+    local holder =  getCardPlayTable(self.getColorTint():toString())
+    self.createButton(optResourceConf)
+    if holder != nil then
+        Wait.condition(function() holder.editButton({index=5,color=rsrcTypes[self.getName()].color,tooltip=self.getName()}) end, function() return not holder.spawning end)
+    end
+end
+
+function change(obj,player_clicker_color,alt_click)
+    if alt_click then
+        local val = self.getStateId()-1
+        if val <= 0 then
+            val = 4
+        end
+        self.setState(val)
+    else
+        self.setState((self.getStateId()%4)+1)
+    end
+end
