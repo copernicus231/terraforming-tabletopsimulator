@@ -73,18 +73,18 @@ baseConfig={
 {id="3852d1",position={13.00, 1.96, 0.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 
 ---TracksMarkers
-{id="866425",position={32.00, 2.37, -10.39},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
-{id="c8926e",position={33.00, 2.37, -10.39},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
-{id="943743",position={34.00, 2.37, -10.39},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
+{id="866425",position={32.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
+{id="c8926e",position={33.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
+{id="943743",position={34.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
 
 --TileBags
---{id="872867",position={6.50, 1.96, -7.3},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
---{id="64ea99",position={6.50, 1.96, -2.8},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
---{id="9bad48",position={6.50, 1.96, 5.8},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
---{id="46798e",position={6.50, 1.96,  10.5},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+{id="872867",position={-7.00, 1.96, -8.90},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+{id="64ea99",position={-7.00, 1.96, -13.40},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+{id="9bad48",position={-7.00, 1.96, -4.40},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+{id="46798e",position={33.00, 1.96, 13.00},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
 
 --tobe replace
---{id="0d97f2",position={6.50, 1.96, 1.51},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+{id="0d97f2",position={-7.00, 1.96, 13.00},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
 --Holders
 --{id="fbbaba",position={14.25, 1.96, 5.78},rotation={0.00, 180.00, 0.00},call="onDrop",lock=false},
 --id="215b5d",position={14.25, 1.96, -3.45},rotation={0.00, 180.00, 0.00},call="onDrop",lock=false},
@@ -102,11 +102,11 @@ baseConfig={
 --{id="10f1b6",position={14.49, 1.96, -11.29},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 
 --ResourceBag
-{id="39dee3",position={35.50, 2.06, -8.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-{id="2d9173",position={37.70, 2.06, -8.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-{id="edacb2",position={39.90, 2.06, -8.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-{id="45e84c",position={42.10, 2.06, -8.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-{id="8ab40d",position={44.30, 2.06, -8.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+{id="39dee3",position={35.50, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+{id="2d9173",position={37.70, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+{id="edacb2",position={39.90, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+{id="45e84c",position={42.10, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+{id="8ab40d",position={44.30, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 
 
 --Arrows
@@ -129,6 +129,21 @@ baseConfig={
 }
 lunaConfig={
     {id="164b58",position={-19, 0.96, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="de3aeb",position={-14.00, 0.96, -8.90},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+    {id="dc6e11",position={-18.50, 0.96, -8.90},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+    {id="98a748",position={-23.00, 0.96, -8.90},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+
+--{-14.00, 0.96, -8.90}
+--{-18.50, 0.96, -8.90}
+--de3aeb
+--dc6e11
+--98a748
+}
+earlyBasesConfig={
+
+}
+industriesConfig={
+
 }
 corpEraConfig={
     --{73.30, 1.32, 12.26}
@@ -139,12 +154,19 @@ corpEraConfig={
 venusConfig={
     --board
     --{id="9d6aeb",position={45.00, 1.96, 6.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-    {id="caaf4f",position={43.00, 1.96, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-    {id="54a8eb",position={54.00, 1.01, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="caaf4f",position={48.00, 1.96, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="54a8eb",position={59.00, 1.01, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
     --tiles
     --{id="2a7ccd",position={61.09, 1.97, 11.73},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+    {id="7384c2",position={44.00, 0.96, -8.90},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
+    {id="369f73",position={48.50, 0.96, -8.90},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
+    {id="8312a2",position={53.00, 0.96, -8.90},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
+
+--7384c2
+--369f73
+--8312a2
     --marker
-    {id="25b8b0",position={35.00, 2.37, -10.39},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
+    {id="25b8b0",position={35.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
 
     --awars and milestone
     --{id="c12580",position={21.08, 1.96, -11.19},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
@@ -160,7 +182,7 @@ venusConfig={
 
 coloniesConfig={
     --board
-    {id="879abd",position={77.50, 0.96, 14.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="879abd",position={82.60, 0.96, 14.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
     --fleet
     --{id="e34d63",position={37.71, 3.74, 6.81},rotation={0.00, 270.00, 0.00},call=nil,lock=false},
     --{id="efc1a9",position={34.31, 3.74, 6.80},rotation={0.00, 270.00, 0.00},call=nil,lock=false},
@@ -189,24 +211,12 @@ coloniesFanMadeConfig={
     {id="a457be",position={73.26, 3.00, 3.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="63b89f",position={73.26, 3.00, 3.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="02c00e",position={73.26, 3.00, 3.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
---1d7c59
---a457be
---63b89f
---02c00e
 
-    --9580cc
-    --528cc3
-    --991de4
-    --643568
-    --179144
-    --b16f29
-    --737f17
 }
 
 highOrbitConfig={
     {id="c6317a",position={86.26, 1.36, -33.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="c5e7ed",position={31.90, 2.06, -7.76},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-    --c5e7ed
 
 }
 preludeConfig = {
@@ -218,8 +228,8 @@ preludeConfig = {
 }
 turmoilConfig={
     --boards
-    {id="debba0",position={65.00, 0.96, 12.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-    {id="174043",position={65.00, 1.96, 1.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="debba0",position={70.10, 0.96, 12.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="174043",position={70.10, 1.96, 1.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 
     --deck
     --{id="f70612",position={19.87, 3.35, 7.71},rotation={0.00, 180.00, 180.00},call=nil,lock=false},
@@ -283,14 +293,14 @@ aresConfig={
     {id="cf34a3",position={10.56, 1.96, -2.8},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
     --special tiles
     --0d97f2
-    {id="77aef9",position={6.50, 1.96, 1.51},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+    {id="77aef9",position={-7.00, 1.96, 13.00},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
     --deck
     {id="51360f",position={86.26, 3.00, -20.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="3debc7",position={81.97, 3.00, -20.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 
 }
 pathfindersConfig={
-    {id="9ebcf8",position={65.00, 0.96, -10.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="9ebcf8",position={70.10, 0.96, -10.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 --decks
 --{id="f59ca6",position={76.96, 3.00, -24.57},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 --{id="e750b1",position={86.26, 3.00, -24.57},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
@@ -304,7 +314,7 @@ pathfindersConfig={
 --{id="c91d31",position={8.30, 2.37, -11.21},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
 
 --BAG
---{id="0c4474",position={27.5, 2.06, -7.76},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+{id="0c4474",position={46.5, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 
 }
 
@@ -315,11 +325,14 @@ coloniesPathfindersConfig={
 
 nuclearConfig={
     --deck
-    {id="eabbe4",position={76.96, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
-    {id="eee432",position={86.26, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
-    {id="af4da4",position={81.97, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    --{id="eabbe4",position={76.96, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    --{id="eee432",position={86.26, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    --{id="af4da4",position={81.97, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     --BAG
-    {id="945a3f",position={29.70, 2.06, -7.76},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="945a3f",position={48.70, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    --Track
+    {id="6d342a",position={34.10, 1.01, 1.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+
 
 }
 coloniesNuclearConfig={

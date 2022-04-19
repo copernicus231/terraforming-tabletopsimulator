@@ -166,16 +166,18 @@ function deploy()
         tags["RadioActive"] = true
         deployObjectsBag("0d8217",nuclearConfig)
         if optionFlag4 then
-            moveFromBag("0d8217","7f2283",coloniesNuclearConfig)
+            --moveFromBag("0d8217","7f2283",coloniesNuclearConfig)
         end
     end
+    tags["Moon"] = true
+    deployObjectsBag("0d8217",lunaConfig)
+
     local objs = {getObjectFromGUID("8c77fb"),getObjectFromGUID("dada8d"),getObjectFromGUID("c155e6"),getObjectFromGUID("cedf19"),getObjectFromGUID("5a5ff6")}
     local count = 0
     for i,obj in pairs(objs) do
         Wait.condition(function() obj.call("setup",{tags=tags}) end, function() return obj.resting end)
     end
-    tags["Moon"] = true
-    deployObjectsBag("0d8217",lunaConfig)
+
 end
 --Capital 43cdcf
 --Commercial District d42a29
