@@ -1,5 +1,5 @@
 #include ../CORE/Board
-DELTA = 0.0001
+DELTA = 0.001
 venusScaleSnapMap={}
 venusScaleBonusMap={}
 tracks={

@@ -27,6 +27,7 @@ function applyTags(card)
     end
     getTagTable(self.getColorTint():toString()).call("addTags",{tags = tagListClean})
     getBoard("PathFinders").call("addTags",{tags = tagList,color=toLColor(self.getColorTint())})
+    getBoard("Nuclear").call("addTags",{tags = tagList,color=toLColor(self.getColorTint())})
 end
 function applyVps(card)
     local Vps = getVP(card)

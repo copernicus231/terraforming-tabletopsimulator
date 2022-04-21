@@ -1,4 +1,5 @@
 #include ../CORE/Board
+DELTA = 0.001
 radiationLevelSnapMap={}
 radiationLevelBonusMap={}
 tracks={
@@ -56,24 +57,27 @@ loadingGame = true
  function setup()
      tracks.radiationLevel:setTrackPosition("Grey",1)
  end
-
+locking=false
 function onCollisionEnter(collision_info)
          if loadingGame then
              return
          end
+         locking=true
          local obj = collision_info.collision_object
          if obj.hasTag("TrackMarker") then
              if obj.hasTag("RadiationLevel") then
                  radiationLevelTrackButton:add(obj)
              end
          end
+        Wait.frames(function() locking=false end, 10)
  end
 function onCollisionExit(collision_info)
      -- collision_info table:
      --   collision_object    Object
      --   contact_points      Table     {Vector, ...}
      --   relative_velocity   Vector
-     if loadingGame then
+
+     if loadingGame or locking then
          return
      end
      local obj = collision_info.collision_object
@@ -81,6 +85,18 @@ function onCollisionExit(collision_info)
      if obj.hasTag("TrackMarker") then
          if obj.hasTag("RadiationLevel") then
              radiationLevelTrackButton:remove(obj)
+         end
+     end
+ end
+
+ function addTags(params)
+     local tagList = params.tags
+     local color = params.color
+     local delay = 0
+     for i, t in ipairs(tagList) do
+         if t == "RadioActive"  then
+             Wait.frames(function() moveTrack({name="radiationLevel",color = color,step=1}) end,delay)
+             delay = delay + 200
          end
      end
  end

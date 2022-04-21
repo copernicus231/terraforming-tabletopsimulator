@@ -128,7 +128,15 @@ function applyBonus(bonus,color)
             getTagTable(color).call("addTags",{tags = {string.sub(resource,1,string.len(resource)-3)}})
             broadcastToAll("<BOARD>[==> "..getPlayerName(color).." get "..total.." ("..resource..") ]",Color.fromString(color))
         elseif string.sub(resource,1,4) == "Prod" then
-            broadcastToAll("<TBOARD>[==> "..getPlayerName(color).." get "..total.." ("..resource..") ]",Color.fromString(color))
+            broadcastToAll("<BOARD>[==> "..getPlayerName(color).." get "..total.." ("..resource..") ]",Color.fromString(color))
+        elseif string.sub(resource,1,11) == "NuclearTile" then
+            for i,a in pairs(getBag("SpecialTile").getObjects()) do
+                if a.name == "Nuclear Tile "..string.sub(resource,12,12)  then
+                    local pos = getCardPlayTable(color).positionToWorld(Vector(0,1,-2.7))
+                    getBag("SpecialTile").takeObject({index = a.index,position=pos})
+                    broadcastToAll("<BOARD>[==> "..getPlayerName(color).." put "..a.name.." ]",Color.fromString(color))
+                end
+            end
         else
             if total > 0 then
                 getPlayerBoard(color).call("addResource",{resource=resource,value=total})
