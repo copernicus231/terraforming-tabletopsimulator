@@ -1,0 +1,145 @@
+#include ../CORE/SmallMatrix
+#include BoardBase
+TICKNES=0.2
+function initTrSnapMap()
+    for i=1,25 do
+        trSnapMap[i] = i + 1
+    end
+    trSnapMap[26] = 213
+    for i=27,99 do
+        trSnapMap[i] = i
+    end
+    trSnapMap[100] = 1
+    trSnapMap[0] = 1
+end
+function initOxygenSnapMap()
+    for i = 1,8 do
+        oxygenSnapMap[i]  = 129 - i
+        oxygenBonusMap[i] = {PLAYER={TERRAFORM=1},EVERYONE={}}
+    end
+    for i = 9,15 do
+        oxygenSnapMap[i] = 120 + i
+        oxygenBonusMap[i] = {PLAYER={TERRAFORM=1},EVERYONE={}}
+    end
+    oxygenBonusMap[9] = {PLAYER={TERRAFORM=1,Temperature=1},EVERYONE={}}
+end
+function initTemperatureSnapMap()
+    for i = 3,20 do
+        temperatureSnapMap[i] = i + 99
+        temperatureBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
+    end
+    temperatureSnapMap[1] = 101
+    temperatureSnapMap[2] = 100
+    temperatureBonusMap[1]={PLAYER={TERRAFORM=1},EVERYONE={}}
+    temperatureBonusMap[2]={PLAYER={TERRAFORM=1},EVERYONE={}}
+
+    temperatureBonusMap[4]={PLAYER={TERRAFORM=1,ProdHe=1},EVERYONE={}}
+    temperatureBonusMap[6]={PLAYER={TERRAFORM=1,ProdHe=1},EVERYONE={}}
+    temperatureBonusMap[16]={PLAYER={TERRAFORM=1,Ocean=1},EVERYONE={}}
+
+end
+function initOceanSnap()
+    oceanSnap = 120
+end
+
+function initMap()
+    for i = 1,5 do
+        matrixMap[i].snap = 150 + i
+    end
+    for i = 6,11 do
+        matrixMap[i].snap = 167 - i
+    end
+    for i = 12,18 do
+        matrixMap[i].snap  = 150 + i
+    end
+    for i = 19,26 do
+        matrixMap[i].snap = 195 - i
+    end
+    matrixMap[27].snap = 179
+    matrixMap[28].snap = 178
+    matrixMap[29].snap = 177
+    matrixMap[30].snap = 180
+    matrixMap[31].snap = 214
+    matrixMap[32].snap = 181
+    matrixMap[33].snap = 182
+    matrixMap[34].snap = 183
+    matrixMap[35].snap = 184
+    for i = 36,43 do
+        matrixMap[i].snap = 228 - i
+    end
+    for i = 44,50 do
+        matrixMap[i].snap = 149 + i
+    end
+    for i = 51,56 do
+        matrixMap[i].snap = 256 - i
+    end
+    matrixMap[57].snap = 210
+    matrixMap[58].snap = 206
+    matrixMap[59].snap = 207
+    matrixMap[60].snap = 208
+    matrixMap[61].snap = 209
+    --BONUS
+    matrixMap[1].bonus = {He=2}
+    matrixMap[2].bonus = {Temperature=1}
+    matrixMap[3].bonus = {He=2}
+    matrixMap[4].bonus = {Ocean=1}
+    matrixMap[5].bonus = {He=2}
+    matrixMap[6].bonus = {St=1}
+    matrixMap[12].bonus = {Ti=1}
+    matrixMap[13].bonus = {Pl=1}
+    matrixMap[18].bonus = {St=1}
+    matrixMap[19].bonus = {St=1,Pl=1}
+    matrixMap[20].bonus = {Pl=2}
+    matrixMap[24].bonus = {Pl=2}
+    matrixMap[25].bonus = {Pl=1}
+    matrixMap[26].bonus = {St=1}
+    matrixMap[27].bonus = {Card=1,St=1}
+    matrixMap[28].bonus = {St=1,Ti=1}
+    matrixMap[29].bonus = {Pl=1}
+    matrixMap[31].bonus = {Pl=2}
+    matrixMap[32].bonus = {Card=1,CardBuilding=1}
+    matrixMap[33].bonus = {Pl=2}
+    matrixMap[34].bonus = {Pl=1}
+    matrixMap[35].bonus = {Pl=1}
+    matrixMap[36].bonus = {St=1,Ti=1}
+    matrixMap[37].bonus = {St=1}
+    matrixMap[38].bonus = {St=1}
+    matrixMap[39].bonus = {Pl=1}
+    matrixMap[40].bonus = {Pl=1}
+    matrixMap[41].bonus = {Pl=1}
+    matrixMap[42].bonus = {Pl=1}
+    matrixMap[43].bonus = {Pl=1}
+    matrixMap[45].bonus = {Pl=1}
+    matrixMap[46].bonus = {Pl=1}
+    matrixMap[47].bonus = {Pl=1}
+    matrixMap[48].bonus = {St=1}
+    matrixMap[49].bonus = {Card=1,Ti=1}
+    matrixMap[50].bonus = {St=1}
+    matrixMap[51].bonus = {Pl=1}
+    matrixMap[52].bonus = {Pl=2}
+    matrixMap[53].bonus = {Pl=1}
+    matrixMap[54].bonus = {Pl=1}
+    matrixMap[55].bonus = {Card=1,St=1}
+    matrixMap[57].bonus = {Card=1}
+    matrixMap[58].bonus = {Pl=2}
+    matrixMap[59].bonus = {Pl=1}
+    matrixMap[61].bonus = {Ti=1}
+
+    matrixMap[6].reserve=true
+    matrixMap[12].reserve=true
+    matrixMap[20].reserve=true
+
+    matrixMap[32].reserve=true
+    matrixMap[33].reserve=true
+    matrixMap[34].reserve=true
+    matrixMap[35].reserve=true
+
+    matrixMap[39].reserve=true
+    matrixMap[47].reserve=true
+
+    matrixMap[52].reserve=true
+    matrixMap[53].reserve=true
+
+    matrixMap[57].reserve=true
+
+end

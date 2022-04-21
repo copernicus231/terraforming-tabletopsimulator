@@ -133,6 +133,13 @@ lunaConfig={
     {id="dc6e11",position={-20.50, 0.96, -8.90},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
     {id="98a748",position={-25.00, 0.96, -8.90},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
 
+    {id="a53998",position={44.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
+    {id="ca3b97",position={45.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
+    {id="04adf8",position={46.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
+    --a53998
+    --ca3b97
+    --04adf8
+
 --{-14.00, 0.96, -8.90}
 --{-18.50, 0.96, -8.90}
 --de3aeb
@@ -165,16 +172,26 @@ corpEraConfig={
     {id="997296",position={104.50, 3.00, 12.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="35f793",position={100.50, 3.00, 12.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 }
-venusConfig={
+venus2Config={
     --board
-    --{id="9d6aeb",position={45.00, 1.96, 6.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
     {id="caaf4f",position={48.00, 1.96, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
     {id="54a8eb",position={59.00, 1.01, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+
     --tiles
-    --{id="2a7ccd",position={61.09, 1.97, 11.73},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
     {id="7384c2",position={44.00, 0.96, -8.90},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
     {id="369f73",position={48.50, 0.96, -8.90},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
     {id="8312a2",position={53.00, 0.96, -8.90},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
+    --marker
+    {id="25b8b0",position={43.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
+}
+venusConfig={
+    --board
+    {id="9d6aeb",position={48.00, 1.96, 6.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    --{id="caaf4f",position={48.00, 1.96, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    --{id="54a8eb",position={59.00, 1.01, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    --tiles
+    {id="2a7ccd",position={48.50, 0.96, -2},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+
 
 --7384c2
 --369f73
@@ -237,7 +254,7 @@ preludeConfig = {
     --deck
     {id="b7568b",position={104.50, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="e0bee9",position={100.50, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
-    --{id="7a9b66",position={96,00, 1.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="60cc7e",position={96,00, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 
 }
 turmoilConfig={
@@ -346,11 +363,12 @@ nuclearConfig={
     {id="945a3f",position={52.70, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
     --Track
     {id="6d342a",position={34.10, 1.01, 1.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-
-
+--cb4ca4
+    {id="cb4ca4",position={47.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
 }
 coloniesNuclearConfig={
     {id="6fbf3b",position={73.26, 3.00, 3.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+
 }
 --{-45.00, 0.97, 25.00}
 
@@ -362,7 +380,7 @@ coloniesNuclearConfig={
 --0d8217 {50.50, 2.29, -12.63}
 
 function deployBags()
-    print("deployss")
+
     self.setPositionSmooth({-45.00, 1.97, 25.00})
     getObjectFromGUID("90ca63").setPositionSmooth({18.00, 1.07, 18.00})
     getObjectFromGUID("c96f61").setPositionSmooth({8.00, 2.55, -17.00})--8

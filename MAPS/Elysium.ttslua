@@ -1,0 +1,135 @@
+#include ../CORE/SmallMatrix
+#include BoardBase
+
+GameHandler_GUID="2e49df"
+function initTrSnapMap()
+    for i=1,99 do
+        trSnapMap[i] = i + 1
+    end
+    trSnapMap[100] = 1
+    trSnapMap[0] = 1
+end
+function initOxygenSnapMap()
+    for i = 1,8 do
+        oxygenSnapMap[i]  = 137 + i
+        oxygenBonusMap[i] = {PLAYER={TERRAFORM=1},EVERYONE={}}
+    end
+    for i = 9,15 do
+        oxygenSnapMap[i] = 161 - i
+        oxygenBonusMap[i] = {PLAYER={TERRAFORM=1},EVERYONE={}}
+    end
+    oxygenBonusMap[9] = {PLAYER={TERRAFORM=1,Temperature=1},EVERYONE={}}
+end
+function initTemperatureSnapMap()
+    for i = 1,20 do
+        temperatureSnapMap[i] = 137 - i
+        temperatureBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
+    end
+    temperatureBonusMap[4]={PLAYER={TERRAFORM=1,ProdHe=1},EVERYONE={}}
+    temperatureBonusMap[6]={PLAYER={TERRAFORM=1,ProdHe=1},EVERYONE={}}
+    temperatureBonusMap[16]={PLAYER={TERRAFORM=1,Ocean=1},EVERYONE={}}
+end
+function initOceanSnap()
+    oceanSnap = 137
+end
+
+
+function initMap()
+    for i = 1,5 do
+        matrixMap[i].snap = 152 + i
+    end
+    for i = 6,11 do
+        matrixMap[i].snap = 169 - i
+    end
+    for i = 12,18 do
+        matrixMap[i].snap  = 152 + i
+    end
+    for i = 19,26 do
+        matrixMap[i].snap = 197 - i
+    end
+    matrixMap[27].snap = 179
+    matrixMap[28].snap = 180
+    matrixMap[29].snap = 181
+    matrixMap[30].snap = 182
+    matrixMap[31].snap = 215
+    matrixMap[32].snap = 183
+    matrixMap[33].snap = 184
+    matrixMap[34].snap = 185
+    matrixMap[35].snap = 186
+    for i = 36,43 do
+        matrixMap[i].snap = 230 - i
+    end
+    for i = 44,50 do
+        matrixMap[i].snap = 151 + i
+    end
+    for i = 51,56 do
+        matrixMap[i].snap = 258 - i
+    end
+    matrixMap[57].snap = 208
+    matrixMap[58].snap = 209
+    matrixMap[59].snap = 210
+    matrixMap[60].snap = 211
+    matrixMap[61].snap = 212
+
+    --BONUS
+   matrixMap[2].bonus = {Ti=1}
+   matrixMap[3].bonus = {Card=1}
+   matrixMap[4].bonus = {St=1}
+   matrixMap[5].bonus = {Card=1}
+   matrixMap[6].bonus = {Ti=1}
+   matrixMap[11].bonus = {St=2}
+   matrixMap[12].bonus = {Ti=2}
+   matrixMap[14].bonus = {Card=1}
+   matrixMap[16].bonus = {Pl=1}
+   matrixMap[18].bonus = {Card=3}
+   matrixMap[19].bonus = {Pl=1}
+   matrixMap[20].bonus = {Pl=1}
+   matrixMap[21].bonus = {Pl=1}
+   matrixMap[22].bonus = {Pl=2}
+   matrixMap[23].bonus = {Pl=1}
+   matrixMap[24].bonus = {Pl=1}
+   matrixMap[25].bonus = {Pl=1}
+   matrixMap[26].bonus = {St=1,Pl=1}
+   matrixMap[27].bonus = {Pl=2}
+   matrixMap[28].bonus = {Pl=2}
+   matrixMap[29].bonus = {Pl=2}
+   matrixMap[30].bonus = {Pl=2}
+   matrixMap[31].bonus = {Pl=2}
+   matrixMap[32].bonus = {Pl=3}
+   matrixMap[33].bonus = {Pl=2}
+   matrixMap[34].bonus = {Pl=2}
+   matrixMap[35].bonus = {Pl=1,Ti=1}
+   matrixMap[36].bonus = {St=1}
+   matrixMap[37].bonus = {Pl=1}
+   matrixMap[38].bonus = {Pl=1}
+   matrixMap[39].bonus = {Pl=1}
+   matrixMap[40].bonus = {Pl=1}
+   matrixMap[41].bonus = {Pl=1}
+   matrixMap[42].bonus = {Pl=1}
+   matrixMap[44].bonus = {Ti=1}
+   matrixMap[45].bonus = {St=1}
+   matrixMap[48].bonus = {St=1}
+   matrixMap[51].bonus = {St=2}
+   matrixMap[55].bonus = {St=2}
+   matrixMap[57].bonus = {St=1}
+   matrixMap[59].bonus = {Card=1}
+   matrixMap[60].bonus = {Card=1}
+   matrixMap[61].bonus = {St=2}
+
+   matrixMap[1].reserve=true
+   matrixMap[2].reserve=true
+   matrixMap[3].reserve=true
+   matrixMap[4].reserve=true
+
+   matrixMap[9].reserve=true
+   matrixMap[10].reserve=true
+
+   matrixMap[16].reserve=true
+   matrixMap[17].reserve=true
+   matrixMap[22].reserve=true
+
+   matrixMap[24].reserve=true
+   matrixMap[25].reserve=true
+
+   matrixMap[30].reserve=true
+end

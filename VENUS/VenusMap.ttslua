@@ -21,7 +21,9 @@ function venusTileClick(obj,player_clicker_color,alt_click)
           if color != "Grey" then
               local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
               Wait.condition(function() cube.lock() end, function() return cube.resting end)
-              getBoard("VenusNext").call("moveTrack",{step=1,color=color,name="venusScale"})
+              if not obj.hasTag("SpecialTile") then
+                  getBoard("VenusNext").call("moveTrack",{step=1,color=color,name="venusScale"})
+              end
               broadcastToAll("<VENUS>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
       end

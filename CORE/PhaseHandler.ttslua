@@ -75,6 +75,8 @@ function setupModules()
     getBoard("PathFinders").call("setup",{})
 
     getBag("SpecialTile").call("setup",{})
+    getBoard("Luna").call("setup",{})
+    getBoard("Nuclear").call("setup",{})
     --local obj4 = getObjectsWithAllTags({"Card","Infrastructure"})
     --delay = 20
     --for i,a in ipairs(obj4) do

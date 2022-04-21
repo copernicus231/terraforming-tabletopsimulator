@@ -27,7 +27,7 @@ function Track:getTrackPosition(color)
             return i
         end
     end
-    log("Object is not part of track")
+    log("Object is not part of track ")
     return 0
 end
 

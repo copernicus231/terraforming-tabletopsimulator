@@ -188,7 +188,7 @@ function getTrackLevel(params)
     return tracks[params.track]:getTrackPosition(params.color)
 end
 function onLoad(save_state)
-    log("new version 1.0")
+    log("new version 1.1")
     initOxygenSnapMap()
     Track:new(tracks.oxygen)
     tracks.oxygen:updateLevel("Grey")

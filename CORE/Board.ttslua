@@ -113,10 +113,22 @@ function applyBonus(bonus,color)
             else
                 broadcastToAll("<BOARD>[==> "..getPlayerName(color).." reduce "..(total).." steps (Ti) production ]",Color.fromString(color))
             end
+        elseif resource == "ProdMC" then
+            getPlayerBoard(color).call("moveProduction",{resource="MC",step=total})
+            if total > 0 then
+                broadcastToAll("<BOARD>[==> "..getPlayerName(color).." increase "..(total).." steps (MC) production ]",Color.fromString(color))
+            else
+                broadcastToAll("<BOARD>[==> "..getPlayerName(color).." reduce "..(total).." steps (MC) production ]",Color.fromString(color))
+            end
         elseif resource == "Rsrc" then
             broadcastToAll("<BOARD>[==> "..getPlayerName(color).." get "..(total).." standard or not standard resource ]",Color.fromString(color))
         elseif resource == "StdRsrc" then
             broadcastToAll("<BOARD>[==> "..getPlayerName(color).." get "..(total).." standard resource ]",Color.fromString(color))
+        elseif string.sub(resource,string.len(resource)-2) == "Tag" then
+            getTagTable(color).call("addTags",{tags = {string.sub(resource,1,string.len(resource)-3)}})
+            broadcastToAll("<BOARD>[==> "..getPlayerName(color).." get "..total.." ("..resource..") ]",Color.fromString(color))
+        elseif string.sub(resource,1,4) == "Prod" then
+            broadcastToAll("<TBOARD>[==> "..getPlayerName(color).." get "..total.." ("..resource..") ]",Color.fromString(color))
         else
             if total > 0 then
                 getPlayerBoard(color).call("addResource",{resource=resource,value=total})
