@@ -136,15 +136,27 @@ lunaConfig={
     {id="a53998",position={44.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
     {id="ca3b97",position={45.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
     {id="04adf8",position={46.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
-    --a53998
-    --ca3b97
-    --04adf8
+
+    --decks
+    {id="385983",position={104.50, 3.00,26.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="1edfa7",position={96, 3.00, 26.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    --385983 projects
+    --1edfa7 prelude
 
 --{-14.00, 0.96, -8.90}
 --{-18.50, 0.96, -8.90}
 --de3aeb
 --dc6e11
 --98a748
+}
+
+preludesFanMadeConfig={
+    --decks
+    {id="910848",position={100.50, 3.00,30.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="217440",position={96, 3.00, 30.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    --preludes
+    --910848
+    --217440
 }
 earlyBasesConfig={
 --cf3029
@@ -183,6 +195,12 @@ venus2Config={
     {id="8312a2",position={53.00, 0.96, -8.90},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
     --marker
     {id="25b8b0",position={43.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
+
+    --decks
+    {id="129fb5",position={104.50, 3.00,21.40},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="4b5578",position={96, 3.00, 21.40},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    --129fb5 projects
+    --4b5578 prelude
 }
 venusConfig={
     --board
@@ -232,7 +250,7 @@ coloniesConfig={
 }
 coloniesFanMadeConfig={
     {id="9580cc",position={73.26, 3.00, 3.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
-    {id="528cc3",position={73.26, 3.00, 3.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="528cc3",position={73.26, 3.00, 3.00},roteation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="991de4",position={73.26, 3.00, 3.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="643568",position={73.26, 3.00, 3.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="179144",position={73.26, 3.00, 3.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
@@ -332,8 +350,8 @@ aresConfig={
 }
 pathfindersConfig={
     {id="9ebcf8",position={70.10, 0.96, -10.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
---decks
-{id="f59ca6",position={96.00, 3.00, -24.57},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+--decks e0fc2d
+{id="e0fc2d",position={96.00, 3.00, -24.57},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 {id="e750b1",position={104.50, 3.00, -24.57},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 {id="d1e8aa",position={100.50, 3.00, -24.57},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 
@@ -355,8 +373,8 @@ coloniesPathfindersConfig={
 }
 
 nuclearConfig={
-    --deck
-    {id="eabbe4",position={96.00, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    --deck a100ea
+    {id="a100ea",position={96.00, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="eee432",position={104.50, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="af4da4",position={100.50, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     --BAG

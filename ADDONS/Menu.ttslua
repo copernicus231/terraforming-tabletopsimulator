@@ -57,6 +57,9 @@ function onLoad(save_state)
     optionButton18 = {index = 17, click_function = 'option18', function_owner = self, label ="",
                     position = {0.87,0.2,0.83}, width = 45, height = 45, font_size = 40,font_color={0,0,0,100},
                     hover_color={255,255,255,100}}
+    optionButton19 = {index = 18, click_function = 'option19', function_owner = self, label ="",
+                    position = {0.87,0.2,0.92}, width = 45, height = 45, font_size = 40,font_color={0,0,0,100},
+                    hover_color={255,255,255,100}}
 
     startButton = {index = 18, click_function = 'start', function_owner = self, label ="Start",
                     position = {0,0.2,0.9}, width = 180, height = 65, font_size = 60,font_color={0,0,0,100},
@@ -79,6 +82,7 @@ function onLoad(save_state)
     self.createButton(optionButton16)
     self.createButton(optionButton17)
     self.createButton(optionButton18)
+    self.createButton(optionButton19)
     self.createButton(startButton)
 end
 function start(obj,player_clicker_color,alt_click)
@@ -209,6 +213,9 @@ function deploy()
         deployObjectsBag("0d8217",industriesConfig)
     end
 
+    if optionFlag19 then
+        deployObjectsBag("0d8217",preludesFanMadeConfig)
+    end
     local objs = {getObjectFromGUID("8c77fb"),getObjectFromGUID("dada8d"),getObjectFromGUID("c155e6"),getObjectFromGUID("cedf19"),getObjectFromGUID("5a5ff6")}
     local count = 0
     for i,obj in pairs(objs) do
@@ -246,6 +253,7 @@ optionFlag15 = false
 optionFlag16 = false
 optionFlag17 = false
 optionFlag18 = false
+optionFlag19 = false
 
 function option1(obj,player_clicker_color,alt_click)
     if optionFlag1 == false then
@@ -421,5 +429,15 @@ function option18(obj,player_clicker_color,alt_click)
     else
         optionFlag18 = false
         self.editButton({index=17,label=""})
+    end
+end
+
+function option19(obj,player_clicker_color,alt_click)
+    if optionFlag19 == false then
+        optionFlag19 = true
+        self.editButton({index=18,label="X"})
+    else
+        optionFlag19 = false
+        self.editButton({index=18,label=""})
     end
 end
