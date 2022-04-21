@@ -187,7 +187,7 @@ corpEraConfig={
 venus2Config={
     --board
     {id="caaf4f",position={48.00, 1.96, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-    {id="54a8eb",position={59.00, 1.01, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="54a8eb",position={59.00, 0.96, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 
     --tiles
     {id="7384c2",position={44.00, 0.96, -8.90},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
@@ -380,7 +380,7 @@ nuclearConfig={
     --BAG
     {id="945a3f",position={52.70, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
     --Track
-    {id="6d342a",position={34.10, 1.01, 1.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="6d342a",position={34.10, 1.06, 1.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 --cb4ca4
     {id="cb4ca4",position={47.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
 }
@@ -455,8 +455,9 @@ function deployObjectsBag(bagGUID,config)
             local objt = bag.takeObject({guid=a.id,position=a.position,rotation=a.rotation})
             if a.call != nil then
                 Wait.frames(function() Wait.condition(function() objt.call(a.call); objt.setLock(a.lock) end, function() return objt.resting end) end, 10)
+            else
+              Wait.frames(function() Wait.condition(function() objt.setLock(a.lock) end, function() return objt.resting end) end, 20)
             end
-            Wait.frames(function() Wait.condition(function() objt.setLock(a.lock) end, function() return objt.resting end) end, 20)
         end
     end
 end

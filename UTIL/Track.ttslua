@@ -21,8 +21,10 @@ end
 
 function Track:getTrackPosition(color)
     local position = self:getMarkerPosition(color)
+  --  log("*************")
     for i=1,#self.snapMap do
         local pos =  self:getSnapPosition(i)
+      --  log("d:"..Vector.sqrDistance(position,pos).."/"..DELTA)
         if Vector.sqrDistance(position,pos) < DELTA then
             return i
         end
