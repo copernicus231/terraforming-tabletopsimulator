@@ -62,7 +62,7 @@ function applyBonus(bonus,color)
         elseif resource == "City" or resource == "Greenery" or resource == "Ocean" then
             if total > 0 then
                 local pos = getCardPlayTable(color).positionToWorld(Vector(0,1,-2.7))
-                if getBag(resource) != nil and getBag(r) != Global then
+                if getBag(resource) != nil and getBag(resource) != Global then
                     for i=1,total do
                         if getBag(resource).getQuantity() > 1 then
                             getBag(resource).takeObject({position = pos})

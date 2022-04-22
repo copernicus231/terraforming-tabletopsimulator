@@ -36,6 +36,7 @@ function cityTileClick(obj,player_clicker_color,alt_click)
           if color != "Grey" then
               local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
               Wait.condition(function() cube.lock() end, function() return cube.resting end)
+              obj.addTag("VenusTile")
               broadcastToAll("<VENUS>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
       end

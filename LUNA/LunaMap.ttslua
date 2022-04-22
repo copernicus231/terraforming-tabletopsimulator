@@ -174,6 +174,7 @@ function cityTileClick(obj,player_clicker_color,alt_click)
           if color != "Grey" then
               local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
               Wait.condition(function() cube.lock() end, function() return cube.resting end)
+              obj.addTag("LunaTile")
               broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
       end
@@ -243,6 +244,7 @@ function setup()
     tracks.miningRate:setTrackPosition("Grey",1)
     tracks.logisticRate:setTrackPosition("Grey",1)
 end
+loadingGame = true
 function onLoad(save_state)
     initLunaTracks()
     Track:new(tracks.colonizationRate)
