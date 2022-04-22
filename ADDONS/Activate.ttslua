@@ -287,8 +287,8 @@ function onLoad(save_state)
     }
 
     projectType = {
-        index = 6, click_function = 'ProjectTypeToPlay', function_owner = self, label = "Lunar Habitat",
-        position = {0,0.12,-0.9}, width = 2500, height = 400, font_size = 300,font_color={0,0,0,100},color={253/255, 180/255, 46/255,0.95},scale={x=0.125, y=0.125, z=0.125}
+        index = 6, click_function = 'cleanState', function_owner = self, label = "Project",
+        position = {0,0.12,-0.9}, width = 2000, height = 400, font_size = 300,font_color={0,0,0,100},color={253/255, 180/255, 46/255,0.95},scale={x=0.125, y=0.125, z=0.125}
     }
 
     self.createButton(mcToPayConf)
@@ -405,6 +405,8 @@ function cleanState()
     self.editButton({index=stToPayConf.index,label=tostring(stToPayTotal)})
     self.editButton({index=tiToPayConf.index,label=tostring(tiToPayTotal)})
     self.editButton({index=optToPayConf.index,label=tostring(optToPayTotal)})
+    projectType.label = "Project"
+    self.editButton({index=projectType.index,label=projectType.label})
     enablePlay()
     disableDiscardForMC()
 end
@@ -642,4 +644,15 @@ function mcToPay(obj, player_clicker_color, alt_click)
     end
     mcToPayConf.label = tostring(mcToPayTotal)
     self.editButton(mcToPayConf)
+end
+
+function setProject(params)
+  local label = params.label
+  local cost = params.cost
+  local bonus = params.bonus
+  costChange = params.costChange
+  projectType.label = label
+  self.editButton({index=projectType.index,label=projectType.label})
+  mcToPayTotal=cost
+  self.editButton({index=mcToPayConf.index,label = tostring(mcToPayTotal) })
 end
