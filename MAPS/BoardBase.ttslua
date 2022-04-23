@@ -74,6 +74,31 @@ temperatureTrackButton={button ={ index = 0,
 
 marsZone={matrix=matrixMap,parent=self,zoneTag=nil}
 
+
+
+function powerPlantProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Power Plant",cost=11,prod={En=1}}) --,tags={"Power"}
+end
+
+function asteroidProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Asteroid",cost=14,rsrc={Temperature=1}})
+end
+
+function buildColonyProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Build Colony",cost=17}) --,rsrc={Colony=1}
+end
+
+function aquiferProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Aquifer",cost=18,rsrc={Ocean=1}})
+end
+
+function greeneryProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Greenery",cost=23,rsrc={Greenery=1}})
+end
+
+function cityProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="City",cost=25,prod={MC=1},rsrc={City=1}})
+end
 loadingGame = true
 
 oceanTileButton={button = {
@@ -188,7 +213,7 @@ function getTrackLevel(params)
     return tracks[params.track]:getTrackPosition(params.color)
 end
 function onLoad(save_state)
-    log("new version 1.1")
+    log("new version 1.2")
     initOxygenSnapMap()
     Track:new(tracks.oxygen)
     tracks.oxygen:updateLevel("Grey")
@@ -216,6 +241,9 @@ function onLoad(save_state)
     initMap()
     TileBoard:new(marsZone)
     initZone()
+    for i,a in pairs(projects) do
+            self.createButton(a)
+    end
     loadingGame = false
 end
 

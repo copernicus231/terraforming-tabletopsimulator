@@ -35,6 +35,32 @@ click_function = 'cityTileClick', function_owner = self, label = "",
 
 lunaZone={matrix=matrixMap,parent=self,zoneTag=nil}
 
+projects={
+    lunarHabitat={
+    click_function = 'lunarHabitatProject', function_owner = self, label = "",
+        position = {-1.08,0.1,0.11},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Lunar Habitat"
+    },
+    lunarMine={
+    click_function = 'lunarMineProject', function_owner = self, label = "",
+        position = {-1.08,0.1,0.015},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Lunar Mine"
+    },
+    road={
+    click_function = 'roadProject', function_owner = self, label = "",
+        position = {-1.08,0.1,-0.08},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Road"
+    },
+}
+function lunarHabitatProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Lunar Habitat",cost=25,prod={MC=1},rsrc={LunarHabitat=1}})
+end
+
+function lunarMineProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Lunar Mine",cost=23,prod={St=1},rsrc={LunarMine=1}})
+end
+
+function roadProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Road",cost=20,rsrc={Road=1}})
+end
+
 colonizationRateSnapMap={}
 miningRateSnapMap={}
 logisticRateSnapMap={}
@@ -268,6 +294,11 @@ function onLoad(save_state)
     initMap()
     TileBoard:new(lunaZone)
     initZone()
+    for i,a in pairs(projects) do
+            self.createButton(a)
+    end
+
+
     loadingGame = false
 end
 

@@ -14,6 +14,31 @@ click_function = 'cityTileClick', function_owner = self, label = "",
 
 venusZone={matrix=matrixMap,parent=self,zoneTag=nil}
 
+projects={
+    venusHabitat={
+    click_function = 'venusHabitatProject', function_owner = self, label = "",
+        position = {0.69,0.2,0.09},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Venus Habitat"
+    },
+    floatingArray={
+    click_function = 'floatingArrayProject', function_owner = self, label = "",
+        position = {0.69,0.2,-0.1},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Floating Array"
+    },
+    gasMine={
+    click_function = 'gasMineProject', function_owner = self, label = "",
+        position = {0.69,0.2,-0.005},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Gas Mine"
+    },
+}
+function venusHabitatProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Venus Habitat",cost=25,prod={MC=1},rsrc={VenusHabitat=1}})
+end
+
+function floatingArrayProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Floating Array",cost=19,rsrc={FloatingArray=1}})
+end
+
+function gasMineProject(obj,player_clicker_color,alt_click)
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Gas Mine",cost=21,prod={He=1},rsrc={GasMine=1}})
+end
 
 function venusTileClick(obj,player_clicker_color,alt_click)
     venusTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
@@ -90,6 +115,9 @@ function onLoad(save_state)
     initMap()
     TileBoard:new(venusZone)
     initZone()
+    self.createButton(projects["venusHabitat"])
+    self.createButton(projects["gasMine"])
+    self.createButton(projects["floatingArray"])
     loadingGame = false
 end
 

@@ -16,11 +16,15 @@ tiPriceTotal = 3
 optToPayTotal = 0
 optResourcteType="R"
 researchCards=0
+projectProd = {}
+projectTags = {}
+projectRsrc = {}
+projectCostChange = {}
 isDiscardResearch = false
 loadingGame = true
 
-function applyTags(card)
-    local tagList = getTags(card)
+function applyTags(tagList)
+    --local tagList = getTags(card)
     local tagListClean = tagList
     if contains(tagList,"Event") then
         tagListClean = {"Event"}
@@ -43,8 +47,8 @@ function applyDiscounts(card)
         broadcastToAll("[==> "..getPlayerName(self.getColorTint():toString()).." add discount "..a.." for tag \""..i.."\" ]",self.getColorTint())
     end
 end
-function applyProduction(card)
-    local prod = getProductions(card)
+function applyProduction(prod)
+    --local prod = getProductions(card)
     for r,c in pairs(prod) do
         if getPlayerBoard(self.getColorTint():toString()).call("moveProduction",{resource=r,step=c}) then
             if c > 0 then
@@ -58,9 +62,9 @@ function applyProduction(card)
     end
 end
 
-function applyResources(card)
+function applyResources(rsrc)
     local color = self.getColorTint():toString()
-    local rsrc = getResources(card)
+    --local rsrc = getResources(card)
     for r,c in pairs(rsrc) do
         if r == "MC" or r == "He" or r == "En" or r == "Pl" or r == "Ti" or r == "St" then
             log(r)
@@ -161,11 +165,11 @@ function playCard(card)
     if payMC() then
         local total = mcToPayTotal + stToPayTotal*stPriceTotal + tiToPayTotal*tiPriceTotal + optToPayTotal
         broadcastToAll(getPlayerName(self.getColorTint():toString()).. " play \"" .. card.getName() .."\" paying " .. total .. " with "..mcToPayTotal.." (MC), "..stToPayTotal.."(St), "..tiToPayTotal.."(Ti),"..optToPayTotal.."("..optResourcteType..")",self.getColorTint())
-        applyTags(card)
+        applyTags(getTags(card))
         applyVps(card)
         applyDiscounts(card)
-        applyProduction(card)
-        applyResources(card)
+        applyProduction(getProductions(card))
+        applyResources(getResources(card))
 
         local tagList = getTags(card)
         if tagList != nil then
@@ -401,6 +405,10 @@ function cleanState()
     stToPayTotal = 0
     tiToPayTotal = 0
     optToPayTotal = 0
+    projectProd = {}
+    projectTags = {}
+    projectRsrc = {}
+    projectCostChange = {}
     self.editButton({index=mcToPayConf.index,label=tostring(mcToPayTotal)})
     self.editButton({index=stToPayConf.index,label=tostring(stToPayTotal)})
     self.editButton({index=tiToPayConf.index,label=tostring(tiToPayTotal)})
@@ -417,9 +425,7 @@ function play(obj,player_clicker_color,alt_click)
             cleanState()
         end
     elseif #objs == 0 then
-        if payMC() then
-            local total = mcToPayTotal + stToPayTotal*stPriceTotal + tiToPayTotal*tiPriceTotal + optToPayTotal
-            broadcastToAll(getPlayerName(self.getColorTint():toString()).. " play " .. "standard project" .." paying " .. total .. " with "..mcToPayTotal.." (MC), "..stToPayTotal.."(St), "..tiToPayTotal.."(Ti),"..optToPayTotal.."("..optResourcteType..")",self.getColorTint())
+        if payStandardProject() then
             cleanState()
         end
     else
@@ -459,8 +465,8 @@ function setupCorp(obj,player_clicker_color,alt_click)
         local corp = objs[1]
         broadcastToAll(getPlayerName(self.getColorTint():toString()).." play \""..corp.getName().."\" corporation",self.getColorTint())
         applyVps(corp)
-        applyProduction(corp)
-        applyResources(corp)
+        applyProduction(getProductions(corp))
+        applyResources(getResources(corp))
         applyDiscounts(corp)
         local tags = getTags(corp)
         getTagTable(self.getColorTint():toString()).call("addTags",{tags = tags})
@@ -649,10 +655,37 @@ end
 function setProject(params)
   local label = params.label
   local cost = params.cost
-  local bonus = params.bonus
-  costChange = params.costChange
+  projectProd = params.prod or {}
+  projectRsrc = params.rsrc or {}
+  projectTags = params.tags or {}
+  projectCostChange = params.costChange or {}
   projectType.label = label
   self.editButton({index=projectType.index,label=projectType.label})
   mcToPayTotal=cost
   self.editButton({index=mcToPayConf.index,label = tostring(mcToPayTotal) })
+end
+
+function payStandardProject()
+    if payMC() then
+        local total = mcToPayTotal + stToPayTotal*stPriceTotal + tiToPayTotal*tiPriceTotal + optToPayTotal
+        broadcastToAll(getPlayerName(self.getColorTint():toString()).. " play " .. projectType.label .." paying " .. total .. " with "..mcToPayTotal.." (MC), "..stToPayTotal.."(St), "..tiToPayTotal.."(Ti),"..optToPayTotal.."("..optResourcteType..")",self.getColorTint())
+        --broadcastToAll(getPlayerName(self.getColorTint():toString()).. " play \"" .. card.getName() .."\" paying " .. total .. " with "..mcToPayTotal.." (MC), "..stToPayTotal.."(St), "..tiToPayTotal.."(Ti),"..optToPayTotal.."("..optResourcteType..")",self.getColorTint())
+        --applyTags(card)
+        --applyVps(card)
+        --applyDiscounts(card)
+        applyProduction(projectProd)
+        applyResources(projectRsrc)
+        if #projectTags > 0 then
+            applyTags(projectTags)
+            for i,tag in ipairs(projectTags) do
+                broadcastToAll(getPlayerName(self.getColorTint():toString()).." gets tag " .. tag )
+            end
+            --getTagTable(self.getColorTint():toString()).call("addTags",{tags = projectTags})
+        end
+
+
+
+        return true
+    end
+    return false
 end

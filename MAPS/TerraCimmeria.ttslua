@@ -133,3 +133,29 @@ function initMap()
 
     matrixMap[57].reserve=true
 end
+projects={
+    powerPlant={
+    click_function = 'powerPlantProject', function_owner = self, label = "",
+        position = {-0.991,0.11,0.24},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Power Plant"
+    },
+    asteroid={
+    click_function = 'asteroidProject', function_owner = self, label = "",
+        position = {-0.991,0.11,0.31},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Asteroid"
+    },
+    buildColony={
+    click_function = 'buildColonyProject', function_owner = self, label = "",
+        position = {-0.991,0.2,0.38},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Building Colony"
+    },
+    aquifer={
+    click_function = 'aquiferProject', function_owner = self, label = "",
+        position = {-0.991,0.11,0.45},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Aquifer"
+    },
+    greenery={
+    click_function = 'greeneryProject', function_owner = self, label = "",
+        position = {-0.991,0.11,0.52},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Greenery"
+    },
+    city={
+    click_function = 'cityProject', function_owner = self, label = "",
+        position = {-0.991,0.11,0.59},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="City"
+    },
+}
