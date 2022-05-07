@@ -29,20 +29,20 @@ radiationLevelTrackButton={button ={ index = 0,
 function initRadiationLevel()
     for i = 1,21 do
         radiationLevelSnapMap[i] = i
-        radiationLevelBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
+        radiationLevelBonusMap[i]={PLAYER={},EVERYONE={}}
     end
-    radiationLevelBonusMap[3]={PLAYER={TERRAFORM=1,He=1},EVERYONE={}}
-    radiationLevelBonusMap[5]={PLAYER={TERRAFORM=1,NuclearTile1=1},EVERYONE={}}
-    radiationLevelBonusMap[7]={PLAYER={TERRAFORM=1,En=1},EVERYONE={}}
-    radiationLevelBonusMap[9]={PLAYER={TERRAFORM=1,NuclearTile2=1},EVERYONE={}}
+    radiationLevelBonusMap[3]={PLAYER={He=1},EVERYONE={}}
+    radiationLevelBonusMap[5]={PLAYER={NuclearTile1=1},EVERYONE={}}
+    radiationLevelBonusMap[7]={PLAYER={En=1},EVERYONE={}}
+    radiationLevelBonusMap[9]={PLAYER={NuclearTile2=1},EVERYONE={}}
 
-    radiationLevelBonusMap[11]={PLAYER={TERRAFORM=1,RADIATION=1},EVERYONE={}}
-    radiationLevelBonusMap[13]={PLAYER={TERRAFORM=1,NuclearTile3=1},EVERYONE={}}
-    radiationLevelBonusMap[15]={PLAYER={TERRAFORM=1,DATA=2},EVERYONE={}}
-    radiationLevelBonusMap[17]={PLAYER={TERRAFORM=1,NuclearTile4=1},EVERYONE={}}
+    radiationLevelBonusMap[11]={PLAYER={RADIATION=1},EVERYONE={}}
+    radiationLevelBonusMap[13]={PLAYER={NuclearTile3=1},EVERYONE={}}
+    radiationLevelBonusMap[15]={PLAYER={DATA=2},EVERYONE={}}
+    radiationLevelBonusMap[17]={PLAYER={NuclearTile4=1},EVERYONE={}}
 
-    radiationLevelBonusMap[19]={PLAYER={TERRAFORM=1,SCIENCE=1},EVERYONE={}}
-    radiationLevelBonusMap[21]={PLAYER={TERRAFORM=1,RADIATION=2},EVERYONE={}}
+    radiationLevelBonusMap[19]={PLAYER={SCIENCE=1},EVERYONE={}}
+    radiationLevelBonusMap[21]={PLAYER={RADIATION=2},EVERYONE={}}
 
 end
 loadingGame = true

@@ -654,7 +654,7 @@ end
 
 function setProject(params)
   local label = params.label
-  local cost = params.cost
+  local cost = params.cost["MC"] or 0
   projectProd = params.prod or {}
   projectRsrc = params.rsrc or {}
   projectTags = params.tags or {}
@@ -663,6 +663,11 @@ function setProject(params)
   self.editButton({index=projectType.index,label=projectType.label})
   mcToPayTotal=cost
   self.editButton({index=mcToPayConf.index,label = tostring(mcToPayTotal) })
+  tiToPayTotal=params.cost["Ti"] or 0
+  self.editButton({index=tiToPayConf.index,label = tostring(tiToPayTotal) })
+  stToPayTotal=params.cost["St"] or 0
+  self.editButton({index=stToPayConf.index,label = tostring(stToPayTotal) })
+  
 end
 
 function payStandardProject()

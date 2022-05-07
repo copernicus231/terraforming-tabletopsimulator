@@ -50,15 +50,15 @@ projects={
     },
 }
 function lunarHabitatProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Lunar Habitat",cost=25,prod={MC=1},rsrc={LunarHabitat=1}})
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Lunar Habitat",cost={MC=25},prod={MC=1},rsrc={LunarHabitat=1}})
 end
 
 function lunarMineProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Lunar Mine",cost=23,prod={St=1},rsrc={LunarMine=1}})
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Lunar Mine",cost={MC=23},prod={St=1},rsrc={LunarMine=1}})
 end
 
 function roadProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Road",cost=20,rsrc={Road=1}})
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Road",cost={MC=20},rsrc={Road=1}})
 end
 
 colonizationRateSnapMap={}

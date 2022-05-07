@@ -29,15 +29,15 @@ projects={
     },
 }
 function venusHabitatProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Venus Habitat",cost=25,prod={MC=1},rsrc={VenusHabitat=1}})
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Venus Habitat",cost={MC=25},prod={MC=1},rsrc={VenusHabitat=1}})
 end
 
 function floatingArrayProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Floating Array",cost=19,rsrc={FloatingArray=1}})
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Floating Array",cost={MC=19},rsrc={FloatingArray=1}})
 end
 
 function gasMineProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Gas Mine",cost=21,prod={He=1},rsrc={GasMine=1}})
+    getCardPlayTable(player_clicker_color).call("setProject",{label="Gas Mine",cost={MC=21},prod={He=1},rsrc={GasMine=1}})
 end
 
 function venusTileClick(obj,player_clicker_color,alt_click)
