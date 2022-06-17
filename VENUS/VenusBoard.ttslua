@@ -12,20 +12,21 @@ venusScale={marker={Grey=getTrackMarker("VenusLevel")},snapMap=venusScaleSnapMap
 }
 
 function placeGenericClick(obj,player_clicker_color,alt_click)
-    genericTileButton:doClick(obj,player_clicker_color,alt_click)
+    genericTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
+      broadcastToAll("<"..color.." PLAYER PLACE "..obj.getName().." >",Color.fromString(color))
+      local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+      Wait.condition(function() cube.lock() end, function() return cube.resting end)
+      --print("INCREMENT SPACE CITY COUNTER")
+    --  getCityCounter().Counter.increment()
+     end)
 end
+
 
 function venusScaleClick(obj,player_clicker_color,alt_click)
-    venusScaleTrackButton:doClick(obj,player_clicker_color,alt_click)
+    venusScaleTrackButton:doClick(obj,player_clicker_color,alt_click,function(color,step) if color != "Grey" then log("venusScale:"..color.."/"..step); tracks.venusScale:updateLevel("Grey"); payTrackBonus({name="venusScale",color=color,step=step}) end end)
 end
 
-function placeGeneric(obj,color)
-        broadcastToAll("<"..color.." PLAYER PLACE "..obj.getName().." >",Color.fromString(color))
-        local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
-        Wait.condition(function() cube.lock() end, function() return cube.resting end)
-        --print("INCREMENT SPACE CITY COUNTER")
-        getCityCounter().Counter.increment()
-end
+
 
 venusScaleTrackButton={button ={ index = 0,
     click_function = 'venusScaleClick',
@@ -40,13 +41,13 @@ venusScaleTrackButton={button ={ index = 0,
      color=Color.fromString("Red"),
      hover_color={0,0,0,0},
      tooltip="VenusScale"
- },colorText="Red",track=tracks.venusScale,onUpdateTrack=function(color,step) if color != "Grey" then log("venusScale:"..color.."/"..step); tracks.venusScale:updateLevel("Grey"); payTrackBonus({name="venusScale",color=color,step=step}) end end}
+ },colorText="Red",track=tracks.venusScale,onUpdateTrack=function(color,step) if color != "Grey" then log("venusScale:"..color.."/"..step); tracks.venusScale:updateLevel("Grey"); payTrackBonus({name="venusScale",color=color,step=step}) end end,getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 
  genericTileButton={button = {
                      index = 0, click_function = 'placeGenericClick', function_owner = self, label = "",
                      position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
-                 },colorText="Red",placement=placeGeneric}
+                 },colorText="Red",getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
 
 

@@ -7,11 +7,11 @@ baseConfig={
 {id="c41306",position={-3.60, 2.96, 25.40},rotation={0.00, 0.00, 0.00},call="onDrop",lock=true},
 {id="f071f6",position={-42.63, 2.96, 7.10},rotation={0.00, 270.00, 0.00},call="onDrop",lock=true},
 --rockets
-{id="9a43e6",position={37.97, 2.01, -16.35},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
-{id="c5ccb8",position={-11.97, 2.01, -16.35},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
-{id="8a3e15",position={37.97, 2.01, 16.35},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
-{id="df9c0d",position={-11.97, 2.01, 16.35},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
-{id="80e59b",position={-33.60, 2.01, -2.45},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
+{id="4e07fe",position={37.97, 2.01, -16.35},rotation={0.00, 270, 0.00},call=nil,lock=true},
+{id="727e31",position={-11.97, 2.01, -16.35},rotation={0.00, 270, 0.00},call=nil,lock=true},
+{id="5530c8",position={37.97, 2.01, 16.35},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
+{id="d2e920",position={-11.97, 2.01, 16.35},rotation={0.00, 90.00, 0.00},call=nil,lock=true},
+{id="c164f7",position={-33.60, 2.01, -2.45},rotation={0.00, 0.00, 0.00},call=nil,lock=true},
 --Activate
 {id="b9e29a",position={42, 1.5, -27.00},rotation={0.00, 180.00, 0.00},call="onDrop",lock=true},
 {id="9ea659",position={-16, 1.5, -27.00},rotation={0.00, 180.00, 0.00},call="onDrop",lock=true},

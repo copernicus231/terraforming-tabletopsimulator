@@ -62,7 +62,7 @@ function applyProduction(prod)
     end
 end
 
-function applyResources(rsrc)
+function applyResources(rsrc,card)
     local color = self.getColorTint():toString()
     --local rsrc = getResources(card)
     for r,c in pairs(rsrc) do
@@ -169,7 +169,7 @@ function playCard(card)
         applyVps(card)
         applyDiscounts(card)
         applyProduction(getProductions(card))
-        applyResources(getResources(card))
+        applyResources(getResources(card),card)
 
         local tagList = getTags(card)
         if tagList != nil then
@@ -667,7 +667,7 @@ function setProject(params)
   self.editButton({index=tiToPayConf.index,label = tostring(tiToPayTotal) })
   stToPayTotal=params.cost["St"] or 0
   self.editButton({index=stToPayConf.index,label = tostring(stToPayTotal) })
-  
+
 end
 
 function payStandardProject()
