@@ -197,9 +197,8 @@ function deploy()
     if optionFlag16 then
         if optionFlag3 then
             local obj = getObjectFromGUID("9d6aeb")
-            local obj1 = getObjectFromGUID("2a7ccd")
-            Wait.condition(function() getObjectFromGUID("c96f61").putObject(obj); getObjectFromGUID("c96f61").putObject(obj1); deployObjectsBag("c96f61",venus2Config) end,
-             function() return obj.resting and obj1.resting end)
+            Wait.condition(function() getObjectFromGUID("c96f61").putObject(obj); deployObjectsBag("c96f61",venus2Config) end,
+             function() return obj.resting end)
         else
             deployObjectsBag("c96f61",venus2Config)
             tags["Venus"] = true

@@ -4,7 +4,7 @@
 #include ../UTIL/TileButton
 #include ../UTIL/TileZone
 #include ../UTIL/GetComponents
-#include ../UTIL/COLORS
+
 venusSnapMap={}
 earthSnapMap={}
 marsSnapMap={}
@@ -27,17 +27,17 @@ Jovian={marker={Grey=getPathMarker("Jovian")},snapMap=jovianSnapMap,level={Grey=
 }
 
 function venusClick(obj,player_clicker_color,alt_click)
-    venusTrackButton:doClick(obj,player_clicker_color,alt_click)
+    venusTrackButton:doClick(obj,player_clicker_color,alt_click,function(color,step) if step > 0 then log("Venus:"..color.."/"..step);tracks["Venus"]:updateLevel("Grey"); payTrackBonus({name="Venus",color=color,step=step}) end end)
 end
 
 function earthClick(obj,player_clicker_color,alt_click)
-    earthTrackButton:doClick(obj,player_clicker_color,alt_click)
+    earthTrackButton:doClick(obj,player_clicker_color,alt_click,function(color,step) if step > 0 then log("Earth:"..color.."/"..step);tracks["Earth"]:updateLevel("Grey"); payTrackBonus({name="Earth",color=color,step=step}) end  end)
 end
 function marsClick(obj,player_clicker_color,alt_click)
-    marsTrackButton:doClick(obj,player_clicker_color,alt_click)
+    marsTrackButton:doClick(obj,player_clicker_color,alt_click,function(color,step) if step > 0 then log("Mars:"..color.."/"..step);tracks["Mars"]:updateLevel("Grey"); payTrackBonus({name="Mars",color=color,step=step}) end end)
 end
 function jovianClick(obj,player_clicker_color,alt_click)
-    jovianTrackButton:doClick(obj,player_clicker_color,alt_click)
+    jovianTrackButton:doClick(obj,player_clicker_color,alt_click,function(color,step) if step > 0 then log("Jovian:"..color.."/"..step);tracks["Jovian"]:updateLevel("Grey"); payTrackBonus({name="Jovian",color=color,step=step}) end end)
 end
 venusTrackButton={button ={ index = 0,
     click_function = 'venusClick',
@@ -131,19 +131,18 @@ venusTrackButton={button ={ index = 0,
      obj.memo=color
      return obj.hasTag("SpaceTile")
  end
- function placeGeneric(obj,color)
-     if placeSpaceTile(obj,color) then
-         --fix this
-         --broadcastToAll("<"..color.." PLAYER PLACE "..obj.getName().." >",Color.fromString(color))
-         broadcastToAll("<PATHFINDER>[==> "..getPlayerName(color).." has place "..obj.getName().." ]",Color.fromString(color))
-         local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
-         Wait.condition(function() cube.lock() end, function() return cube.resting end)
-         getCityCounter().Counter.increment()
-         --print("INCREMENT SPACE CITY COUNTER")
-     end
- end
+
  function placeGenericClick(obj,player_clicker_color,alt_click)
-     genericTileButton:doClick(obj,player_clicker_color,alt_click)
+     genericTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
+       if placeSpaceTile(obj,color) then
+           broadcastToAll("<PATHFINDER>[==> "..getPlayerName(color).." has place "..obj.getName().." ]",Color.fromString(color))
+           local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+           Wait.condition(function() cube.lock() end, function() return cube.resting end)
+           getCityCounter().call("addCount",{color=color,type="spaceCity",count=1})
+           --print("INCREMENT SPACE CITY COUNTER")
+       end
+
+     end)
  end
 
  genericTileButton={button = {

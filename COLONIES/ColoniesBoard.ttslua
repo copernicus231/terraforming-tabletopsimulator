@@ -128,18 +128,23 @@ projects={
     },
 }
 
+
+
 function buildColonyProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Build Colony",cost={MC=17}}) --,rsrc={Colony=1}
+    setStandardProject(player_clicker_color,"Build Colony",{MC=17},{},{})
 end
 
 function tradeXMCProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Trade x MC",cost={MC=9}}) --,rsrc={Colony=1}
+    setStandardProject(player_clicker_color,"Trade x MC",{MC=9},{},{})
+    --getCardPlayTable(player_clicker_color).call("setProject",{label="Trade x MC",cost={MC=9}}) --,rsrc={Colony=1}
 end
 
 function tradeXEnergyProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Trade x Energy",cost={En=3}}) --,rsrc={Colony=1}
+    setStandardProject(player_clicker_color,"Trade x Energy",{En=3},{},{})
+  --  getCardPlayTable(player_clicker_color).call("setProject",{label="Trade x Energy",cost={En=3}}) --,rsrc={Colony=1}
 end
 
 function tradeXTitaniumProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Trade x Titanium",cost={Ti=3}}) --,rsrc={Colony=1}
+    setStandardProject(player_clicker_color,"Trade x Titanium",{Ti=3},{},{})
+  --  getCardPlayTable(player_clicker_color).call("setProject",{label="Trade x Titanium",cost={Ti=3}}) --,rsrc={Colony=1}
 end

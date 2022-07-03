@@ -77,6 +77,13 @@ DRAFT_TOKENS={}
 function getDraftToken(color)
     return getObject(DRAFT_TOKENS,color,{"DraftToken",color})
 end
+
+OPTIONAL_RESOURCES={}
+function getOptionalResource(color)
+    return getObject(OPTIONAL_RESOURCES,color,{"OptionalResource",color})
+end
+
+
 DRAFT_ZONES={}
 function getDraftZone(color)
     return getObject(DRAFT_ZONES,color,{"Draft",color})

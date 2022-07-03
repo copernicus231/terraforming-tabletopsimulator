@@ -254,23 +254,23 @@ function onLoad(save_state)
     --print(obj.getGUID())
     mcToPayConf = {
         index = 0, click_function = 'mcToPay', function_owner = self, label = tostring(mcToPayTotal),
-        position = {-0.28,0.12,-0.5}, width = 700, height = 360, font_size = 360,font_color={0,0,0,100},color={253/255, 231/255, 46/255,0.95},scale={x=0.125, y=0.125, z=0.125}
+        position = {-0.28,0.12,-0.5}, width = 700, height = 360, font_size = 360,font_color={152/255,55/255,57/255,100},color={253/255, 231/255, 46/255,0.95},scale={x=0.125, y=0.125, z=0.125}
     }
     stToPayConf = {
         index = 1, click_function = 'stToPay', function_owner = self, label = tostring(stToPayTotal),
-        position = {0,0.12,-0.5}, width = 700, height = 360, font_size = 360,font_color={0,0,0,100},color={168/255,120/255,74/255,0.95},scale={x=0.125, y=0.125, z=0.125}
+        position = {0,0.12,-0.5}, width = 700, height = 360, font_size = 360,font_color={75/255,53/255,40/255,100},color={153/255,103/255,66/255,0.95},scale={x=0.125, y=0.125, z=0.125}
     }
     tiToPayConf = {
         index = 2, click_function = 'tiToPay', function_owner = self, label = tostring(tiToPayTotal),
-        position = {0.28,0.12,-0.5}, width = 700, height = 360, font_size = 360,font_color={0,0,0,100},color={67/255,67/255,67/255,0.95},scale={x=0.125, y=0.125, z=0.125}
+        position = {0.28,0.12,-0.5}, width = 700, height = 360, font_size = 360,font_color={253/255,231/255,5/255,0.9},color={67/255,67/255,67/255,0.95},scale={x=0.125, y=0.125, z=0.125}
     }
     stPriceConf = {
         index = 3, click_function = 'stPrice', function_owner = self, label = tostring(stPriceTotal),
-        position = {0,0.12,-0.76}, width = 700, height = 360, font_size = 360,font_color={0,0,0,100},color={168/255,120/255,74/255,0.95},scale={x=0.125, y=0.125, z=0.125}
+        position = {0,0.12,-0.76}, width = 700, height = 360, font_size = 360,font_color={75/255,53/255,40/255,100},color={153/255,103/255,66/255,0.95},scale={x=0.125, y=0.125, z=0.125}
     }
     tiPriceConf = {
         index = 4, click_function = 'tiPrice', function_owner = self, label = tostring(tiPriceTotal),
-        position = {0.28,0.12,-0.76}, width = 700, height = 360, font_size = 360,font_color={0,0,0,100},color={67/255,67/255,67/255,0.95},scale={x=0.125, y=0.125, z=0.125}
+        position = {0.28,0.12,-0.76}, width = 700, height = 360, font_size = 360,font_color={253/255,231/255,5/255,0.9},color={67/255,67/255,67/255,0.95},scale={x=0.125, y=0.125, z=0.125}
     }
 
     optToPayConf = {
@@ -292,7 +292,7 @@ function onLoad(save_state)
 
     projectType = {
         index = 6, click_function = 'cleanState', function_owner = self, label = "Project",
-        position = {0,0.12,-0.9}, width = 2000, height = 400, font_size = 300,font_color={0,0,0,100},color={253/255, 180/255, 46/255,0.95},scale={x=0.125, y=0.125, z=0.125}
+        position = {0,0.12,-0.9}, width = 2500, height = 400, font_size = 250,font_color={0,0,0,100},color={253/255, 180/255, 46/255,0.95},scale={x=0.125, y=0.125, z=0.125}
     }
 
     self.createButton(mcToPayConf)
@@ -653,6 +653,7 @@ function mcToPay(obj, player_clicker_color, alt_click)
 end
 
 function setProject(params)
+  cleanState()
   local label = params.label
   local cost = params.cost["MC"] or 0
   projectProd = params.prod or {}
@@ -667,7 +668,17 @@ function setProject(params)
   self.editButton({index=tiToPayConf.index,label = tostring(tiToPayTotal) })
   stToPayTotal=params.cost["St"] or 0
   self.editButton({index=stToPayConf.index,label = tostring(stToPayTotal) })
-
+  for i,a in pairs(params.cost) do
+    if i != "MC" and i != "Ti" and i != "St" then
+      local optR = getOptionalResource(self.getColorTint():toString())
+      if optR.getName() != i then
+        getOptionalResource(self.getColorTint():toString()).call("changeToState",{resource=i})
+      end
+      optToPayTotal=a or 0
+      self.editButton({index=optToPayConf.index,label = tostring(optToPayTotal) })
+      break
+    end
+  end
 end
 
 function payStandardProject()

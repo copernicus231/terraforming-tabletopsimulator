@@ -29,15 +29,18 @@ projects={
     },
 }
 function venusHabitatProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Venus Habitat",cost={MC=25},prod={MC=1},rsrc={VenusHabitat=1}})
+    setStandardProject(player_clicker_color,"Venus Habitat",{MC=25},{MC=1},{VenusHabitat=1})
+    --getCardPlayTable(player_clicker_color).call("setProject",{label="Venus Habitat",cost={MC=25},prod={MC=1},rsrc={VenusHabitat=1}})
 end
 
 function floatingArrayProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Floating Array",cost={MC=19},rsrc={FloatingArray=1}})
+  setStandardProject(player_clicker_color,"Floating Array",{MC=19},{},{FloatingArray=1})
+  --  getCardPlayTable(player_clicker_color).call("setProject",{label="Floating Array",cost={MC=19},rsrc={FloatingArray=1}})
 end
 
 function gasMineProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Gas Mine",cost={MC=21},prod={He=1},rsrc={GasMine=1}})
+  setStandardProject(player_clicker_color,"Gas Mine",{MC=21},{He=1},{GasMine=1})
+  --  getCardPlayTable(player_clicker_color).call("setProject",{label="Gas Mine",cost={MC=21},prod={He=1},rsrc={GasMine=1}})
 end
 
 function venusTileClick(obj,player_clicker_color,alt_click)
@@ -62,6 +65,7 @@ function cityTileClick(obj,player_clicker_color,alt_click)
               local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
               Wait.condition(function() cube.lock() end, function() return cube.resting end)
               obj.addTag("VenusTile")
+              getCityCounter().call("addCount",{color=color,type="venusCity",count=1})
               broadcastToAll("<VENUS>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
       end

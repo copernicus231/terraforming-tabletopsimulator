@@ -24,6 +24,17 @@ function getPlayerName(color)
     return Player[color].steam_name or color
 end
 
+function setStandardProject(color,label,cost,prod,rsrc)
+  local cpt = getCardPlayTable(color)
+  cpt.call("setProject",{label=label,cost=cost,prod=prod,rsrc=rsrc})
+  Player[color].lookAt({
+      position = cpt.getPosition(),
+      pitch    = 55,
+      yaw      = cpt.getRotation().y+180,
+      distance = 15
+  })
+end
+
 COLORS ={
     WARN = {238/255,210/255,2/255,1},
     ERROR = {1,0,0,1},

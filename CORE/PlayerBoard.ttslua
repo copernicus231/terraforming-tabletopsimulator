@@ -402,54 +402,13 @@ function onLoad(save_state)
         self.createButton(temperatureButton)
 end
 
-function confirmIncTemperature(obj,player_clicker_color,alt_click)
-    if not alt_click then
-        if i_payResource(8,"He") then
-            broadcastToAll("8 HEAT FOR INCREMENT TEMPERATURE",Color.fromString(self.getDescription()))
-        else
-            broadcastToAll("<< INSUFICIENT HEAT PLAYER ".. self.getDescription()..">>",{238/255,210/255,2/255,1})
-        end
-    end
-    temperatureButton.color = {1,1,1,0}
-    temperatureButton.click_function = "incTemperature"
-    self.removeButton(temperatureButton.index)
-    self.createButton(temperatureButton)
-    temperatureButton.index = 1
-    greeneryButton.index = 0
-end
+
 function incTemperature()
-    temperatureButton.color = Color.fromString("Orange"):setAt(4,0.75)
-    temperatureButton.click_function = "confirmIncTemperature"
-    self.removeButton(temperatureButton.index)
-    self.createButton(temperatureButton)
-    temperatureButton.index = 1
-    greeneryButton.index = 0
-    broadcastToColor("<< CONFIRM PAY 8 HEAT OR SECOND BUTTON FOR CANCEL >>", self.getDescription(),{238/255,210/255,2/255,1})
+  setStandardProject(self.getColorTint():toString(),"Heat to Temperature",{He=8},{},{Temperature=1})
 end
-function confirmPutGreenery(obj,player_clicker_color,alt_click)
-    if not alt_click then
-        if i_payResource(8,"Pl") then
-            broadcastToAll("8 PLANTS FOR GREENERY",Color.fromString(self.getDescription()))
-        else
-            broadcastToAll("<< INSUFICIENT PLANTS PLAYER ".. self.getDescription()..">>",{238/255,210/255,2/255,1})
-        end
-    end
-    greeneryButton.color = {1,1,1,0}
-    greeneryButton.click_function = "putGreenery"
-    self.removeButton(greeneryButton.index)
-    self.createButton(greeneryButton)
-    greeneryButton.index = 1
-    temperatureButton.index = 0
-end
+
 function putGreenery()
-    greeneryButton.color = Color.fromString("Green"):setAt(4,0.75)
-    greeneryButton.click_function = "confirmPutGreenery"
-    self.removeButton(greeneryButton.index)
-    self.createButton(greeneryButton)
-    greeneryButton.index = 1
-    temperatureButton.index = 0
-    --ADD CASE FOR ECOLINE
-    broadcastToColor("<< CONFIRM PAY 8 PLANTS OR SECOND BUTTON FOR CANCEL >>", self.getDescription(),{238/255,210/255,2/255,1})
+    setStandardProject(self.getColorTint():toString(),"Plants to Greenery",{Pl=8},{},{Greenery=1})
 end
 
 autoSaveCount=0

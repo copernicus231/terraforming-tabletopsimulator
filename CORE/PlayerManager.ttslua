@@ -108,6 +108,7 @@ function getCurrentPlayer()
 end
 
 function onLoad(save_state)
+    MusicPlayer.play()
     if save_state != nil and save_state != '' then
         local json = JSON.decode(save_state)
         currentPlayer = json.currentPlayer

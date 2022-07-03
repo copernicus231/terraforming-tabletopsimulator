@@ -18,6 +18,7 @@ function placeGenericClick(obj,player_clicker_color,alt_click)
       Wait.condition(function() cube.lock() end, function() return cube.resting end)
       --print("INCREMENT SPACE CITY COUNTER")
     --  getCityCounter().Counter.increment()
+      getCityCounter().call("addCount",{color=color,type="venusCity",count=1})
      end)
 end
 
@@ -80,7 +81,7 @@ end
              end
          end
          -- Add check when gets faster geometric algoritms for marsZone:getZonePosition(obj) > 0
-         if obj.hasTag("VenusTile") then
+         if obj.hasTag("VenusTile") or obj.hasTag("spaceTile") then
              if obj.hasTag("City") then
              --print(obj.getGUID())
              genericTileButton:add(obj)
@@ -102,7 +103,7 @@ end
              venusScaleTrackButton:remove(obj)
          end
      end
-     if obj.hasTag("VenusTile") then
+     if obj.hasTag("VenusTile") or obj.hasTag("spaceTile") then
          if obj.hasTag("City") then
         -- print(obj.getGUID())
          genericTileButton:remove(obj)

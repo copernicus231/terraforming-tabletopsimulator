@@ -77,27 +77,33 @@ marsZone={matrix=matrixMap,parent=self,zoneTag=nil}
 
 
 function powerPlantProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Power Plant",cost={MC=11},prod={En=1}}) --,tags={"Power"}
+    setStandardProject(player_clicker_color,"Power Plant",{MC=11},{En=1},{})
+    --getCardPlayTable(player_clicker_color).call("setProject",{label="Power Plant",cost={MC=11},prod={En=1}}) --,tags={"Power"}
 end
 
 function asteroidProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Asteroid",cost={MC=14},rsrc={Temperature=1}})
+  setStandardProject(player_clicker_color,"Asteroid",{MC=14},{},{Temperature=1})
+  --  getCardPlayTable(player_clicker_color).call("setProject",{label="Asteroid",cost={MC=14},rsrc={Temperature=1}})
 end
 
 function buildColonyProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Build Colony",cost={MC=17}}) --,rsrc={Colony=1}
+  setStandardProject(player_clicker_color,"Build Colony",{MC=17},{},{})
+  --  getCardPlayTable(player_clicker_color).call("setProject",{label="Build Colony",cost={MC=17}}) --,rsrc={Colony=1}
 end
 
 function aquiferProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Aquifer",cost={MC=18},rsrc={Ocean=1}})
+  setStandardProject(player_clicker_color,"Aquifer",{MC=18},{},{Ocean=1})
+  --  getCardPlayTable(player_clicker_color).call("setProject",{label="Aquifer",cost={MC=18},rsrc={Ocean=1}})
 end
 
 function greeneryProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Greenery",cost={MC=23},rsrc={Greenery=1}})
+  setStandardProject(player_clicker_color,"Greenery",{MC=23},{},{Greenery=1})
+  --  getCardPlayTable(player_clicker_color).call("setProject",{label="Greenery",cost={MC=23},rsrc={Greenery=1}})
 end
 
 function cityProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="City",cost={MC=25},prod={MC=1},rsrc={City=1}})
+  setStandardProject(player_clicker_color,"City",{MC=25},{MC=1},{City=1})
+  --  getCardPlayTable(player_clicker_color).call("setProject",{label="City",cost={MC=25},prod={MC=1},rsrc={City=1}})
 end
 loadingGame = true
 
@@ -138,8 +144,11 @@ function placeOceanClick(obj,player_clicker_color,alt_click)
     oceanTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
         if placeTile(obj,color,marsZone) then
             if color != "Grey" then
-                tracks.tr:moveTrack(color,1)
                 broadcastToAll("<BOARD>[==> "..getPlayerName(color).." place ocean ]", Color.fromString(color))
+                --tracks.tr:moveTrack(color,1)
+                if moveTrack({name="tr",step=1,color=color}) then
+                  broadcastToAll("<BOARD>[==> "..getPlayerName(color).." increase 1 step terraform ]",Color.fromString(color))
+                end
             end
         end
     end)
@@ -152,7 +161,7 @@ function placeGenericClick(obj,player_clicker_color,alt_click)
                 local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
                 Wait.condition(function() cube.lock() end, function() return cube.resting end)
                 --print("INCREMENT CITY COUNTER")
-                --getCityCounter().Counter.increment()
+                getCityCounter().call("addCount",{color=color,type="City",count=1})
                 --INCREMENT CITY COUNTER
             else
                 local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
@@ -164,6 +173,7 @@ function placeGenericClick(obj,player_clicker_color,alt_click)
             local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
             Wait.condition(function() cube.lock() end, function() return cube.resting end)
             --getCityCounter().Counter.increment()
+            getCityCounter().call("addCount",{color=color,type="spaceCity",count=1})
             --print("INCREMENT SPACE CITY COUNTER")
         end
     end)
@@ -177,6 +187,7 @@ function placeReplaceClick(obj,player_clicker_color,alt_click)
                 local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
                 Wait.condition(function() cube.lock() end, function() return cube.resting end)
                 --print("INCREMENT CITY COUNTER")
+                getCityCounter().call("addCount",{color=color,type="City",count=1})
                 --getCityCounter().Counter.increment()
                 --INCREMENT CITY COUNTER
             else

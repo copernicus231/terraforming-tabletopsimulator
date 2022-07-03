@@ -19,11 +19,11 @@ baseConfig={
 {id="10a978",position={-16, 1.5, 27.00},rotation={0.00, 0.00, 0.00},call="onDrop",lock=true},
 {id="8e73e5",position={-44.27, 1.5, -4.03},rotation={0.00, 270.00, 0.00},call="onDrop",lock=true},
 
-{id="b3ec3c",position={43.80, 3.06, -24.71},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-{id="e169b0",position={-14.18, 3.06, -24.71},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-{id="45d027",position={40.20, 3.06, 24.71},rotation={0.00, 0.00, 0.00},call=nil,lock=true},
-{id="aea5a7",position={-17.80, 3.06, 24.71},rotation={0.00, 0.00, 0.00},call=nil,lock=true},
-{id="f4c979",position={-41.98, 3.06, -5.85},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+{id="0a303c",position={43.80, 3.06, -24.71},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+{id="b5906c",position={-14.18, 3.06, -24.71},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+{id="98ab19",position={40.20, 3.06, 24.71},rotation={0.00, 0.00, 0.00},call=nil,lock=true},
+{id="393827",position={-17.80, 3.06, 24.71},rotation={0.00, 0.00, 0.00},call=nil,lock=true},
+{id="af37aa",position={-41.98, 3.06, -5.85},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
 
 --Token
 {id="54bee6",position={45.98, 1.96, -22.40},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
@@ -93,7 +93,7 @@ baseConfig={
 
 
 --counter
---{id="d56f4f",position={8.12, 1.93, 13.75},rotation={0.00, 0.00, 0.00},call=nil,lock=true},
+{id="9bd293",position={32.74, 0.96, 1.74},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 --phsehandler
 {id="3a5103",position={13.00, 1.96,-22.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 --currentPlayerToken
@@ -107,7 +107,7 @@ baseConfig={
 {id="edacb2",position={43.90, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 {id="45e84c",position={46.10, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 {id="8ab40d",position={48.30, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
-
+{id="c2e8f6",position={50.50, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 
 --Arrows
 {id="8c095b",position={21.50, 0.96, -16.40},rotation={0.00, 90.00, 0.00},call=nil,lock=false},
@@ -210,7 +210,7 @@ venusConfig={
     --{id="caaf4f",position={48.00, 1.96, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
     --{id="54a8eb",position={59.00, 1.01, 4.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
     --tiles
-    {id="2a7ccd",position={48.50, 0.96, -2},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
+    --{id="2a7ccd",position={48.50, 0.96, -2},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
 
 
 --7384c2
@@ -267,7 +267,7 @@ coloniesFanMadeConfig={
 
 highOrbitConfig={
     {id="c6317a",position={104.50, 1.36, -33.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
-    {id="c5e7ed",position={54.90, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="c5e7ed",position={57.10, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 
 }
 preludeConfig = {
@@ -310,7 +310,7 @@ promoConfig={
 
 }
 preludePromoConfig={
-    {id="dc3b66",position={96.00, 3.00, -10.80},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="340e7c",position={96.00, 3.00, -10.80},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 
 }
 fanMadeCorpsConfig={
@@ -365,7 +365,7 @@ pathfindersConfig={
 {id="c91d31",position={40.00, 2.24, -15.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
 
 --BAG
-{id="0c4474",position={50.5, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+{id="0c4474",position={52.70, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 
 }
 
@@ -380,7 +380,7 @@ nuclearConfig={
     {id="eee432",position={104.50, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="af4da4",position={100.50, 3.00, -29.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     --BAG
-    {id="945a3f",position={52.70, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+    {id="945a3f",position={54.90, 2.06, -13.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
     --Track
     {id="6d342a",position={33.79, 1.06, 1.50},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 --cb4ca4

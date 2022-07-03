@@ -5,13 +5,12 @@ TICKNES=0.2
 isBigMap = true
 function initTrSnapMap()
     for i=1,100 do
-        trSnapMap[i] = i
+        trSnapMap[i] = 91+i
     end
-    trSnapMap[0] = 100
 end
 function initOxygenSnapMap()
     for i = 1,18 do
-        oxygenSnapMap[i]  = 214 + i
+        oxygenSnapMap[i]  = 214 + 19-i
         oxygenBonusMap[i] = {PLAYER={TERRAFORM=1},EVERYONE={}}
     end
     oxygenBonusMap[7] = {PLAYER={TERRAFORM=1,ProdHe=1},EVERYONE={}}
@@ -28,12 +27,12 @@ function initTemperatureSnapMap()
     temperatureBonusMap[19]={PLAYER={TERRAFORM=1,Ocean=1},EVERYONE={}}
 end
 function initOceanSnap()
-    oceanSnap = 254
+    oceanSnap = 236
 end
 
 function initMap()
     for i = 1,91 do
-        matrixMap[i].snap  = 100 + i
+        matrixMap[i].snap  =  i
     end
     --BONUS
     matrixMap[2].bonus = {He=1}

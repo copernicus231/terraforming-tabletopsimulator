@@ -3,73 +3,35 @@
 
 GameHandler_GUID="2e49df"
 function initTrSnapMap()
-    for i=1,99 do
-        trSnapMap[i] = i + 1
-    end
-    trSnapMap[100] = 1
-    trSnapMap[0] = 1
+  for i=1,100 do
+      trSnapMap[i] = i + 61
+  end
 end
 function initOxygenSnapMap()
-    for i = 1,8 do
-        oxygenSnapMap[i]  = 137 + i
-        oxygenBonusMap[i] = {PLAYER={TERRAFORM=1},EVERYONE={}}
-    end
-    for i = 9,15 do
-        oxygenSnapMap[i] = 161 - i
-        oxygenBonusMap[i] = {PLAYER={TERRAFORM=1},EVERYONE={}}
-    end
+  for i = 1,15 do
+      oxygenSnapMap[i]  = 16 - i + 181
+      oxygenBonusMap[i] = {PLAYER={TERRAFORM=1},EVERYONE={}}
+  end
     oxygenBonusMap[9] = {PLAYER={TERRAFORM=1,Temperature=1},EVERYONE={}}
 end
 function initTemperatureSnapMap()
-    for i = 1,20 do
-        temperatureSnapMap[i] = 137 - i
-        temperatureBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
-    end
+  for i = 1,20 do
+      temperatureSnapMap[i] = i + 161
+      temperatureBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
+  end
     temperatureBonusMap[4]={PLAYER={TERRAFORM=1,ProdHe=1},EVERYONE={}}
     temperatureBonusMap[6]={PLAYER={TERRAFORM=1,ProdHe=1},EVERYONE={}}
     temperatureBonusMap[16]={PLAYER={TERRAFORM=1,Ocean=1},EVERYONE={}}
 end
 function initOceanSnap()
-    oceanSnap = 137
+    oceanSnap = 200
 end
 
 
 function initMap()
-    for i = 1,5 do
-        matrixMap[i].snap = 152 + i
-    end
-    for i = 6,11 do
-        matrixMap[i].snap = 169 - i
-    end
-    for i = 12,18 do
-        matrixMap[i].snap  = 152 + i
-    end
-    for i = 19,26 do
-        matrixMap[i].snap = 197 - i
-    end
-    matrixMap[27].snap = 179
-    matrixMap[28].snap = 180
-    matrixMap[29].snap = 181
-    matrixMap[30].snap = 182
-    matrixMap[31].snap = 215
-    matrixMap[32].snap = 183
-    matrixMap[33].snap = 184
-    matrixMap[34].snap = 185
-    matrixMap[35].snap = 186
-    for i = 36,43 do
-        matrixMap[i].snap = 230 - i
-    end
-    for i = 44,50 do
-        matrixMap[i].snap = 151 + i
-    end
-    for i = 51,56 do
-        matrixMap[i].snap = 258 - i
-    end
-    matrixMap[57].snap = 208
-    matrixMap[58].snap = 209
-    matrixMap[59].snap = 210
-    matrixMap[60].snap = 211
-    matrixMap[61].snap = 212
+  for i = 1,61 do
+      matrixMap[i].snap = i
+  end
 
     --BONUS
    matrixMap[2].bonus = {Ti=1}

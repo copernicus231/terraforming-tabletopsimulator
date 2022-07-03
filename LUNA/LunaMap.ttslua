@@ -50,15 +50,18 @@ projects={
     },
 }
 function lunarHabitatProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Lunar Habitat",cost={MC=25},prod={MC=1},rsrc={LunarHabitat=1}})
+    setStandardProject(player_clicker_color,"Lunar Habitat",{MC=25},{MC=1},{LunarHabitat=1})
+    --getCardPlayTable(player_clicker_color).call("setProject",{label="Lunar Habitat",cost={MC=25},prod={MC=1},rsrc={LunarHabitat=1}})
 end
 
 function lunarMineProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Lunar Mine",cost={MC=23},prod={St=1},rsrc={LunarMine=1}})
+  setStandardProject(player_clicker_color,"Lunar Mine",{MC=23},{St=1},{LunarMine=1})
+  --  getCardPlayTable(player_clicker_color).call("setProject",{label="Lunar Mine",cost={MC=23},prod={St=1},rsrc={LunarMine=1}})
 end
 
 function roadProject(obj,player_clicker_color,alt_click)
-    getCardPlayTable(player_clicker_color).call("setProject",{label="Road",cost={MC=20},rsrc={Road=1}})
+  setStandardProject(player_clicker_color,"Road",{MC=20},{},{Road=1})
+    --getCardPlayTable(player_clicker_color).call("setProject",{label="Road",cost={MC=20},rsrc={Road=1}})
 end
 
 colonizationRateSnapMap={}
@@ -195,11 +198,12 @@ function replaceTileClick(obj,player_clicker_color,alt_click)
 end
 
 function cityTileClick(obj,player_clicker_color,alt_click)
-    cityTileButton:doClick(obj,player_clicker_color,alt_click,function()
+    cityTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
       if placeTile(obj,color,lunaZone) then
           if color != "Grey" then
               local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
               Wait.condition(function() cube.lock() end, function() return cube.resting end)
+              getCityCounter().call("addCount",{color=color,type="lunarCity",count=1})
               obj.addTag("LunaTile")
               broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
