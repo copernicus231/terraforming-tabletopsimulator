@@ -207,6 +207,14 @@ function cityTileClick(obj,player_clicker_color,alt_click)
               obj.addTag("LunaTile")
               broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
+      else
+        if color != "Grey" then
+            local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+            Wait.condition(function() cube.lock() end, function() return cube.resting end)
+            getCityCounter().call("addCount",{color=color,type="lunarCity",count=1})
+            obj.addTag("LunaTile")
+            broadcastToAll("<LUNA>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
+        end
       end
     end)
 end
@@ -256,11 +264,11 @@ function initMap()
 end
 function initLunaTracks()
   for i = 1,10 do
-      colonizationRateSnapMap[i] = i + 35
+      colonizationRateSnapMap[i] = 11-i + 45
       colonizationRateBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
-      miningRateSnapMap[i] = i + 55
+      miningRateSnapMap[i] = 11-i + 55
       miningRateBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
-      logisticRateSnapMap[i] = i + 45
+      logisticRateSnapMap[i] = 11-i + 35
       logisticRateBonusMap[i]={PLAYER={TERRAFORM=1},EVERYONE={}}
   end
   colonizationRateBonusMap[4]={PLAYER={TERRAFORM=1,Card=1},EVERYONE={}}
@@ -352,7 +360,7 @@ function onCollisionEnter(collision_info)
         if obj.getLock() then
             return
         end
-        if obj.hasTag("LunaTile") then
+        if obj.hasTag("LunaTile") and lunaZone:getZonePosition(obj) > 0 then
             if obj.hasTag("SpecialTile") then
                 if obj.hasTag("ReplaceTile") then
                     replaceTileButton:add(obj)

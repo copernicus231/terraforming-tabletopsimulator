@@ -5,12 +5,10 @@ isActiveColony = true
 function placementBonus(color)
   local pos = getCardPlayTable(color).positionToWorld(Vector(0,1,-2.7))
   if getBag("Ocean") != nil and getBag("Ocean") != Global then
-      for i=1,total do
-          if getBag("Ocean").getQuantity() > 1 then
+          if getBag("Ocean").getQuantity() >= 1 then
               getBag("Ocean").takeObject({position = pos})
                 broadcastToAll("<COLONY>[==> "..getPlayerName(color).." get placement bonus 1 Ocean from \""..self.getName().."\" ]",color)
           end
-      end
   end
 end
 

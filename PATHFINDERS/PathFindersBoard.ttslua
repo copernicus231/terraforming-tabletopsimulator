@@ -268,7 +268,7 @@ venusTrackButton={button ={ index = 0,
                   local pos = getCardPlayTable(color).positionToWorld(Vector(0,1,-2.7))
                   if getBag(resource) != nil and getBag(resource) != Global then
                       for i=1,total do
-                          if getBag(resource).getQuantity() > 1 then
+                          if getBag(resource).getQuantity() >= 1 then
                               getBag(resource).takeObject({position = pos})
                           end
                       end

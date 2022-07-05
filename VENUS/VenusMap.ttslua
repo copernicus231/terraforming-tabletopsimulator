@@ -68,18 +68,22 @@ function cityTileClick(obj,player_clicker_color,alt_click)
               getCityCounter().call("addCount",{color=color,type="venusCity",count=1})
               broadcastToAll("<VENUS>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
           end
+      else
+        if color != "Grey" then
+            local cube = getPlayerBag(color).takeObject({position=obj.getPosition()+vector(0, 3, 0)})
+            Wait.condition(function() cube.lock() end, function() return cube.resting end)
+            obj.addTag("VenusTile")
+            getCityCounter().call("addCount",{color=color,type="venusCity",count=1})
+            broadcastToAll("<VENUS>[==> "..getPlayerName(color).." place "..obj.getName().. " ]", Color.fromString(color))
+        end
       end
     end)
 end
 
 
 function initMap()
-    for i = 1,16 do
+    for i = 1,35 do
         matrixMap[i].snap = i
-    end
-    matrixMap[17].snap = 37
-    for i=17,34 do
-      matrixMap[i+1].snap = i
     end
     matrixMap[1].bonus = {He=2}
     matrixMap[3].bonus = {En=1}
@@ -166,7 +170,7 @@ function onCollisionEnter(collision_info)
         if obj.getLock() then
             return
         end
-        if obj.hasTag("VenusTile") then
+        if obj.hasTag("VenusTile") and venusZone:getZonePosition(obj) > 0 then
             venusTileButton:add(obj)
         elseif obj.hasTag("City") then
             cityTileButton:add(obj)

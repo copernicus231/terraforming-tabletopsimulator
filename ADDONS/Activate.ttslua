@@ -127,7 +127,7 @@ function applyResources(rsrc,card)
                 local pos = getCardPlayTable(color).positionToWorld(Vector(0,1,-2.7))
                 if getBag(r) != nil and getBag(r) != Global then
                     for i=1,c do
-                        if getBag(r).getQuantity() > 1 then
+                        if getBag(r).getQuantity() >= 1 then
                             getBag(r).takeObject({position = pos})
                         end
                     end
