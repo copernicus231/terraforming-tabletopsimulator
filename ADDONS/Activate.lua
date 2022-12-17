@@ -705,3 +705,15 @@ function payStandardProject()
     end
     return false
 end
+
+function incPrice(params)
+    local resource = params.rsrc
+    local delta = params.delta
+    if resource == "Ti" then
+        tiPriceTotal = tiPriceTotal + delta
+        self.editButton({index=tiPriceConf.index,label = tostring(tiPriceTotal) })
+    elseif resource == "St" then
+        tiPriceTotal = tiPriceTotal + delta
+        self.editButton({index=tiPriceConf.index,label = tostring(tiPriceTotal) })        
+    end
+end

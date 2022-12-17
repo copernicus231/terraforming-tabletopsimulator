@@ -1,6 +1,5 @@
 require("../UTIL/GetComponents")
 
 function onLoad(save_state)
-    getBoard("WorldGoverment").setVar("currentIndex",self.getStateId())
-    getBoard("WorldGoverment").setVar("rulePolicy",self.getGUID())
+    getBoard("WorldGoverment").call("policyChange",{index=self.getStateId(),guid=self.getGUID()})
 end

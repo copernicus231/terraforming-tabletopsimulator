@@ -194,11 +194,26 @@ end
 function getGUIDColor(id)
   return toLColor(getObjectFromGUID(id).getColorTint())
 end
-
+function policyChange(params)
+    if currentIndex != params.index then
+        if currentIndex == 3 then
+            for i,color in pairs(Global.call("getPlayers",{})) do
+                getCardPlayTable(color).call("incPrice",{rsrc="Ti",delta=-1})
+            end
+        elseif params.index == 3 then
+            for i,color in pairs(Global.call("getPlayers",{})) do
+                getCardPlayTable(color).call("incPrice",{rsrc="Ti",delta=1})
+            end
+        end
+        rulePolicy = params.guid
+        currentIndex = params.index
+    end
+end
 function newGoverment()
     if currentIndex != parties[dominantParty].policyIndex then
-        currentIndex = parties[dominantParty].policyIndex
-        rulePolicy = getObjectFromGUID(rulePolicy).setState(currentIndex).getGUID()
+        --currentIndex = parties[dominantParty].policyIndex
+        --rulePolicy = 
+        getObjectFromGUID(rulePolicy).setState(parties[dominantParty].policyIndex).getGUID()
     end
     notifyBonus(dominantParty)
     --call ruling bonus

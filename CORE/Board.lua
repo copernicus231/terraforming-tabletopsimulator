@@ -183,6 +183,9 @@ function placeReplaceTile(obj,color,zone)
         zone:placeTile(obj,position)
         if color != "Grey" then
             local bonus = zone:getAdjacencyBonusColor(position,color)
+            for i,a in pairs(extraBonus(obj)) do
+                bonus[color][i] = (bonus[color][i] or 0) + a
+            end
             applyBonusC(bonus)
         end
         return true
