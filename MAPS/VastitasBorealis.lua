@@ -52,7 +52,7 @@ function initMap()
     matrixMap[25].bonus = {Pl=2}
     matrixMap[26].bonus = {St=1,Pl=1}
     matrixMap[30].bonus = {He=2}
-    matrixMap[31].bonus = {Temperature=1}
+    matrixMap[31].bonus = {Temperature=1,MC=-3}
     matrixMap[32].bonus = {St=1}
     matrixMap[34].bonus = {Pl=1}
     matrixMap[35].bonus = {Ti=1}

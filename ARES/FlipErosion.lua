@@ -17,7 +17,9 @@ function flipErosion(obj,player_clicker_color,alt_click)
       local objs = getObjectsWithAllTags({"Erosion","Tile"})
       for i,a in ipairs(objs) do
           a.setLock(false)
+          a.removeTag("MarsTile")
           a.flip()
+          Wait.condition(function()  a.setLock(true); a.setDescription("{\"replace\":{\"MC\":-16,\"TERRAFORM\":2}}");a.addTag("MarsTile") end, function() return a.resting end)
       end
       self.removeButton(0)
       return

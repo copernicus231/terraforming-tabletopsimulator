@@ -48,11 +48,11 @@ function TileButton:doClick(obj,player_clicker_color,alt_click,placement)
         self.button.font_color = self.button.color
         self.button.hover_color = self.button.color
         self.button.press_color = self.button.color
-        obj.removeButton(0)
+        self:remove(obj)
         obj.createButton(self.button)
         return
     end
     obj.setLock(true)
     placement(obj,self.colorText)
-    obj.removeButton(0)
+    self:remove(obj)
 end

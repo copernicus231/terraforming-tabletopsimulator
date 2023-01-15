@@ -30,9 +30,7 @@ function setOneErosion(n,reverse)
     end
     local pos = getBoard("BaseGame").call("getEmptyN",{n=n,reverse=reverse})
     local dust = getBag("Erosion").takeObject({position=getBoard("BaseGame").positionToWorld(pos+Vector(0,1,0))})
-    dust.addTag("Erosion")
-    dust.addTag("Tile")
-    Wait.condition(function() getBoard("BaseGame").call("placeDisaster",dust) end, function() return dust.resting end)
+    Wait.condition(function() getBoard("BaseGame").call("placeDisaster",dust);dust.setLock(true);dust.setDescription("{\"replace\":{\"MC\":-8,\"TERRAFORM\":1}}");dust.addTag("Erosion");dust.addTag("Tile");dust.addTag("MarsTile") end, function() return dust.resting end)
 end
 
 function getCostTopCard()

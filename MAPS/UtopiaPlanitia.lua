@@ -34,9 +34,9 @@ function initMap()
   end
     --BONUS
     matrixMap[1].bonus = {He=2}
-    matrixMap[2].bonus = {Temperature=1}
+    matrixMap[2].bonus = {Temperature=1,Ti=-1}
     matrixMap[3].bonus = {He=2}
-    matrixMap[4].bonus = {Ocean=1}
+    matrixMap[4].bonus = {Ocean=1,St=-3}
     matrixMap[5].bonus = {He=2}
     matrixMap[6].bonus = {St=1}
     matrixMap[12].bonus = {Ti=1}

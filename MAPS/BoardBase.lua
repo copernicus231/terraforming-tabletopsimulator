@@ -125,6 +125,32 @@ replaceTileButton={button = {
         position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
     },colorText="Red",getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
 
+
+disasterTileButton={button = {
+    index = 0, click_function = 'placeDisasterClick', function_owner = self, label = "",
+    position = {0,0.1,0},rotation={0,0,0},width = 300, height = 300, font_size = 100,font_color={0,0,0,0},color=Color.fromString("Red"),hover_color={0,0,0,0},tooltip="Place"
+},colorText="Red",getCurrentColor=function() return getTurnToken().call("getCurrentPlayer") end,getNextColor= function(color) return Global.call("getNext",color) end}
+
+function placeDisasterClick(obj,player_clicker_color,alt_click)
+    disasterTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
+        if color != 'Grey' then
+            local pos = marsZone:getZonePosition(obj)
+            if pos > 0 then
+                marsZone:changePositionBonus(pos,obj)
+                obj.setDescription("")
+                if obj.hasTag("DustStorm") then
+                    getBag("DustStorm").putObject(obj)
+                elseif obj.hasTag("Erosion") then
+                    getBag("Erosion").putObject(obj)
+                end
+            end
+        elseif placeDisaster(obj) then
+            broadcastToAll("<BOARD>[==> Disaster was place]")
+        end
+        
+    end)
+end
+--{"replace":{"MC":-8,"TERRAFORM":1}}
 function placeGreeneryClick(obj,player_clicker_color,alt_click)
     greeneryTileButton:doClick(obj,player_clicker_color,alt_click,function(obj,color)
         if placeTile(obj,color,marsZone) then
@@ -248,6 +274,7 @@ function onLoad(save_state)
     TileButton:new(greeneryTileButton)
     TileButton:new(genericTileButton)
     TileButton:new(replaceTileButton)
+    TileButton:new(disasterTileButton)
     initMap()
     TileBoard:new(marsZone)
     initZone()
@@ -298,6 +325,8 @@ function onCollisionEnter(collision_info)
                 greeneryTileButton:add(obj)
             elseif obj.hasTag("ReplaceTile") then
                 replaceTileButton:add(obj)
+            elseif obj.hasTag("DustStorm")  or obj.hasTag("Erosion") then
+                disasterTileButton:add(obj)
             else
                 genericTileButton:add(obj)
             end
@@ -343,6 +372,8 @@ function onCollisionExit(collision_info)
             greeneryTileButton:remove(obj)
         elseif obj.hasTag("ReplaceTile") then
             replaceTileButton:remove(obj)
+        elseif obj.hasTag("DustStorm") or obj.hasTag("Erosion") then
+            disasterTileButton:remove(obj)
         else
             genericTileButton:remove(obj)
         end
@@ -364,5 +395,10 @@ end
 
 function placeDisaster(tile)
     local pos = marsZone:getZonePosition(tile)
-    marsZone:placeTile(tile,pos)
+    if pos > 0 then
+        tile.memo="Grey"
+        marsZone:placeTile(tile,pos)
+        return true
+    end
+    return false
 end

@@ -15,3 +15,12 @@ function getPlacementTileBonus(tile)
     end
     return {}
 end
+
+function getReplaceTileBonus(tile)
+    local d = tile.getDescription()
+    local json = JSON.decode(d)
+    if json != nil and json.replace!=nil then
+        return json.replace
+    end
+    return {}
+end

@@ -75,7 +75,7 @@ function initMap()
     matrixMap[55].bonus = {Ti=1}
     matrixMap[56].bonus = {Ti=1}
     matrixMap[58].bonus = {He=2}
-    matrixMap[59].bonus = {Ocean=1}
+    matrixMap[59].bonus = {Ocean=1,MC=-6}
     matrixMap[60].bonus = {He=2}
 
     matrixMap[1].reserve=true

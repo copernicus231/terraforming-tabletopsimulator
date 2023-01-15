@@ -397,6 +397,9 @@ function discardResearch(obj,player_clicker_color,alt_click)
     end
     getPlayerBoard(self.getColorTint():toString()).call("payResource",{resource="MC",value=(researchCards - dcount)*3})
     broadcastToAll("< "..getPlayerName(self.getColorTint():toString()).." pay for "..(researchCards - dcount).." cards in research a total of ".. (researchCards - dcount)*3 .." (MC) >",self.getColorTint())
+    if researchCards == 4 then
+        getTurnToken().call("ready",self.getColorTint():toString())
+    end
     disableDiscardResearch()
 end
 

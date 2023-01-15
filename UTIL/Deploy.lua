@@ -400,8 +400,6 @@ coloniesNuclearConfig={
 --0d8217 {50.50, 2.29, -12.63}
 
 function deployBags()
-
-    self.setPositionSmooth({-45.00, 1.97, 25.00})
     getObjectFromGUID("90ca63").setPositionSmooth({18.00, 1.07, 18.00})
     getObjectFromGUID("c96f61").setPositionSmooth({8.00, 2.55, -17.00})--8
     getObjectFromGUID("4dc240").setPositionSmooth({11.90, 3.13, -17.00})--11.9
