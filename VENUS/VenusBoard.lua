@@ -58,6 +58,7 @@ loadingGame = true
      tracks.venusScale:updateLevel("Grey")
      TrackMarkerButton:new(venusScaleTrackButton)
      TileButton:new(genericTileButton)
+     self.createButton(projects["airScrapping"])
      loadingGame=false
  end
 function setup()
@@ -251,3 +252,14 @@ end
      end
      return false
  end
+
+ projects={
+    airScrapping={
+    click_function = 'airScrapping', function_owner = self, label = "",
+        position = {-1.135,0.2,0.745},rotation={0,0,0},width = 70, height = 70, font_size = 70,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Air Scrapping"
+    },
+}
+
+function airScrapping(obj,player_clicker_color,alt_click)
+    setStandardProject(player_clicker_color,"Air Scrapping",{MC=15},{},{VenusScale=1})
+end
