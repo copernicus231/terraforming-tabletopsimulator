@@ -78,6 +78,7 @@ function setupModules()
     getBoard("Luna").call("setup",{})
     getBoard("Nuclear").call("setup",{})
     getBag("EarlyBase").call("setup",{})
+    getBag("Milestone").call("setup",{})
     --local obj4 = getObjectsWithAllTags({"Card","Infrastructure"})
     --delay = 20
     --for i,a in ipairs(obj4) do

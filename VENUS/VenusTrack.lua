@@ -50,9 +50,19 @@ loadingGame = true
  end
  function setup()
      tracks.venusScale:setTrackPosition("Grey",1)
-     getMilestone("VenusExpansion").setPositionSmooth({4.25, 2.06, -10.68})
-     getAward("VenusExpansion").setPositionSmooth({21.15, 2.06, -10.39})
-
+     --getMilestone("VenusExpansion").setPositionSmooth({4.25, 2.06, -10.68})
+     --getAward("VenusExpansion").setPositionSmooth({21.15, 2.06, -10.39})
+     local milestone=getMilestone("VenusExpansion")
+     milestone.setPositionSmooth({10.71, 2.06, -11.08})
+     Wait.condition(function()
+         milestone.setLock(true)
+     end,function() return not milestone.spawning and milestone.resting and not milestone.isSmoothMoving() end)
+     --{27.38, 1.15, -11.08}
+     local award = getAward("VenusExpansion")
+     award.setPositionSmooth({27.38, 2.06, -11.08})
+     Wait.condition(function()
+         award.setLock(true)
+     end,function() return not award.spawning and award.resting and not award.isSmoothMoving() end)
      --{-16.71, 1.06, -10.99}
      --{0.17, 2.06, -10.78}
  end

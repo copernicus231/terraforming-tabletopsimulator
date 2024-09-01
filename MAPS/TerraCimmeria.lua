@@ -7,11 +7,11 @@ function initTrSnapMap()
   end
 end
 function initOxygenSnapMap()
-    for i = 1,15 do
-        oxygenSnapMap[i]  = 16 - i + 181
-        oxygenBonusMap[i] = {PLAYER={TERRAFORM=1},EVERYONE={}}
-    end
-    oxygenBonusMap[9] = {PLAYER={TERRAFORM=1,Temperature=1},EVERYONE={}}
+  for i = 1,15 do
+      oxygenSnapMap[i]  = 16 - i + 181
+      oxygenBonusMap[i] = {PLAYER={TERRAFORM=1},EVERYONE={}}
+  end
+  oxygenBonusMap[9] = {PLAYER={TERRAFORM=1,Temperature=1},EVERYONE={}}
 end
 function initTemperatureSnapMap()
     for i = 1,20 do
@@ -33,83 +33,96 @@ function initMap()
       matrixMap[i].snap = i
   end
     --BONUS
-	matrixMap[1].bonus = {Pl=2}
-    matrixMap[2].bonus = {Pl=2}
-    matrixMap[3].bonus = {Pl=1}
-    matrixMap[4].bonus = {St=1,Pl=1}
-    matrixMap[5].bonus = {Ti=2}
-    matrixMap[6].bonus = {Card=1,Rsrc=1}
-    matrixMap[7].bonus = {Pl=4}
-    matrixMap[8].bonus = {Pl=2}
-    matrixMap[9].bonus = {Pl=1}
-    matrixMap[11].bonus = {Ti=1}
-    matrixMap[12].bonus = {Pl=1}
-    matrixMap[13].bonus = {Pl=1}
-    matrixMap[14].bonus = {Pl=2}
-    matrixMap[16].bonus = {MICROBE=2,Card=1}
-    matrixMap[18].bonus = {St=1}
-    matrixMap[19].bonus = {Pl=2}
+    matrixMap[2].bonus = {Pl=1}
+    matrixMap[3].bonus = {St=1}
+    matrixMap[4].bonus = {Pl=1}
+    matrixMap[5].bonus = {Pl=2}
+    matrixMap[6].bonus = {Ti=2}
+    matrixMap[10].bonus = {Pl=1,St=1}
+    matrixMap[11].bonus = {Pl=1}
+
+    matrixMap[14].bonus = {MC=-5,Colony=1}
+    matrixMap[17].bonus = {Pl=1}
+
+    matrixMap[19].bonus = {St=1}
     matrixMap[21].bonus = {St=1}
-    matrixMap[22].bonus = {St=1}
-    matrixMap[24].bonus = {Card=3}
-    matrixMap[26].bonus = {Ti=1}
-    matrixMap[27].bonus = {Pl=1}
-    matrixMap[28].bonus = {Pl=3}
-    matrixMap[29].bonus = {St=1}
-    matrixMap[30].bonus = {St=2}
-    matrixMap[34].bonus = {Card=2,StdRsrc=1}
-    matrixMap[36].bonus = {Pl=2}
-    matrixMap[37].bonus = {Pl=1}
-    matrixMap[38].bonus = {Ti=1}
-    matrixMap[39].bonus = {St=2}
-    matrixMap[44].bonus = {MICROBE=3}
-    matrixMap[45].bonus = {Pl=1}
-    matrixMap[50].bonus = {Rsrc=1,Card=2,SCIENCE=1}
-    matrixMap[51].bonus = {Pl=2}
-    matrixMap[53].bonus = {St=1}
-    matrixMap[54].bonus = {St=1}
-    matrixMap[60].bonus = {StdRsrc=1,St=1,StdRsrc=1}
+    matrixMap[23].bonus = {St=2}
+    matrixMap[24].bonus = {Ti=2}
+    matrixMap[26].bonus = {Card=1}
 
-    matrixMap[1].reserve=true
-    matrixMap[2].reserve=true
-    matrixMap[3].reserve=true
-    matrixMap[4].reserve=true
+    matrixMap[30].bonus = {Ti=1}
+    matrixMap[31].bonus = {Ti=1}
+    matrixMap[32].bonus = {Card=1}
+    matrixMap[34].bonus = {Card=1,St=1}
+    matrixMap[36].bonus = {Card=2}
 
-    matrixMap[6].reserve=true
-    matrixMap[9].reserve=true
+    matrixMap[38].bonus = {St=2,Ti=1}
 
-    matrixMap[18].reserve=true
-    matrixMap[36].reserve=true
-    matrixMap[37].reserve=true
+    matrixMap[40].bonus = {Ti=1}
+    matrixMap[41].bonus = {St=2}
+    matrixMap[43].bonus = {St=2}
 
-    matrixMap[44].reserve=true
-    matrixMap[51].reserve=true
+    matrixMap[44].bonus = {Pl=2}
+    matrixMap[45].bonus = {Ti=1}
+    matrixMap[47].bonus = {St=2,Pl=1}
+    matrixMap[48].bonus = {Pl=2}
+    matrixMap[49].bonus = {Pl=1}
+    matrixMap[50].bonus = {Pl=2}
 
-    matrixMap[57].reserve=true
+    matrixMap[53].bonus = {Ti=1}
+    matrixMap[54].bonus = {Card=1}
+    matrixMap[55].bonus = {Pl=2}
+    matrixMap[56].bonus = {Pl=2}
+    
+    matrixMap[57].bonus = {Pl=2}
+    matrixMap[58].bonus = {Pl=1}
+    matrixMap[59].bonus = {Pl=1}
+    matrixMap[60].bonus = {Pl=1}
+    matrixMap[61].bonus = {Pl=1}
+
+    matrixMap[12].reserve=true
+    matrixMap[19].reserve=true
+    matrixMap[23].reserve=true
+    matrixMap[24].reserve=true
+    matrixMap[25].reserve=true
+
+    matrixMap[34].reserve=true
+
+    matrixMap[38].reserve=true
+
+    matrixMap[46].reserve=true
+    matrixMap[47].reserve=true
+
+    matrixMap[53].reserve=true
+    matrixMap[54].reserve=true
+
+    matrixMap[60].reserve=true
+
 end
+
 projects={
     powerPlant={
     click_function = 'powerPlantProject', function_owner = self, label = "",
-        position = {-0.991,0.11,0.24},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Power Plant"
+        position = {-0.980,0.11,0.245},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Power Plant"
     },
     asteroid={
     click_function = 'asteroidProject', function_owner = self, label = "",
-        position = {-0.991,0.11,0.31},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Asteroid"
+        position = {-0.980,0.11,0.315},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Asteroid"
     },
     buildColony={
     click_function = 'buildColonyProject', function_owner = self, label = "",
-        position = {-0.991,0.2,0.38},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Building Colony"
+        position = {-0.980,0.2,0.383},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Building Colony"
     },
     aquifer={
     click_function = 'aquiferProject', function_owner = self, label = "",
-        position = {-0.991,0.11,0.45},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Aquifer"
+        position = {-0.980,0.11,0.453},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Aquifer"
     },
     greenery={
     click_function = 'greeneryProject', function_owner = self, label = "",
-        position = {-0.991,0.11,0.52},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Greenery"
+        position = {-0.980,0.11,0.523},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Greenery"
     },
     city={
     click_function = 'cityProject', function_owner = self, label = "",
-        position = {-0.991,0.11,0.59},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="City"
+        position = {-0.980,0.11,0.593},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="City"
     },
 }

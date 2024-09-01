@@ -33,94 +33,84 @@ function initMap()
       matrixMap[i].snap = i
   end
     --BONUS
-    matrixMap[1].bonus = {He=2}
-    matrixMap[2].bonus = {Temperature=1,Ti=-1}
-    matrixMap[3].bonus = {He=2}
-    matrixMap[4].bonus = {Ocean=1,St=-3}
-    matrixMap[5].bonus = {He=2}
-    matrixMap[6].bonus = {St=1}
-    matrixMap[12].bonus = {Ti=1}
-    matrixMap[13].bonus = {Pl=1}
-    matrixMap[18].bonus = {St=1}
-    matrixMap[19].bonus = {St=1,Pl=1}
-    matrixMap[20].bonus = {Pl=2}
-    matrixMap[24].bonus = {Pl=2}
+    matrixMap[3].bonus = {En=2}
+    matrixMap[7].bonus = {St=2}
+    matrixMap[8].bonus = {En=2}
+    matrixMap[9].bonus = {Card=1,En=2}
+    matrixMap[12].bonus = {Pl=3}
+    matrixMap[14].bonus = {St=1}
+    matrixMap[17].bonus = {Card=2,Ti=1}
+    matrixMap[18].bonus = {Ti=2}
+    matrixMap[19].bonus = {Pl=1,Card=1}
+    matrixMap[20].bonus = {Pl=1}
+    matrixMap[21].bonus = {Pl=1}
+    matrixMap[22].bonus = {Pl=2}
+    matrixMap[23].bonus = {Pl=2}
+    matrixMap[24].bonus = {Pl=1}
     matrixMap[25].bonus = {Pl=1}
-    matrixMap[26].bonus = {St=1}
-    matrixMap[27].bonus = {Card=1,St=1}
-    matrixMap[28].bonus = {St=1,Ti=1}
-    matrixMap[29].bonus = {Pl=1}
-    matrixMap[31].bonus = {Pl=2}
-    matrixMap[32].bonus = {Card=1,CardBuilding=1}
-    matrixMap[33].bonus = {Pl=2}
-    matrixMap[34].bonus = {Pl=1}
-    matrixMap[35].bonus = {Pl=1}
-    matrixMap[36].bonus = {St=1,Ti=1}
-    matrixMap[37].bonus = {St=1}
-    matrixMap[38].bonus = {St=1}
-    matrixMap[39].bonus = {Pl=1}
-    matrixMap[40].bonus = {Pl=1}
-    matrixMap[41].bonus = {Pl=1}
-    matrixMap[42].bonus = {Pl=1}
-    matrixMap[43].bonus = {Pl=1}
-    matrixMap[45].bonus = {Pl=1}
-    matrixMap[46].bonus = {Pl=1}
-    matrixMap[47].bonus = {Pl=1}
-    matrixMap[48].bonus = {St=1}
-    matrixMap[49].bonus = {Card=1,Ti=1}
-    matrixMap[50].bonus = {St=1}
-    matrixMap[51].bonus = {Pl=1}
-    matrixMap[52].bonus = {Pl=2}
-    matrixMap[53].bonus = {Pl=1}
-    matrixMap[54].bonus = {Pl=1}
-    matrixMap[55].bonus = {Card=1,St=1}
-    matrixMap[57].bonus = {Card=1}
-    matrixMap[58].bonus = {Pl=2}
-    matrixMap[59].bonus = {Pl=1}
-    matrixMap[61].bonus = {Ti=1}
+    matrixMap[26].bonus = {Pl=1}
+    matrixMap[30].bonus = {Pl=1}
+    matrixMap[31].bonus = {Pl=1}
+    matrixMap[32].bonus = {Pl=2}
+    matrixMap[35].bonus = {Pl=1,Ti=1}
+    matrixMap[36].bonus = {St=1}
+    matrixMap[37].bonus = {St=2}
+    matrixMap[38].bonus = {Pl=2}
+    matrixMap[39].bonus = {Pl=2}
+    matrixMap[42].bonus = {St=2}
+    matrixMap[44].bonus = {St=1}
+    matrixMap[47].bonus = {Pl=2}
+    matrixMap[52].bonus = {Card=2}
+    matrixMap[54].bonus = {Pl=2}
+    matrixMap[55].bonus = {St=1,Ti=1}
+    matrixMap[56].bonus = {Pl=2}
+    matrixMap[59].bonus = {St=2}
+    matrixMap[60].bonus = {Pl=1}
+    matrixMap[61].bonus = {Pl=1}
 
-    matrixMap[6].reserve=true
     matrixMap[12].reserve=true
-    matrixMap[20].reserve=true
+    matrixMap[19].reserve=true
+    matrixMap[23].reserve=true
+    matrixMap[24].reserve=true
+    matrixMap[25].reserve=true
 
-    matrixMap[32].reserve=true
-    matrixMap[33].reserve=true
     matrixMap[34].reserve=true
-    matrixMap[35].reserve=true
 
-    matrixMap[39].reserve=true
+    matrixMap[38].reserve=true
+
+    matrixMap[46].reserve=true
     matrixMap[47].reserve=true
 
-    matrixMap[52].reserve=true
     matrixMap[53].reserve=true
+    matrixMap[54].reserve=true
 
-    matrixMap[57].reserve=true
+    matrixMap[60].reserve=true
 
 end
 
 projects={
     powerPlant={
     click_function = 'powerPlantProject', function_owner = self, label = "",
-        position = {-0.991,0.11,0.24},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Power Plant"
+        position = {-0.980,0.11,0.245},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Power Plant"
     },
     asteroid={
     click_function = 'asteroidProject', function_owner = self, label = "",
-        position = {-0.991,0.11,0.31},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Asteroid"
+        position = {-0.980,0.11,0.315},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Asteroid"
     },
     buildColony={
     click_function = 'buildColonyProject', function_owner = self, label = "",
-        position = {-0.991,0.2,0.38},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Building Colony"
+        position = {-0.980,0.2,0.383},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Building Colony"
     },
     aquifer={
     click_function = 'aquiferProject', function_owner = self, label = "",
-        position = {-0.991,0.11,0.45},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Aquifer"
+        position = {-0.980,0.11,0.453},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Aquifer"
     },
     greenery={
     click_function = 'greeneryProject', function_owner = self, label = "",
-        position = {-0.991,0.11,0.52},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Greenery"
+        position = {-0.980,0.11,0.523},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Greenery"
     },
     city={
     click_function = 'cityProject', function_owner = self, label = "",
-        position = {-0.991,0.11,0.59},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="City"
+        position = {-0.980,0.11,0.593},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="City"
     },
 }

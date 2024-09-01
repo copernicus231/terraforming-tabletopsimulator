@@ -53,9 +53,19 @@ function setup()
     math.randomseed(os.time())
     local val = math.random(2)
     if val == 1 then
-        getMilestone("AresExpansion").setPositionSmooth({10.56, 2.06, -10.99})
+        --{4.59, 1.09, -11.08}
+        local milestone = getMilestone("AresExpansion")
+        milestone.setPositionSmooth({4.59, 2.06, -11.08})
+        Wait.condition(function()
+            milestone.setLock(true)
+        end,function() return not milestone.spawning and milestone.resting and not milestone.isSmoothMoving() end)
     elseif val == 2 then
-        getAward("AresExpansion").setPositionSmooth({14.84, 1.06, -10.91})
+        --{21.26, 1.13, -11.08}
+        local award = getAward("AresExpansion")
+        award.setPositionSmooth({21.26, 2.06, -11.08})
+        Wait.condition(function()
+            award.setLock(true)
+        end,function() return not award.spawning and award.resting and not award.isSmoothMoving() end)
     end
 end
 function setOneDustStorm(n,reverse)

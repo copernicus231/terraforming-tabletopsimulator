@@ -70,7 +70,7 @@ baseConfig={
 --ViewManager
 {id="1a19db",position={-44.88, 1.97, -8.68},rotation={0.00, 270.00, 0.00},call=nil,lock=true},
 --Board
-{id="3852d1",position={13.00, 1.96, 0.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
+{id="8b80f0",position={13.00, 1.96, 0.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
 
 ---TracksMarkers
 {id="866425",position={40.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
@@ -220,8 +220,8 @@ venusConfig={
     {id="25b8b0",position={43.00, 2.37, -14.50},rotation={0.00, 0.00, 0.00},call=nil,lock=false},
 
     --awars and milestone
-    {id="c12580",position={37.51, 3.96, -4.50},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
-    {id="dcf3b9",position={37.51, 4.96, -4.50},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="5eb344",position={37.51, 3.96, -4.50},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="9146f1",position={37.51, 4.96, -4.50},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 
     --deck
     {id="fcb541",position={104.50, 3.00, 7.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
@@ -271,12 +271,14 @@ highOrbitConfig={
 
 }
 preludeConfig = {
-    --deck
+    --deck 8d5057
+    {id="8d5057",position={96,00, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="b7568b",position={104.50, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="e0bee9",position={100.50, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
-    {id="60cc7e",position={96,00, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    
 
 }
+
 turmoilConfig={
     --boards
     {id="debba0",position={70.10, 0.96, 12.00},rotation={0.00, 180.00, 0.00},call=nil,lock=true},
@@ -310,9 +312,63 @@ promoConfig={
 
 }
 preludePromoConfig={
-    {id="340e7c",position={96.00, 3.00, -10.80},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="080d74",position={96.00, 3.00, -10.80},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+
+}--1843ea
+preludeVenusConfig={
+    {id="1843ea",position={96.00, 3.00, 7.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    --488ece
+    {id="ad1801",position={91.75, 3.00, 7.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+
+}--137a3e
+preludeVenusColoniesConfig={
+    {id="ab1817",position={79.50, 3.00, -10.80},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 
 }
+preludeVenusTurmoilConfig={
+    {id="95b6b1",position={83.50, 3.00, -10.80},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+
+}
+preludeVenusPromoConfig={
+    {id="096a71",position={91.75, 3.00, -10.80},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+
+}
+preludeColoniesConfig={
+    {id="137a3e",position={96.00, 3.00,3},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="b4074b",position={91.75, 3.00, 3},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+}
+preludeColoniesTurmoilConfig={
+    {id="dc3186",position={75.50, 3.00, -10.80},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+
+}
+preludeColoniesPromoConfig={
+    {id="afb002",position={87.50, 3.00, -10.80},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+
+}
+--453a2b
+preludeTurmoilConfig={
+    {id="453a2b",position={96.00, 3.00, -6.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+--370843
+    {id="efd2c5",position={91.75, 3.00, -6.20},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+}--d64a96
+
+prelude2Config={
+    {id="d64a96",position={87.50, 3.00, -1.6},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="d2c143",position={91.75, 3.00, -1.6},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    --d2c143
+   -- {id="d2c143",position={100.50, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+}
+awardsMilestonesConfig={
+    {id="49aadb",position={8.00, 1.96, -26.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="b55dce",position={19, 1.96, -26.00},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+}--{8.00, 1.11, -26.00}
+--prelude2Config = {
+    --deck
+--    {id="b7568b",position={104.50, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+--    {id="e0bee9",position={100.50, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+--    {id="60cc7e",position={96,00, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+
+--}
 fanMadeCorpsConfig={
     {id="8c9d32",position={100.50, 3.00, -15.40},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
 

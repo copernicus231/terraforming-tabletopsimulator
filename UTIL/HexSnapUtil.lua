@@ -29,21 +29,63 @@ function onLoad(save_state)
 --  grid = addSnaps(grid,createTemperatureTrack(0.059,vector(-0.927,0, 0.495),20))
   --grid = addSnaps(grid,createOxygenTrack(134,6.35,0.769,vector(-0.002,0,0.009),15))
 --local grid = tharsis()
-  local grid=createSnapGridSmall(0.148,7,4,vector(-0.194,0, 0.013))
-  grid = addSnaps(grid,createOxygenTrack(57.7,4.05,0.958,vector(-0.194,0, 0.013),10,1,10,0))
-  grid = addSnaps(grid,createOxygenTrack(-21.5,4.0,0.974,vector(-0.194,0, 0.013),10,1,10,0))
-  grid = addSnaps(grid,createOxygenTrack(-159.5,4.05,0.945,vector(-0.194,0, 0.013),10,1,10,0))
-  grid = addSnaps(grid,addSnapLine(0.204,vector(0.93,0,-0.4),1,0))
-  grid = addSnaps(grid,addSnapLine(0.204,vector(0.922,0,0.38),1,0))
+  --local grid=createSnapGridSmall(0.148,7,4,vector(-0.194,0, 0.013))
+  --grid = addSnaps(grid,createOxygenTrack(57.7,4.05,0.958,vector(-0.194,0, 0.013),10,1,10,0))
+  --grid = addSnaps(grid,createOxygenTrack(-21.5,4.0,0.974,vector(-0.194,0, 0.013),10,1,10,0))
+  --grid = addSnaps(grid,createOxygenTrack(-159.5,4.05,0.945,vector(-0.194,0, 0.013),10,1,10,0))
+  --grid = addSnaps(grid,addSnapLine(0.204,vector(0.93,0,-0.4),1,0))
+  --grid = addSnaps(grid,addSnapLine(0.204,vector(0.922,0,0.38),1,0))
   --local grid =centerHelper()w
-  self.setSnapPoints(grid)
+  --local grid = genericNormalMap()
+  --self.setSnapPoints(grid)
 end
+
+function genericNormalMap()
+  local grid=createSnapGrid(0.0930,9,5,vector(-0.001,0,-0.002))
+  --grid = addSnaps(grid,createPointTrack(0.0756,0.0894,vector(1.118,0, 0.870)))
+  grid = addSnaps(grid,createPointTrack(0.0759,0.0899,vector(1.122,0, 0.870)))
+  grid = addSnaps(grid,createTemperatureTrack(0.059,vector(-0.927,0, 0.51),20,1,20,0))
+  grid = addSnaps(grid,createOxygenTrack(133.5,6.272,0.787,vector(0,0,0),15,1,15,0))
+
+
+  --Phobos space Haven
+  grid = addSnaps(grid,addSnapLine(0.204,vector(0.872,0,-0.405),1,0))
+
+  --Ganymede Colony
+  grid = addSnaps(grid,addSnapLine(0.204,vector(0.84,0,0.-0.18),1,0))
+
+  --Stanford Torus
+  grid = addSnaps(grid,addSnapLine(0.204,vector(-0.69,0,0.4),1,0))
+
+
+  --Ocean Tiles
+  grid = addSnaps(grid,addSnapLine(0.204,vector(-0.73,0,-0.645),1,0))
+
+
+  --Milestones
+  grid = addSnaps(grid,addSnapLine(0.062,vector(0.860,0,0.740),3,0))
+  grid = addSnaps(grid,addSnapLine(0.205,vector(0.955,0,0.84),5,-90))
+  grid = addSnaps(grid,addSnapLine(0.4,vector(0.55,0,0.724),2,-90))
+
+  --awards
+  grid = addSnaps(grid,addSnapLine(0.065,vector(-0.251,0,0.733),3,0))
+  grid = addSnaps(grid,addSnapLine(0.204,vector(-0.144,0,0.84),5,-90))
+  grid = addSnaps(grid,addSnapLine(0.4,vector(-0.54,0,0.724),2,-90))
+
+
+  grid = addSnaps(grid,createTemperatureTrack(0.059,vector(-1.01,0, 0.51),20,20-7,20-5,-90))
+  grid = addSnaps(grid,createOxygenTrack(133.5,6.272,0.881,vector(0,0,0),15,15-6,15-4,-90))
+
+  return grid
+end
+
+
+
 function venus()
 
   local grid=createSnapGridSmall(0.141,7,4,vector(0.252,0, 0))
     grid = addSnaps(grid,addSnapLine(0.204,vector(-0.585,0,-0.625),1,0))
     grid = addSnaps(grid,addSnapLine(0.204,vector(-0.50,0,0.72),1,0))
-
     return grid
 end
 function addSnaps(snapMatrix,extraSnaps)

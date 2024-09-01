@@ -35,9 +35,45 @@ function deploy()
         deployObjectsBag("90ca63",promoConfig)
         Wait.frames(function() removeCards("95fec6",{"Magnetic Field Generators","Great Dam","Deimos Down"},"90ca63") end,20)
         if optionFlag5 then
-            deployObjectsBag("90ca63",preludePromoConfig)
+            deployObjectsBag("11d75d",preludePromoConfig)
         end
+
     end
+    if optionFlag20 and optionFlag5 then
+        deployObjectsBag("11d75d",prelude2Config)
+        if optionFlag4 then
+           deployObjectsBag("11d75d",preludeColoniesConfig)           
+        end
+        if optionFlag3 then
+            deployObjectsBag("11d75d",preludeVenusConfig)
+        end
+        if optionFlag6 then
+            deployObjectsBag("11d75d",preludeTurmoilConfig)
+        end
+        if optionFlag7 and optionFlag4 then
+            deployObjectsBag("11d75d",preludeColoniesPromoConfig)
+        end
+        if optionFlag7 and optionFlag3 then
+            deployObjectsBag("11d75d",preludeVenusPromoConfig)
+        end
+        if optionFlag4 and optionFlag3 then
+            deployObjectsBag("11d75d",preludeVenusColoniesConfig)
+        end
+        if optionFlag3 and optionFlag6 then
+            deployObjectsBag("11d75d",preludeVenusTurmoilConfig)
+        end
+        if optionFlag4 and optionFlag6 then
+            deployObjectsBag("11d75d",preludeColoniesTurmoilConfig)
+        end
+        
+    end
+
+    if optionFlag21 then
+        deployObjectsBag("90ca63",awardsMilestonesConfig)
+        --deployObjectBag("11d75d",prelude3Config)
+
+    end
+
     if optionFlag8 then
         deployObjectsBag("0d8217",fanMadeCorpsConfig)
     end
@@ -157,61 +193,77 @@ optionFlag16 = false
 optionFlag17 = false
 optionFlag18 = false
 optionFlag19 = false
+optionFlag20 = false
+optionFlag21 = false
+optionFlag22 = false
 
+stringtoboolean={ ["True"]=true, ["False"]=false }
 function option1(obj,value)
-    optionFlag1 = value
+    optionFlag1 = stringtoboolean[value]
 end
 function option2(obj,value)
-    optionFlag2 = value
+    optionFlag2 = stringtoboolean[value]
 end
 function option3(obj,value)
-    optionFlag3 = value
+    optionFlag3 = stringtoboolean[value]
 end
 function option4(obj,value)
-    optionFlag4 = value
+    optionFlag4 = stringtoboolean[value]
 end
 function option5(obj,value)
-    optionFlag5 = value
+    optionFlag5 = stringtoboolean[value]
 end
 function option6(obj,value)
-    optionFlag6 = value
+    optionFlag6 = stringtoboolean[value]
 end
 function option7(obj,value)
-    optionFlag7 = value
+    optionFlag7 = stringtoboolean[value]
 end
 function option8(obj,value)
-    optionFlag8 = value
+    optionFlag8 = stringtoboolean[value]
 end
 function option9(obj,value)
-    optionFlag9 = value
+    optionFlag9 = stringtoboolean[value]
 end
 function option10(obj,value)
-    optionFlag10 = value
+    optionFlag10 = stringtoboolean[value]
 end
 function option11(obj,value)
-    optionFlag11 = value
+    optionFlag11 = stringtoboolean[value]
 end
 function option12(obj,value)
-    optionFlag12 = value
+    optionFlag12 = stringtoboolean[value]
 end
 function option13(obj,value)
-    optionFlag13 = value
+    optionFlag13 = stringtoboolean[value]
 end
 function option14(obj,value)
-    optionFlag14 = value
+    optionFlag14 = stringtoboolean[value]
 end
 function option15(obj,value)
-    optionFlag15 = value
+    optionFlag15 = stringtoboolean[value]
 end
 function option16(obj,value)
-    optionFlag16 = value
+    optionFlag16 = stringtoboolean[value]
 end
 function option17(obj,value)
-    optionFlag17 = value
+    optionFlag17 = stringtoboolean[value]
 end
 function option18(obj,value)
-    optionFlag18 = value
+    optionFlag18 = stringtoboolean[value]
 end
 function option19(obj,value)
-    optionFlag19 = value
+    optionFlag19 = stringtoboolean[value]
+end
+
+function option20(obj,value)
+    optionFlag20 = stringtoboolean[value]
+end
+
+function option21(obj,value)
+    optionFlag21 = stringtoboolean[value]
+end
+
+function option22(obj,value)
+    optionFlag22 = stringtoboolean[value]
 end

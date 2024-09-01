@@ -3,12 +3,12 @@
   <Text class="h2" alignment="MiddleCenter" fontSize="26" color="rgb(0.9,0.8,0,1)"/>
   <Text class="title" alignment="MiddleCenter" fontSize="40" color="rgb(1,0.75,0,1)"/>
 </Defaults>
-  <TableLayout id="Menu" showAnimation="Grow" hideAnimation="Shrink" active="false" rowBackgroundColor="rgb(0.172,0.384,0.654,0" class="noCellBackground" image="http://cloud-3.steamusercontent.com/ugc/5093039833099400330/3D29D5A1FAD2AA1034F01462889B0AF1E5DB137E/" height="700" width="700"  offsetXY="0 0">
+  <TableLayout id="Menu" showAnimation="Grow" hideAnimation="Shrink" active="false" rowBackgroundColor="rgb(0.172,0.384,0.654,0)" class="noCellBackground" image="https://steamusercontent-a.akamaihd.net/ugc/2372920285188147117/3D29D5A1FAD2AA1034F01462889B0AF1E5DB137E/" height="900" width="900"  offsetXY="0 0">
     <Row  color="rgb(0.75,0,0,0.2)" preferredHeight="45">
       <Cell/>
       <Cell><Text class="title">Official</Text></Cell>
     </Row>
-    <Row  preferredHeight="210">
+    <Row  preferredHeight="330">
       <TableLayout class="noCellBackground" >
         <Row>
           <Cell/>
@@ -21,6 +21,12 @@
           <Cell/>
           <Cell><Text class="h2">Hellas Elysium</Text></Cell>
           <Cell><Toggle onValueChanged="option2"></Toggle></Cell>
+        </Row>
+        <Row>
+          <Cell/>
+          <Cell/>
+          <Cell><Text class="h2">Extra Maps</Text></Cell>
+          <Cell><Toggle onValueChanged="option22"></Toggle></Cell>
         </Row>
         <Row>
           <Cell/>
@@ -45,6 +51,18 @@
           <Cell/>
           <Cell><Text class="h2">Turmoil</Text></Cell>
           <Cell><Toggle onValueChanged="option6"></Toggle></Cell>
+        </Row>
+        <Row>
+          <Cell/>
+          <Cell/>
+          <Cell><Text class="h2">Prelude 2</Text></Cell>
+          <Cell><Toggle onValueChanged="option20"></Toggle></Cell>
+        </Row>
+        <Row>
+          <Cell/>
+          <Cell/>
+          <Cell><Text class="h2">Milestons Awards</Text></Cell>
+          <Cell><Toggle onValueChanged="option21"></Toggle></Cell>
         </Row>
         <Row>
           <Cell/>
