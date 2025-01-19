@@ -1,6 +1,7 @@
 require("../UTIL/GetComponents")
 currentPlayer=nil
 neutralPosition=nil
+readyCount=0
 function onLoad(save_state)
     bottomNext = {
         index = 0, click_function = 'nextPlayer', function_owner = self, label = "",
@@ -10,6 +11,24 @@ function onLoad(save_state)
     currentPlayer=Global.call("getCurrentPlayer",{})
     neutralPosition = vector(10.52, 2.87, -11.29)
 end
+
+function setReadyCount()
+    readyCount = #Global.call("getPlayers")
+end
+
+function ready(color)
+    if readyCount == 1 then
+        readyCount = 0
+        setPlayerPosition(Global.call("getCurrentPlayer"))
+        broadcastToAll("<< Round Start >>" )
+    elseif readyCount < 1 then
+        readyCount = 0
+        
+    else
+        readyCount = readyCount - 1
+    end
+end
+
 function getCurrentPlayer()
     return currentPlayer
 end

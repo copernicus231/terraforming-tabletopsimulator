@@ -23,8 +23,16 @@ function initTemperatureSnapMap()
     temperatureBonusMap[6]={PLAYER={TERRAFORM=1,ProdHe=1},EVERYONE={}}
     temperatureBonusMap[16]={PLAYER={TERRAFORM=1,Ocean=1},EVERYONE={}}
 end
-function initOceanSnap()
+function initOtherSnap()
     oceanSnap = 200
+    for i = 1,7 do
+        milestoneSnapMap[i] = i + 203
+    end
+    for i = 1,7 do
+        awardSnapMap[i] = i + 213
+    end
+    dustStormSnap = 222
+    erosionSnap = 225
 end
 function initMap()
     for i = 1,61 do
@@ -115,7 +123,7 @@ projects={
     },
     buildColony={
     click_function = 'buildColonyProject', function_owner = self, label = "",
-        position = {-0.991,0.2,0.38},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Building Colony"
+        position = {-0.991,0.11,0.38},rotation={0,0,0},width = 30, height = 30, font_size = 30,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Building Colony"
     },
     aquifer={
     click_function = 'aquiferProject', function_owner = self, label = "",

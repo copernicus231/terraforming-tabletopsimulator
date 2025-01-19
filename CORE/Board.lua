@@ -58,6 +58,8 @@ function applyBonus(bonus,color)
             end
         elseif resource == "Delegate" then
             broadcastToAll("<BOARD>[==> "..getPlayerName(color).." get "..total.." delegate ]",Color.fromString(color))
+        elseif resource == "Colony" then
+            broadcastToAll("<BOARD>[==> "..getPlayerName(color).." get "..total.." colony ]",Color.fromString(color))
         elseif resource == "City" or resource == "Greenery" or resource == "Ocean" then
             if total > 0 then
                 local pos = getCardPlayTable(color).positionToWorld(Vector(0,1,-2.7))

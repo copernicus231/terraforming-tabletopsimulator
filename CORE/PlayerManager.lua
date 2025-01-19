@@ -112,12 +112,16 @@ function onLoad(save_state)
     if save_state != nil and save_state != '' then
         local json = JSON.decode(save_state)
         currentPlayer = json.currentPlayer
+        isSetup=json.isSetup or false
     end
     updatePlayers()
+    if isSetup == false then
+        UI.show("Menu")
+    end
 end
 
 function onSave()
-    local data_to_save = {currentPlayer=currentPlayer}
+    local data_to_save = {currentPlayer=currentPlayer,isSetup=isSetup}
     save_state = JSON.encode(data_to_save)
     return save_state
 end

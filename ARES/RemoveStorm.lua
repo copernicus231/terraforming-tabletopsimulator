@@ -18,6 +18,7 @@ function RemoveStorm(obj,player_clicker_color,alt_click)
         local objs = getObjectsWithAllTags({"DustStorm","Tile"})
         for i,a in ipairs(objs) do
             a.setLock(false)
+            a.setDescription("")
             getBag("DustStorm").putObject(a)
         end
         getBoard("BaseGame").call("moveTrack",{name="tr",step=1,color=player_clicker_color})

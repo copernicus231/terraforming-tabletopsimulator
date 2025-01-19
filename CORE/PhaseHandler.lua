@@ -71,13 +71,14 @@ function setupModules()
     getBoard("BaseGame").call("setup",{})
     getBoard("VenusNext").call("setup",{})
     getBoard("GlobalEvent").call("setup",{})
-    getBoard("SpacePort").call("setup",{})
+    Wait.frames(function() getBoard("SpacePort").call("setup",{}) end,170)
     getBoard("PathFinders").call("setup",{})
 
     getBag("SpecialTile").call("setup",{})
     getBoard("Luna").call("setup",{})
     getBoard("Nuclear").call("setup",{})
     getBag("EarlyBase").call("setup",{})
+    getBag("Milestone").call("setup",{})
     --local obj4 = getObjectsWithAllTags({"Card","Infrastructure"})
     --delay = 20
     --for i,a in ipairs(obj4) do
@@ -126,16 +127,19 @@ function randomFirstPlayer()
 end
 function setupFirstPlayer(color)
     getFirstPlayerToken().setPositionSmooth(getCardPlayTable(color).positionToWorld(Vector(0,3,-1.5)),false,false)
-    Wait.frames(function() getTurnToken().call("setPlayerPosition",color) end, 100)
+   --Wait.frames(function() getTurnToken().call("setPlayerPosition",color) end, 100)
 end
 function setup()
     broadcastToAll("<<Setup>>")
     setupPlayerBoards()
+    
     setupModules()
     setupDecks()
     dealInitalHand()
     Global.call("setCurrentPlayer",randomFirstPlayer())
-    setupFirstPlayer(Global.call("getCurrentPlayer"))
+    local color = Global.call("getCurrentPlayer")
+    setupFirstPlayer(color)
+    Wait.frames(function() getTurnToken().call("setPlayerPosition",color) end, 100)
     broadcastToAll("<Research Phase>")
     if isPreludePhase then
         setupButton.click_function = 'preludePhase'
@@ -179,6 +183,7 @@ end
 function researchPhase()
     broadcastToAll("<Research Phase>")
     getDraftHandler().call("startDraft")
+    getTurnToken().call("setReadyCount")
     setupButton.click_function = 'actionPhase'
     setupButton.label= "<Action Phase>"
     setupButton.tooltip = "Action Phase"

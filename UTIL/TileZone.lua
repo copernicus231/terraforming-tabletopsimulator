@@ -146,3 +146,15 @@ function TileBoard:getPlacementBonus(position)
     end
     return bonus
 end
+
+function TileBoard:changePositionBonus(position,tile)
+    --print(self.matrix[position].bonus)
+   -- for i,a in pairs(self.matrix[position].bonus) do
+    --    print("s:"..i.."/"..a)
+   -- end
+    self.matrix[position].bonus=getReplaceTileBonus(tile)
+   -- print(self.matrix[position].bonus)
+   -- for i,a in pairs(self.matrix[position].bonus) do
+    --    print("s:"..i.."/"..a)
+   -- end
+end
