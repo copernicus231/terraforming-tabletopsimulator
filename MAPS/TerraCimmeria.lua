@@ -24,8 +24,16 @@ function initTemperatureSnapMap()
     temperatureBonusMap[16]={PLAYER={TERRAFORM=1,Ocean=1},EVERYONE={}}
 
 end
-function initOceanSnap()
+function initOtherSnap()
     oceanSnap = 200
+    for i = 1,7 do
+        milestoneSnapMap[i] = i + 203
+    end
+    for i = 1,7 do
+        awardSnapMap[i] = i + 213
+    end
+    dustStormSnap = 225
+    erosionSnap = 222
 end
 
 function initMap()
@@ -80,23 +88,23 @@ function initMap()
     matrixMap[60].bonus = {Pl=1}
     matrixMap[61].bonus = {Pl=1}
 
-    matrixMap[12].reserve=true
-    matrixMap[19].reserve=true
-    matrixMap[23].reserve=true
-    matrixMap[24].reserve=true
-    matrixMap[25].reserve=true
+    matrixMap[1].reserve=true
+    matrixMap[5].reserve=true
+    matrixMap[6].reserve=true
+    matrixMap[11].reserve=true
+    matrixMap[35].reserve=true
 
-    matrixMap[34].reserve=true
+    matrixMap[50].reserve=true
 
-    matrixMap[38].reserve=true
+    matrixMap[51].reserve=true
 
-    matrixMap[46].reserve=true
-    matrixMap[47].reserve=true
+    matrixMap[56].reserve=true
+    matrixMap[57].reserve=true
 
-    matrixMap[53].reserve=true
-    matrixMap[54].reserve=true
+    matrixMap[58].reserve=true
+    matrixMap[59].reserve=true
 
-    matrixMap[60].reserve=true
+    matrixMap[61].reserve=true
 
 end
 
@@ -111,7 +119,7 @@ projects={
     },
     buildColony={
     click_function = 'buildColonyProject', function_owner = self, label = "",
-        position = {-0.980,0.2,0.383},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Building Colony"
+        position = {-0.980,0.11,0.383},rotation={0,0,0},width = 29, height = 29, font_size = 29,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Building Colony"
     },
     aquifer={
     click_function = 'aquiferProject', function_owner = self, label = "",

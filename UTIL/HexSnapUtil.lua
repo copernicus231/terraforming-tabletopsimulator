@@ -38,6 +38,67 @@ function onLoad(save_state)
   --local grid =centerHelper()w
   --local grid = genericNormalMap()
   --self.setSnapPoints(grid)
+  local grid = venusBoard()
+  self.setSnapPoints(grid)
+end
+
+
+function venusBoard()
+  local grid = {}
+  --grid = createOxygenTrack(110,2.7,3.03,vector(-0.06,0,2.2),16,1,16,0)
+  grid = createOxygenTrack(102.48,1.3,5.725,vector(0.04,0,4.95),19,1,19,0)
+  -- Luna Metropolis
+  grid = addSnaps(grid,addSnapLine(0.204,vector(0.7,0,-0.15),1,0))
+  -- Stratopolis
+  grid = addSnaps(grid,addSnapLine(0.204,vector(0.31,0,0.605),1,0))
+  -- Maxwell Base
+  grid = addSnaps(grid,addSnapLine(0.204,vector(-1,0,0.49),1,0))
+  -- Dawn City
+  grid = addSnaps(grid,addSnapLine(0.204,vector(-1.01,0,-0.28),1,0))
+
+
+  return grid
+end
+function venus()
+  
+  local grid=createSnapGridSmall(0.141,7,4,vector(0.252,0, 0))
+    grid = addSnaps(grid,addSnapLine(0.204,vector(-0.585,0,-0.625),1,0))
+    grid = addSnaps(grid,addSnapLine(0.204,vector(-0.50,0,0.72),1,0))
+    return grid
+end
+
+function genericBigMap()
+  local grid = createSnapGrid(0.0930,11,6,vector(0,0,-0.055))
+  grid = addSnaps(grid,createPointTrack(0.0759,0.0899,vector(1.122,0, 0.870)))
+  grid = addSnaps(grid,createTemperatureTrack(0.053,vector(-0.94,0, 0.358),23,1,23,0))
+  grid = addSnaps(grid,createOxygenTrack(42,5.1,0.97,vector(-0.035,0,-0.135),19,1,19,0))
+
+  --Phobos space Haven
+  grid = addSnaps(grid,addSnapLine(0.204,vector(0.91,0,-0.67),1,0))
+
+  --Ganymede Colony
+  grid = addSnaps(grid,addSnapLine(0.204,vector(0.975,0,0.495),1,0))
+
+  --Stanford Torus
+  grid = addSnaps(grid,addSnapLine(0.204,vector(-0.76,0,0.51),1,0))
+
+
+  --Ocean Tiles
+  grid = addSnaps(grid,addSnapLine(0.204,vector(-0.69,0,-0.78),1,0))
+
+    --Milestones
+    grid = addSnaps(grid,addSnapLine(0.062,vector(1.04,0,0.685),3,0))
+    grid = addSnaps(grid,addSnapLine(0.205,vector(0.955,0,0.84),5,-90))
+    grid = addSnaps(grid,addSnapLine(0.195,vector(0.795,0,0.724),2,-90))
+  
+    --awardsaaa
+    grid = addSnaps(grid,addSnapLine(0.065,vector(-0.905,0,0.697),3,0))
+    grid = addSnaps(grid,addSnapLine(0.204,vector(-0.144,0,0.84),5,-90))
+    grid = addSnaps(grid,addSnapLine(0.195,vector(-0.585,0,0.724),2,-90))
+
+    grid = addSnaps(grid,createTemperatureTrack(0.053,vector(-1.03,0, 0.358),23,23-10,23-8,-90))
+    grid = addSnaps(grid,createOxygenTrack(50,5.1,0.985,vector(0,0,0),19,19-6,19-4,-90))
+  return grid
 end
 
 function genericNormalMap()
@@ -45,7 +106,7 @@ function genericNormalMap()
   --grid = addSnaps(grid,createPointTrack(0.0756,0.0894,vector(1.118,0, 0.870)))
   grid = addSnaps(grid,createPointTrack(0.0759,0.0899,vector(1.122,0, 0.870)))
   grid = addSnaps(grid,createTemperatureTrack(0.059,vector(-0.927,0, 0.51),20,1,20,0))
-  grid = addSnaps(grid,createOxygenTrack(133.5,6.272,0.787,vector(0,0,0),15,1,15,0))
+  grid = addSnaps(grid,createOxygenTrack(90,6.272,0.787,vector(-0.035,0,-0.135),19,1,19,0))
 
 
   --Phobos space Haven
@@ -81,13 +142,7 @@ end
 
 
 
-function venus()
 
-  local grid=createSnapGridSmall(0.141,7,4,vector(0.252,0, 0))
-    grid = addSnaps(grid,addSnapLine(0.204,vector(-0.585,0,-0.625),1,0))
-    grid = addSnaps(grid,addSnapLine(0.204,vector(-0.50,0,0.72),1,0))
-    return grid
-end
 function addSnaps(snapMatrix,extraSnaps)
   local total =#snapMatrix
   for i=1,#extraSnaps do
@@ -95,6 +150,8 @@ function addSnaps(snapMatrix,extraSnaps)
   end
   return snapMatrix
 end
+
+
 function arcadiaplantitia()
   local grid=createSnapGrid(0.0907,11,6,vector(-0.004,0, -0.095))
   grid = addSnaps(grid,createPointTrack(0.0762,0.0901,vector(1.126,0, 0.876)))

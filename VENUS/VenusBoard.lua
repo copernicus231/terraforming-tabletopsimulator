@@ -65,13 +65,15 @@ function setup()
     tracks.venusScale:setTrackPosition("Grey",1)
     --{10.71, 1.10, 10.71}
     local milestone=getMilestone("VenusExpansion")
-    milestone.setPositionSmooth({10.71, 2.06, -11.08})
+    --milestone.setPositionSmooth({10.71, 2.06, -11.08})
+    milestone.setPositionSmooth(getBoard("BaseGame").call("getMilestoneSnapPosition",{index=7})+Vector(0,1,0))
     Wait.condition(function()
         milestone.setLock(true)
     end,function() return not milestone.spawning and milestone.resting and not milestone.isSmoothMoving() end)
     --{27.38, 1.15, -11.08}
     local award = getAward("VenusExpansion")
-    award.setPositionSmooth({27.38, 2.06, -11.08})
+    --award.setPositionSmooth({27.38, 2.06, -11.08})
+    award.setPositionSmooth(getBoard("BaseGame").call("getAwardSnapPosition",{index=7})+Vector(0,1,0))
     Wait.condition(function()
         award.setLock(true)
     end,function() return not award.spawning and award.resting and not award.isSmoothMoving() end)
@@ -169,6 +171,8 @@ end
              end
          elseif resource == "Delegate" then
              broadcastToAll("<VENUS>[==> "..getPlayerName(color).." get "..total.." delegate ]",Color.fromString(color))
+         elseif resource == "Colony" then
+             broadcastToAll("<BOARD>[==> "..getPlayerName(color).." get "..total.." colony ]",Color.fromString(color))
          elseif resource == "City" or resource == "Greenery" or resource == "Ocean" then
              if total > 0 then
                  local pos = getCardPlayTable(color).positionToWorld(Vector(0,1,-2.7))
@@ -262,13 +266,12 @@ end
      return false
  end
 
- projects={
-    airScrapping={
-    click_function = 'airScrapping', function_owner = self, label = "",
-        position = {-1.135,0.2,0.745},rotation={0,0,0},width = 70, height = 70, font_size = 70,font_color={0,0,0,0},color={0,0,0,0.7},hover_color={0,0,0,0},tooltip="Air Scrapping"
-    },
-}
+ 
 
 function airScrapping(obj,player_clicker_color,alt_click)
     setStandardProject(player_clicker_color,"Air Scrapping",{MC=15},{},{VenusScale=1})
+end
+
+function onNumberTyped(player_color, number_typed)
+    return true
 end

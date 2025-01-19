@@ -23,21 +23,22 @@ function getRemoveDustMarker()
 end
 function setup()
     --getBoard("BaseBoard").call()
-    if getBoard("BaseGame").getName() != "Arcadia Planitia Game Board" then
-        getDustStormMarker().setPositionSmooth({9.93, 2.06, 13.07})
+    if getBoard("BaseGame").getName() != "Amazonias Planitia" then
+        --getDustStormMarker().setPositionSmooth({9.93, 2.06, 13.07})
+        getDustStormMarker().setPositionSmooth(getBoard("BaseGame").call("getDustStormSnapPosition")+Vector(0,1,0))
         --{-29.47, 1.06, 5.06}
         getDustStormMarker().setRotationSmooth({0.00, 165, 0.00})
-    end
+        --getErosionMarker().setPositionSmooth({28.54, 2.16, 4.42})
+        getErosionMarker().setPositionSmooth(getBoard("BaseGame").call("getErosionSnapPosition")+Vector(0,1,0))
+    elseif getBoard("BaseGame").getName() == "Amazonias Planitia" then
+        -- getDustStormMarker().setPositionSmooth({-1.46, 2.06, -4.23})
+        getDustStormMarker().setPositionSmooth(getBoard("BaseGame").call("getDustStormSnapPosition")+Vector(0,1,0))
 
-    if getBoard("BaseGame").getName() == "Elysium Game Board" then
-        getErosionMarker().setPositionSmooth({1.29, 2.16, 4.22})
-    elseif getBoard("BaseGame").getName() == "Arcadia Planitia Game Board" then
-        getDustStormMarker().setPositionSmooth({-2.2, 2.06, 5.06})
-        --
-        getDustStormMarker().setRotationSmooth({0.00, 105, 0.00})
-        getErosionMarker().setPositionSmooth({28.8, 2.16, 4.89})
-    else
-        getErosionMarker().setPositionSmooth({28.54, 2.16, 4.42})
+        --{-1.46, 1.07, -4.23}{359.85, 73.70, 0.04}
+        getDustStormMarker().setRotationSmooth({0.00, 73.70, 0.00})
+        getErosionMarker().setPositionSmooth(getBoard("BaseGame").call("getErosionSnapPosition")+Vector(0,1,0))
+
+       -- getErosionMarker().setPositionSmooth({28.76, 1.25, 5.06})
     end
 
     --{-25.98, 1.16, 4.22}
@@ -55,14 +56,17 @@ function setup()
     if val == 1 then
         --{4.59, 1.09, -11.08}
         local milestone = getMilestone("AresExpansion")
-        milestone.setPositionSmooth({4.59, 2.06, -11.08})
+      
+        --milestone.setPositionSmooth({4.59, 2.06, -11.08})
+        milestone.setPositionSmooth(getBoard("BaseGame").call("getMilestoneSnapPosition",{index=6})+Vector(0,1,0))
         Wait.condition(function()
             milestone.setLock(true)
         end,function() return not milestone.spawning and milestone.resting and not milestone.isSmoothMoving() end)
     elseif val == 2 then
         --{21.26, 1.13, -11.08}
         local award = getAward("AresExpansion")
-        award.setPositionSmooth({21.26, 2.06, -11.08})
+        --award.setPositionSmooth({21.26, 2.06, -11.08})
+        award.setPositionSmooth(getBoard("BaseGame").call("getAwardSnapPosition",{index=6})+Vector(0,1,0))
         Wait.condition(function()
             award.setLock(true)
         end,function() return not award.spawning and award.resting and not award.isSmoothMoving() end)

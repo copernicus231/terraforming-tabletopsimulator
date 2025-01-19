@@ -25,6 +25,8 @@ oxygenSnapMap = {}
 oxygenBonusMap = {}
 temperatureBonusMap={}
 temperatureSnapMap={}
+milestoneSnapMap={}
+awardSnapMap={}
 trSnapMap={}
 tracks={
 oxygen={marker={Grey=getTrackMarker("Oxygen")},snapMap=oxygenSnapMap,level={Grey=0},parent=self,bonusMap=oxygenBonusMap},
@@ -281,6 +283,7 @@ function onLoad(save_state)
     for i,a in pairs(projects) do
             self.createButton(a)
     end
+    initOtherSnap()
     loadingGame = false
 end
 
@@ -295,6 +298,29 @@ function setup()
             delay = delay + 40
         end
         Wait.frames(function() tracks.tr:setTrackPosition("Grey",1) end,20)
+        
+        getBag("Ocean").setLock(false);getBag("Ocean").setPositionSmooth(getOceanSnapPosition()+Vector(0,1,0))
+        Wait.condition(function()
+            getBag("Ocean").setLock(true)
+        end,function() return not getBag("Ocean").spawning and getBag("Ocean").resting and not getBag("Ocean").isSmoothMoving() end)
+end
+
+function getOceanSnapPosition()
+    return self.positionToWorld(self.getSnapPoints()[oceanSnap].position)
+end
+function getMilestoneSnapPosition(params)
+    return self.positionToWorld(self.getSnapPoints()[milestoneSnapMap[params.index]].position)
+end
+function getAwardSnapPosition(params)
+    return self.positionToWorld(self.getSnapPoints()[awardSnapMap[params.index]].position)
+end
+
+function getDustStormSnapPosition()
+    return self.positionToWorld(self.getSnapPoints()[dustStormSnap].position)
+end
+
+function getErosionSnapPosition()
+    return self.positionToWorld(self.getSnapPoints()[erosionSnap].position)
 end
 
 function onCollisionEnter(collision_info)

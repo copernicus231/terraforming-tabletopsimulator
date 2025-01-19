@@ -71,7 +71,7 @@ function setupModules()
     getBoard("BaseGame").call("setup",{})
     getBoard("VenusNext").call("setup",{})
     getBoard("GlobalEvent").call("setup",{})
-    getBoard("SpacePort").call("setup",{})
+    Wait.frames(function() getBoard("SpacePort").call("setup",{}) end,170)
     getBoard("PathFinders").call("setup",{})
 
     getBag("SpecialTile").call("setup",{})
@@ -132,6 +132,7 @@ end
 function setup()
     broadcastToAll("<<Setup>>")
     setupPlayerBoards()
+    
     setupModules()
     setupDecks()
     dealInitalHand()

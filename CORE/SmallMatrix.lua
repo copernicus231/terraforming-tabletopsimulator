@@ -14,7 +14,7 @@ matrixMap = {
     {next={6,7,12,14,20,21},tile=nil,reserve=false,color=nil,bonus={},snap=nil},
     {next={7,8,13,15,21,22},tile=nil,reserve=false,color=nil,bonus={},snap=nil},
     {next={8,9,14,16,22,23},tile=nil,reserve=false,color=nil,bonus={},snap=nil},
-    {next={9,10,15,16,23,24},tile=nil,reserve=false,color=nil,bonus={},snap=nil},
+    {next={9,10,15,17,23,24},tile=nil,reserve=false,color=nil,bonus={},snap=nil},
     {next={10,11,16,18,24,25},tile=nil,reserve=false,color=nil,bonus={},snap=nil},
     {next={11,17,25,26},tile=nil,reserve=false,color=nil,bonus={},snap=nil},
     {next={12,20,27,28},tile=nil,reserve=false,color=nil,bonus={},snap=nil},

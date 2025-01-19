@@ -335,7 +335,9 @@ preludeVenusPromoConfig={
 }
 preludeColoniesConfig={
     {id="137a3e",position={96.00, 3.00,3},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
-    {id="b4074b",position={91.75, 3.00, 3},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    --{id="b4074b",position={91.75, 3.00, 3},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="ef68e3",position={91.75, 3.00, 3},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    
 }
 preludeColoniesTurmoilConfig={
     {id="dc3186",position={75.50, 3.00, -10.80},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
