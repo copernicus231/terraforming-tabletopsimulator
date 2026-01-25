@@ -272,7 +272,7 @@ highOrbitConfig={
 }
 preludeConfig = {
     --deck 8d5057
-    {id="8d5057",position={96,00, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
+    {id="8d5057",position={96.00, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="b7568b",position={104.50, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     {id="e0bee9",position={100.50, 3.00, -1.60},rotation={0.00, 180.00, 0.00},call=nil,lock=false},
     

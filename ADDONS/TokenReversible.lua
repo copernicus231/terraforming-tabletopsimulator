@@ -22,7 +22,7 @@ function done()
     if not self.is_face_down then
         self.flip()
     end
-    Wait.condition(function() self.editButton({index=0,click_function='pending',rotation=self.getRotation()});callFunction() end,function() return self.resting end)
+    Wait.condition(function() self.editButton({index=0,click_function='pending',rotation=self.getRotation(),tooltip="Retract"});callFunction() end,function() return self.resting and self.is_face_down end)
 
 end
 
@@ -30,6 +30,7 @@ function pending()
     if self.is_face_down then
         self.flip()
     end
-    Wait.condition(function() self.editButton({index=0,click_function='done',rotation=self.getRotation()});callFunction() end,function() return self.resting end)
+    Wait.condition(function() self.editButton({index=0,click_function='done',rotation=self.getRotation(),tooltip="Ready"});callFunction() end,function() return self.resting and not self.is_face_down end)
 
 end
+
